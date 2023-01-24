@@ -1,6 +1,6 @@
 """CRUD operations"""
 
-from model import db, User, Movie, Rating, connect_to_db
+from model import db, User, Trip, Tour, connect_to_db
 
 
 def create_user(fname, lname, phone, password, email, birthday):

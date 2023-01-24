@@ -4,6 +4,7 @@ import crud
 from jinja2 import StrictUndefined
 from datetime import datetime
 
+
 app = Flask(__name__)
 app.secret_key = 'dev'
 app.jinja_env.undefined = StrictUndefined
@@ -13,7 +14,8 @@ app.jinja_env.undefined = StrictUndefined
 #hompage
 @app.route('/')
 def homepage():
-    jmjk
+    """View homepage for site"""
+
     return render_template('homepage.html')
 
 
@@ -21,6 +23,7 @@ def homepage():
 #generating a user & account settings
 @app.route('/account')
 def account():
+    """Ability to access account."""
     #redirect to user account page
 
     return render_template('account.html')
@@ -79,7 +82,7 @@ def tour_display():
 #individual packages page and port cities 
 #google API
 @app.route('/tours/<tour_id>')
-def tour_display(tour_id):
+def individual_tours(tour_id):
     """individual tours page."""
     
     return render_template('tour_details.html')
