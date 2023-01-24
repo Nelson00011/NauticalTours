@@ -13,7 +13,7 @@ app.jinja_env.undefined = StrictUndefined
 #hompage
 @app.route('/')
 def homepage():
-    '''View homepage for site'''
+    jmjk
     return render_template('homepage.html')
 
 
@@ -72,14 +72,17 @@ def login():
 #major tour packages 
 @app.route('/tours')
 def tour_display():
-    
+    """General tours page."""
     
     return render_template('tours.html')
 
-
-
 #individual packages page and port cities 
 #google API
+@app.route('/tours/<tour_id>')
+def tour_display(tour_id):
+    """individual tours page."""
+    
+    return render_template('tour_details.html')
 
 
 
@@ -97,7 +100,6 @@ def history():
 def contact_submission():
     
     #redirect to user account page
-
     return render_template('contact.html')
 
 

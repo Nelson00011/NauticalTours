@@ -1,0 +1,2 @@
+"""Script to seed database."""
+

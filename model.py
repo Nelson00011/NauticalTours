@@ -47,7 +47,7 @@ class Trip(db.Model):
 
 
 class Tour(db.Model):
-    """A tour Package."""
+    """A tour package."""
 
     __tablename__ = 'tours'
     #link to Tour package
@@ -65,7 +65,7 @@ class Tour(db.Model):
 
 
 
-def connect_to_db(flask_app, db_uri="postgresql:///ratings", echo=True):
+def connect_to_db(flask_app, db_uri="postgresql:///trips", echo=True):
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
     flask_app.config["SQLALCHEMY_ECHO"] = False
     flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
