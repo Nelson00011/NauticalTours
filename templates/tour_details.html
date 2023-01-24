@@ -3,11 +3,36 @@
 
 {% block body %}
 
-<h1>Individual Tour</h1>
 <p>Google Maps API Port Cities API HERE</p>
 
-<input type="submit" value="Sign Up">
 
+<div class="container">
+    <div class="page-header">
+      <h1>Individual Tour</h1>
+      <p class='{{ tour.id }}'>{{ tour.details }}.</p>
+    </div>
+    <h2>{{ tour.date }}</h2>
 
+   
+<!-- Description and google API -->
 
+<div class="row">
+    <div class="col-12 col-md-6 col-lg-3">
+      <div>Sidebar/Navbar/Description</div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-9">
+      <div>Google API Here</div>
+
+    </div>
+  </div>
+
+  
+    <input type="submit" value="Sign Up">
+
+</div>
+
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap">
+</script>
 {% endblock %}

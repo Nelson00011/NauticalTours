@@ -15,10 +15,11 @@ app.jinja_env.undefined = StrictUndefined
 
 #hompage
 @app.route('/')
+@app.route('/homepage')
 def homepage():
     """View homepage for site"""
     session['status'] = session.get('status', False)
-    logIn = session['status']
+    logIn = session.get('status', False)
 
     return render_template('homepage.html', logIn = logIn)
 
@@ -29,18 +30,22 @@ def homepage():
 def account():
     """Ability to access account."""
     #redirect to user account page
-    session['status'] = session.get('status', False)
-    logIn = session['status']
+    logIn = session.get('status', False)
+    
 
     return render_template('account.html' , logIn = logIn)
 
-# individual account
+#generate user account HELP HERE
 @app.route('/users', methods = ['POST'])
 def register_user():
     """Create a new user."""
     fname = request.form.get('fname')
     lname = request.form.get('lname')
     phone = request.form.get('phone')
+    print("TEST")
+    print(phone)
+    print(type(phone))
+    print("TEST")
    
     password = request.form.get('password')
     # password_hashed = bcrypt.hashpw(password, bcrypt.gensalt())
@@ -51,16 +56,19 @@ def register_user():
     
     user = crud.get_user_by_email(email)
     if user:
-        Alert('Email already in use. Account already exists.')
+        flash('Email already in use. Account already exists.')
     else:
-        new_user = crud.create_user(fname, lname, phone, password, email, birthday, logIn)
+        new_user = crud.create_user(fname, lname, phone, password, email, birthday)
         db.session.add(new_user)
         db.session.commit()
-        
-        Alert('Success! Account created.')
+        session['status'] = True
+        flash('Success! Account created.')
     
-    return redirect('account.html', logIn = logIn)
+    logIn = session.get('status', False)
+    
+    return render_template('account.html', logIn = logIn)
 
+#login to user account
 @app.route('/login',  methods = ['POST'])
 def login():
     """Login to user account."""
@@ -72,12 +80,20 @@ def login():
         session['primary_key'] = user.user_id
         session['status'] = True
         logIn = session['status']
-        print(session)
-        Alert('Logged In!')
+        flash('Logged In!')
     else:
-        Alert('Password does not match.')
-        
-    return redirect('/' , logIn = logIn)
+        flash('Password does not match.')
+    logIn = session.get('status', False) 
+    return render_template('account.html', logIn = logIn)
+
+#log out of user account
+@app.route('/logout', methods = ['POST'])
+def logout():
+    """Logout to of a user account."""
+    session['status'] = False
+    logIn = session['status']
+
+    return render_template('homepage.html', logIn = logIn)
 
 
 
@@ -88,7 +104,7 @@ def tour_display():
     """General tours page."""
     
     
-    logIn = session['status']
+    logIn = session.get('status', False)
     return render_template('tours.html', logIn = logIn)
 
 #individual packages page and port cities 
@@ -119,12 +135,6 @@ def history():
 #     #redirect to user account page
 #     logIn = session['status'] or False
 #     return render_template('contact.html', logIn = logIn)
-
-
-
-
-
-
 
 
 if __name__ == "__main__":

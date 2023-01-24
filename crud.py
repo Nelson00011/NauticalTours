@@ -3,7 +3,7 @@
 from model import db, User, Trip, Tour, connect_to_db
 
 
-def create_user(fname, lname, phone, password, email, birthday, logIn):
+def create_user(fname, lname, phone, password, email, birthday):
     """Create and return a new user."""
     
     user = User(
@@ -12,6 +12,7 @@ def create_user(fname, lname, phone, password, email, birthday, logIn):
         phone = phone,
         password = password,
         email = email,
+        balance = 0,
         birthday = birthday
      )
 
@@ -22,16 +23,29 @@ def get_user_by_email(email):
     
     return User.query.filter(User.email == email).first()
 
-def create_trip():
+def create_trip(user_id, tour_id, status='like'):
     """Create and return a new trip."""
-    pass
-    
+    trip = Trip(
+        user_id = user_id,
+        tour_id = tour_id,
+        status = status
+     )
+
+    return trip 
+  
 
 
-def create_tour():
+def create_tour(tour_name, details, price, date, days = 9):
     """Create and return a new tour."""
-    pass
+    tour = Tour(
+        tour_name = tour_name,
+        details = details,
+        price = price,
+        date = date,
+        days = days
+     )
 
+    return tour
 
 
 if __name__ == '__main__':

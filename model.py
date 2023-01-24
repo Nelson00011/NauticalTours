@@ -13,7 +13,7 @@ class User(db.Model):
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     fname = db.Column(db.String(25), nullable=False)
     lname = db.Column(db.String(50), nullable=False)
-    phone = db.Column(db.Integer, nullable=False)
+    phone = db.Column(db.String(25), nullable=False)
     #login information for user
     password = db.Column(db.String(20), nullable=False)
     email = db.Column(db.String(20), unique=True, nullable=False)
@@ -37,6 +37,7 @@ class Trip(db.Model):
     trip_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     tour_id = db.Column(db.Integer, db.ForeignKey('tours.tour_id'))
+    status = db.Column(db.String(25), nullable=True)
      
     user = db.relationship('User', back_populates='trips')
     tour = db.relationship("Tour", back_populates = 'trips')
@@ -57,6 +58,7 @@ class Tour(db.Model):
     details = db.Column(db.Text, nullable = False)
     price = db.Column(db.Integer, nullable=False)
     date = db.Column(db.Date, nullable=False)
+    days = db.Column(db.Integer)
 
     trips = db.relationship("Trip", back_populates = 'tour')
 
@@ -66,14 +68,15 @@ class Tour(db.Model):
 
 
 
-def connect_to_db(flask_app, db_uri="postgresql:///trips", echo=True):
-    flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
-    flask_app.config["SQLALCHEMY_ECHO"] = False
-    flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-    db.app = flask_app
-    db.init_app(flask_app)
+def connect_to_db(app,  db_uri="nautical", echo = True):
+    """Connect to database."""
+    app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql:///{db_uri}"
+    app.config["SQLALCHEMY_ECHO"] = True
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
+    db.app = app
+    db.init_app(app)
     print("Connected to the db!")
 
 
@@ -83,5 +86,8 @@ if __name__ == "__main__":
     # Call connect_to_db(app, echo=False) if your program output gets
     # too annoying; this will tell SQLAlchemy not to print out every
     # query it executes.
-
+    
+    
     connect_to_db(app)
+    db.create_all()    
+    app.app_context().push()

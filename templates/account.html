@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Nautical Tours{% endblock %}
+{% block title %}Account{% endblock %}
 
 {% block body %}
 
@@ -17,7 +17,8 @@
         <input type="password" name="password" placeholder="password">
     </div>
     <p>
-      <input type="submit" value="Log In">
+        <!--Form:submit button-->
+      <input type="submit" value="Log In" class="btn btn-primary">
     </p>
     </form>
 </fieldset>
@@ -43,7 +44,7 @@
     <div>
         <label for="phone" class="label">Phone</label>
         <div>       
-        <input type="tel" id="phone" name="phone" placeholder="555-555-5678" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+        <input type="tel" id="phone" name="phone" placeholder="555-555-5555" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
         </div>
     </div>
     <!--Create New Account Birthday-->
@@ -53,10 +54,19 @@
     </div>
      <!--Form:submit button-->
      <p>
-     <input type="submit" value="Sign Up">
+     <input type="submit" value="Sign Up" class="btn btn-success">
     </p>
     </form>
 </fieldset>
   
+<!--Log In to Account-->
+<fieldset>
+    <h2>Log out of Account</h2>
+      <form action="/logout" method="POST">
+            <!--Form:submit button-->
+          <input type="submit" value="Log Out" class="btn btn-dark">
+        </p>
+        </form>
+    </fieldset>
 
 {% endblock %}
