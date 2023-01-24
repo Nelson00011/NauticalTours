@@ -3,7 +3,7 @@
 from model import db, User, Trip, Tour, connect_to_db
 
 
-def create_user(fname, lname, phone, password, email, birthday):
+def create_user(fname, lname, phone, password, email, birthday, logIn):
     """Create and return a new user."""
     
     user = User(
@@ -13,7 +13,7 @@ def create_user(fname, lname, phone, password, email, birthday):
         password = password,
         email = email,
         birthday = birthday
-        )
+     )
 
     return user
 

@@ -22,6 +22,7 @@ class User(db.Model):
     birthday = db.Column(db.Date, nullable=False)
     #payment_info = 
     
+    
     trips = db.relationship('Trip', back_populates='user')
 
     def __repr__(self):
