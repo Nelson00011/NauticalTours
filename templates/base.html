@@ -21,19 +21,15 @@
     <nav>
       
       <ul class="navigation">
-        <li><a href="#home">Home</a></li>
-       <li><a href="#account">Account</a></li>
-       <li><a href="#tours">Tours</a></li>
-        <li><a href="#contact">History</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="/">Home</a></li>
+       <li><a href="/account">Account</a></li>
+       <li><a href="/tours">Tours</a></li>
+       <li><a href="/history">History</a></li>
+      <li><a href="/contact">Contact</a></li>
       </ul>
     </nav>
 
-    {% for msg in get_flashed_messages() %}
-      <p class="flash-msg">
-        {{ msg }}
-      </p>
-    {% endfor %}
+   
     
     {% block body %}{% endblock %}
 
