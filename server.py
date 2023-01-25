@@ -70,20 +70,37 @@ def login():
     """Login to user account."""
     email = request.form.get('email')
     password = request.form.get('password')
+    
 
     user = crud.get_user_by_email(email)
     
-    if user.password == password:
-        user = crud.get_user_by_id(user_id)
+    #conditional statement problematic
+    if len(password)<=1 or len(email) <= 1:
+        flash('Incorrect Login Attempt')
+        return redirect('/account')
+    elif email == '0' or password == '0':
+        flash('Incorrect Login Attempt')
+        return redirect ('/account')
+    elif user.password == password:
+        user = crud.get_user_by_id(user.user_id)
         session['primary_key'] = user.user_id
         session['status'] = True
+        logIn = session.get('status', False)
+        # logged in maybe
+        return render_template('account.html', logIn = logIn)
 
-        logIn = session['status']
-        flash('Logged In!')
     else:
         flash('Password does not match.')
+    logIn = session.get('status', False)
+    return render_template('account.html', logIn = logIn)
+  
+
+#optional redirect
+@app.route('/logged_in')
+def logged_in(user_info):
     logIn = session.get('status', False) 
     return render_template('account.html', logIn = logIn)
+
 
 #log out of user account
 @app.route('/logout', methods = ['POST'])
@@ -93,8 +110,6 @@ def logout():
     logIn = session['status']
 
     return render_template('homepage.html', logIn = logIn)
-
-
 
 
 #major tour packages 
@@ -112,9 +127,10 @@ def tour_display():
 @app.route('/tours/<tour_id>')
 def individual_tours(tour_id):
     """individual tours page."""
+    tour = crud.get_tour_by_id(tour_id)
+
     logIn = session.get('status', False)
-    
-    return render_template('tour_details.html', logIn = logIn)
+    return render_template('tour_details.html', logIn = logIn, tour = tour)
 
 
 

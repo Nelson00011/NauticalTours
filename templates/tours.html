@@ -9,7 +9,7 @@
 <ul>
   {% for tour in tours%}
     <li>
-      <a href="/tour/{{ tour.tour_id }}">{{ tour.tour_name }}</a>
+      <a href="/tours/{{ tour.tour_id }}">{{ tour.tour_name }}</a>
       <p>Price: {{ tour.price }}</p>
     </li>
   {% endfor %}

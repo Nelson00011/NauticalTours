@@ -3,15 +3,15 @@
 
 {% block body %}
 
-<p>Google Maps API Port Cities API HERE</p>
+
 
 
 <div class="container">
     <div class="page-header">
       <h1>Individual Tour</h1>
-      <p class='{{ tour.id }}'>{{ tour.details }}.</p>
+      <p class='{{ tour.tour_id}}'>{{ tour.details }}.</p>
     </div>
-    <h2>{{ tour.date }}</h2>
+    <h2>Start Date: {{ tour.date }}</h2>
 
    
 <!-- Description and google API -->
@@ -27,8 +27,9 @@
     </div>
   </div>
 
-  
-    <input type="submit" value="Sign Up">
+  <p>Google Maps API Port Cities API HERE</p>
+    <input type="submit" value="Book Trip">
+    
 
 </div>
 

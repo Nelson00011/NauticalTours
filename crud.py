@@ -60,6 +60,14 @@ def get_tours():
 
     return Tour.query.all()
 
+def get_tour_by_id(tour_id):
+    """Returns user with specified id. """
+    
+    return Tour.query.get(tour_id)
+
+
+    
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)

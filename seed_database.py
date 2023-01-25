@@ -19,21 +19,21 @@ model.db.create_all()
 #MOCK DATA
 tours = [{
     'name': "Artic Winds",
-    'details': " Massive, magnificent, and unforgiving, Alaska is a land area of superlatives that will leave your mind searching for words to describe it. Each day presents a new discovery, whether you\’re cruising through ice-choked waterways, trekking through chattering puffins rookeries, or catching artic fox and humpbacks breaching in the pristine waters",
+    'details': " Massive, magnificent, and unforgiving, Alaska is a land area of superlatives that will leave your mind searching for words to describe it. Each day presents a new discovery, whether you’re cruising through ice-choked waterways, trekking through chattering puffins rookeries, or catching artic fox and humpbacks breaching in the pristine waters",
     'price': 1500, 
     'date': '2023-10-29',
     'days' : 8
     },
     {
     'name': "Polynesian Breezes",
-    'details': "A magical blend of culture, people, nature, activities, weather, culinary delights, nightlife, and beautiful accommodation.",
+    'details': "A magical blend of culture, people, nature, activities, weather, culinary delights, nightlife, and beautiful accommodation",
     'price': 2000, 
     'date': '2023-05-03',
     'days': 10
     },
     {
     'name': "NorthWest Best",
-    'details': "A dynamic, urban city surrounded by unmatched natural beauty—and now it\’s all open for you to explore.",
+    'details': "A dynamic, urban city surrounded by unmatched natural beauty—and now it’s all open for you to explore",
     'price': 1700, 
     'date': '2023-03-15',
     'days': 10
