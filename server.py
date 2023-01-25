@@ -39,19 +39,15 @@ def account():
 @app.route('/users', methods = ['POST'])
 def register_user():
     """Create a new user."""
-    fname = request.form.get('fname')
-    lname = request.form.get('lname')
-    phone = request.form.get('phone')
-    print("TEST")
-    print(phone)
-    print(type(phone))
-    print("TEST")
-   
-    password = request.form.get('password')
+    fname = request.form.get('fname', 0)
+    lname = request.form.get('lname', 0)
+    phone = request.form.get('phone', 0)
+       
+    password = request.form.get('password', 0)
     # password_hashed = bcrypt.hashpw(password, bcrypt.gensalt())
-    email = request.form.get('email')
+    email = request.form.get('email', 0)
 
-    birthday = request.form.get('birthday')
+    birthday = request.form.get('birthday', 0)
     #force user to log into site
     
     user = crud.get_user_by_email(email)
@@ -76,9 +72,12 @@ def login():
     password = request.form.get('password')
 
     user = crud.get_user_by_email(email)
+    
     if user.password == password:
+        user = crud.get_user_by_id(user_id)
         session['primary_key'] = user.user_id
         session['status'] = True
+
         logIn = session['status']
         flash('Logged In!')
     else:
@@ -102,10 +101,11 @@ def logout():
 @app.route('/tours')
 def tour_display():
     """General tours page."""
-    
+    #get Tour classes
+    tours = crud.get_tours()
     
     logIn = session.get('status', False)
-    return render_template('tours.html', logIn = logIn)
+    return render_template('tours.html', logIn = logIn, tours = tours)
 
 #individual packages page and port cities 
 #google API

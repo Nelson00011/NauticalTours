@@ -64,7 +64,7 @@ class Tour(db.Model):
 
      
     def __repr__(self):
-        return f'<Tour tour_id={self.trip_id} tour_name={self.tour_name}>'
+        return f'<Tour tour_id={self.tour_id} tour_name={self.tour_name}>'
 
 
 

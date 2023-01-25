@@ -2,7 +2,7 @@
 
 from model import db, User, Trip, Tour, connect_to_db
 
-
+#User related functions
 def create_user(fname, lname, phone, password, email, birthday):
     """Create and return a new user."""
     
@@ -23,6 +23,13 @@ def get_user_by_email(email):
     
     return User.query.filter(User.email == email).first()
 
+def get_user_by_id(user_id):
+    """Returns user with specified id. """
+    
+    return User.query.get(user_id)
+
+
+#Trip Related Functions
 def create_trip(user_id, tour_id, status='like'):
     """Create and return a new trip."""
     trip = Trip(
@@ -33,8 +40,9 @@ def create_trip(user_id, tour_id, status='like'):
 
     return trip 
   
+#booking or liking a trip
 
-
+#Tour Related Functions
 def create_tour(tour_name, details, price, date, days = 9):
     """Create and return a new tour."""
     tour = Tour(
@@ -47,6 +55,10 @@ def create_tour(tour_name, details, price, date, days = 9):
 
     return tour
 
+def get_tours():
+    """Return all tours."""
+
+    return Tour.query.all()
 
 if __name__ == '__main__':
     from server import app
