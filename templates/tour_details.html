@@ -8,7 +8,7 @@
 
 <div class="container">
     <div class="page-header">
-      <h1>Individual Tour</h1>
+      <h1>{{ tour.tour_name }} Tour</h1>
       <p class='{{ tour.tour_id}}'>{{ tour.details }}.</p>
     </div>
     <h2>Start Date: {{ tour.date }}</h2>
@@ -23,7 +23,9 @@
 
     <div class="col-12 col-md-6 col-lg-9">
       <div>Google API Here</div>
-
+      <section class="map">
+        <div id="map"></div>
+      </section>
     </div>
   </div>
 
@@ -33,7 +35,5 @@
 
 </div>
 
-<script async
-    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap">
-</script>
+
 {% endblock %}
