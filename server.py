@@ -39,15 +39,15 @@ def account():
 @app.route('/users', methods = ['POST'])
 def register_user():
     """Create a new user."""
-    fname = request.form.get('fname', 0)
-    lname = request.form.get('lname', 0)
-    phone = request.form.get('phone', 0)
+    fname = request.form.get('fname')
+    lname = request.form.get('lname')
+    phone = request.form.get('phone')
        
-    password = request.form.get('password', 0)
+    password = request.form.get('password')
     # password_hashed = bcrypt.hashpw(password, bcrypt.gensalt())
-    email = request.form.get('email', 0)
+    email = request.form.get('email')
 
-    birthday = request.form.get('birthday', 0)
+    birthday = request.form.get('birthday')
     #force user to log into site
     
     user = crud.get_user_by_email(email)
@@ -61,7 +61,6 @@ def register_user():
         flash('Success! Account created.')
     
     logIn = session.get('status', False)
-    
     return render_template('account.html', logIn = logIn)
 
 #login to user account
@@ -74,14 +73,8 @@ def login():
 
     user = crud.get_user_by_email(email)
     
-    #conditional statement problematic
-    if len(password)<=1 or len(email) <= 1:
-        flash('Incorrect Login Attempt')
-        return redirect('/account')
-    elif email == '0' or password == '0':
-        flash('Incorrect Login Attempt')
-        return redirect ('/account')
-    elif user.password == password:
+    
+    if user.password == password:
         user = crud.get_user_by_id(user.user_id)
         session['primary_key'] = user.user_id
         session['status'] = True
@@ -91,6 +84,7 @@ def login():
 
     else:
         flash('Password does not match.')
+
     logIn = session.get('status', False)
     return render_template('account.html', logIn = logIn)
   
@@ -103,7 +97,7 @@ def logged_in(user_info):
 
 
 #log out of user account
-@app.route('/logout', methods = ['POST'])
+@app.route('/logout', methods = ['GET','POST'])
 def logout():
     """Logout to of a user account."""
     session['status'] = False

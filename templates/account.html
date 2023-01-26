@@ -11,10 +11,10 @@
   <form action="/login" method="POST">
     
     <div>
-        <input type="text" name="email" placeholder="email">
+        <input type="text" name="email" placeholder="email" required>
     </div>
     <div>
-        <input type="password" name="password" placeholder="password">
+        <input type="password" name="password" placeholder="password" required>
     </div>
     <p>
         <!--Form:submit button-->
@@ -31,15 +31,15 @@
     
     <div>
         <span>
-            <input type="text" name="fname" placeholder="first name">
-            <input type="text" name="lname" placeholder="last name">
+            <input type="text" name="fname" placeholder="first name" required>
+            <input type="text" name="lname" placeholder="last name" required>
         </span>
     </div>
     <div>
-        <input type="text" name="email" placeholder="email">    
+        <input type="text" name="email" placeholder="email" required>    
     </div>
     <div>
-        <input type="password" name="password" placeholder="password">
+        <input type="password" name="password" placeholder="password" required>
     </div>
     <div>
         <label for="phone" class="label">Phone</label>
@@ -50,7 +50,7 @@
     <!--Create New Account Birthday-->
     <label for="birthday" class="label">Birthday</label>
     <div>
-        <input type="date" id="birthday" name="birthday">
+        <input type="date" id="birthday" name="birthday" required>
     </div>
      <!--Form:submit button-->
      <p>
@@ -59,14 +59,5 @@
     </form>
 </fieldset>
   
-<!--Log out of Account-->
-<fieldset>
-    <h2>Log out of Account</h2>
-      <form action="/logout" method="POST">
-            <!--Form:submit button-->
-          <input type="submit" value="Log Out" class="btn btn-dark">
-        </p>
-        </form>
-    </fieldset>
 
 {% endblock %}
