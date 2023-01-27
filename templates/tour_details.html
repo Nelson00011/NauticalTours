@@ -19,14 +19,20 @@
 <div class="row">
     <div class="col-12 col-md-6 col-lg-3">
       <div>Sidebar/Navbar/Description</div>
+      <ul>
+        <li>Please explore the Port Trip locals</li>
+        <li>Let us know which you like most!</li>
+      </ul>
     </div>
 
     <div class="col-12 col-md-6 col-lg-9">
-      <div>Google API Here</div>
+      <div class='{{tour.port_id}}'>
       <section class="map">
-        <div id="map"></div>
-      </section>
+        <h5>{{tour.port_name}}</h5>
+        <div id="map" value='{{ tour.tour_id}}' ></div>
+    </section>
     </div>
+  </div>
   </div>
 
   <p>Google Maps API Port Cities API HERE</p>

@@ -43,14 +43,16 @@ def create_trip(user_id, tour_id, status='like'):
 #booking or liking a trip
 
 #Tour Related Functions
-def create_tour(tour_name, details, price, date, days = 9):
+def create_tour(tour_name, details, price, date, port_id, port_name, days = 9):
     """Create and return a new tour."""
     tour = Tour(
         tour_name = tour_name,
         details = details,
         price = price,
         date = date,
-        days = days
+        days = days,
+        port_id = port_id,
+        port_name = port_name
      )
 
     return tour

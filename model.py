@@ -59,6 +59,8 @@ class Tour(db.Model):
     price = db.Column(db.Integer, nullable=False)
     date = db.Column(db.Date, nullable=False)
     days = db.Column(db.Integer)
+    port_id = db.Column(db.String(10), nullable=False)
+    port_name = db.Column(db.String(30), nullable=False)
 
     trips = db.relationship("Trip", back_populates = 'tour')
 
