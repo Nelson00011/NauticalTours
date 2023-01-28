@@ -30,11 +30,13 @@ def get_user_by_id(user_id):
 
 
 #Trip Related Functions
-def create_trip(user_id, tour_id, status='like'):
+def create_trip(user_id, tour_id, intention, status='submitted'):
     """Create and return a new trip."""
+    
     trip = Trip(
         user_id = user_id,
         tour_id = tour_id,
+        intention = intention,
         status = status
      )
 
@@ -43,7 +45,7 @@ def create_trip(user_id, tour_id, status='like'):
 #booking or liking a trip
 
 #Tour Related Functions
-def create_tour(tour_name, details, price, date, port_id, port_name, days = 9):
+def create_tour(tour_name, details, price, date, port_id, port_name,state_name, days = 9):
     """Create and return a new tour."""
     tour = Tour(
         tour_name = tour_name,
@@ -52,7 +54,8 @@ def create_tour(tour_name, details, price, date, port_id, port_name, days = 9):
         date = date,
         days = days,
         port_id = port_id,
-        port_name = port_name
+        port_name = port_name,
+        state_name = state_name
      )
 
     return tour

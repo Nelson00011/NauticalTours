@@ -1,9 +1,51 @@
 'use strict';
 
 // Conditional Statement to determine which map is presented
+//find node with class associated with tour locations
+const book_trip = document.querySelector('.book')
+//event listener to book trip
+const like_trip = document.querySelector('.like')
+//event lister to like tour and add to database
 
-const port_id = document.querySelector
+function generateTrip(evt){
+  evt.preventDefault();
 
+  const formInputs = {
+    trip_id: document.querySelector('p').id,
+    intention: evt.target.value,
+  };
+console.log(formInputs)
+
+  fetch('/bookTrip', {
+    method: 'POST',
+    credentials: 'include',
+    body: JSON.stringify(formInputs),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      alert(responseJson.status);
+    });
+};
+
+
+//event listener for book_trip
+document.querySelector('#booked').addEventListener('click', generateTrip) 
+document.querySelector('#saved').addEventListener('click', generateTrip) 
+
+
+
+
+
+
+
+
+//identify the class for map_port
+const map_port = document.querySelector('#map').classList[0]
+
+// object of locations and 
 const locations = {
   alaska: {
     port_id: "24",
@@ -127,7 +169,7 @@ const locations = {
     ]
   },
   // const seattle =
-  seattle: {
+  washington: {
     port_id: "30",
     port_name: "Port of Seattle",
     coordinates: {
@@ -189,7 +231,7 @@ const locations = {
 };
 
 
-const coordinate = locations['seattle']
+const coordinate = locations[map_port]
 
 // const coordinate = locations['hawaii']
 // const coordinate = locations['seattle']
@@ -262,7 +304,7 @@ function initMap() {
   for (const marker of markers) {
     const markerInfo = `
       <h6>${marker.title}</h6>
-      <button type
+      <input type="submit" value="Like" class="btn btn-primary {marker.">
     `;
 
     const infoWindow = new google.maps.InfoWindow({

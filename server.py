@@ -32,8 +32,25 @@ def account():
     #redirect to user account page
     logIn = session.get('status', False)
     
-
     return render_template('account.html' , logIn = logIn)
+
+#direct to sign-up page
+@app.route("/sign_up")
+def sign_up_page():
+    """Ability to access account."""
+    #redirect to user account page
+    logIn = session.get('status', False)
+    
+    return render_template('sign_up.html' , logIn = logIn)
+
+#direct to login page
+@app.route("/login_page")
+def login_page():
+    """Ability to access account."""
+    #redirect to user account page
+    logIn = session.get('status', False)
+    
+    return render_template('login.html' , logIn = logIn)
 
 #generate user account HELP HERE
 @app.route('/users', methods = ['POST'])
@@ -61,7 +78,7 @@ def register_user():
         flash('Success! Account created.')
     
     logIn = session.get('status', False)
-    return render_template('account.html', logIn = logIn)
+    return render_template('login.html', logIn = logIn)
 
 #login to user account
 @app.route('/login',  methods = ['POST'])
@@ -72,8 +89,7 @@ def login():
     
 
     user = crud.get_user_by_email(email)
-    
-    
+        
     if user.password == password:
         user = crud.get_user_by_id(user.user_id)
         session['primary_key'] = user.user_id
@@ -86,7 +102,7 @@ def login():
         flash('Password does not match.')
 
     logIn = session.get('status', False)
-    return render_template('account.html', logIn = logIn)
+    return render_template('login.html', logIn = logIn)
   
 
 #optional redirect
@@ -125,6 +141,24 @@ def individual_tours(tour_id):
 
     logIn = session.get('status', False)
     return render_template('tour_details.html', logIn = logIn, tour = tour)
+
+@app.route('/bookTrip', methods = ['POST'])
+def book_trip():
+    """book trip JSON"""
+    user_id = session['primary_key']
+    tour_id = request.json.get("trip_id")
+    intention = request.json.get("intention")
+    
+    
+    #book a trip and update the crud database. 
+    trip = crud.create_trip(user_id, tour_id, intention, status='submitted')
+    db.session.add(trip)
+    db.session.commit()
+# update the model here on line 
+
+    return {
+        "success": True, 
+        "status": f"User:{user_id}, Tour: {tour_id}, Intention: {intention}"}
 
 
 

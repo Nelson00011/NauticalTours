@@ -24,7 +24,8 @@ tours = [{
     'date': '2023-06-29',
     'days' : 8,
     'port_id': '24', 
-    'port_name': 'Port of Anchorage'
+    'port_name': 'Port of Anchorage',
+    'state_name': 'alaska'
     },
     {
     'name': "Polynesian Breezes",
@@ -33,7 +34,8 @@ tours = [{
     'date': '2023-05-03',
     'days': 10,
     'port_id': '39', 
-    'port_name': 'Port of Honolulu'
+    'port_name': 'Port of Honolulu',
+    'state_name': 'hawaii'
     },
     {
     'name': "NorthWest Best",
@@ -42,7 +44,8 @@ tours = [{
     'date': '2023-07-15',
     'days': 10,
     'port_id': '30', 
-    'port_name': 'Port of Seattle'
+    'port_name': 'Port of Seattle',
+    'state_name': 'washington'
     }
 ]
 
@@ -66,9 +69,10 @@ def tour_database():
         days = tours[index]['days']
         port_id = tours[index]['port_id']
         port_name = tours[index]['port_name']
+        state_name = tours[index]['state_name']
                 
         #create individual tour classes and append here
-        db_tour = crud.create_tour(tour_name, details, price, date, port_id, port_name, days = 9)
+        db_tour = crud.create_tour(tour_name, details, price, date, port_id, port_name, state_name, days = 9)
         tours_in_db.append(db_tour)
         
     model.db.session.add_all(tours_in_db)

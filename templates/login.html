@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Account{% endblock %}
+
+{% block body %}
+
+<h1 id="Account">Account</h1>
+
+<!--Log In to Account-->
+<fieldset>
+<h2>Log Into Account</h2>
+  <form action="/login" method="POST">
+    
+    <div>
+        <input type="text" name="email" placeholder="email" required>
+    </div>
+    <div>
+        <input type="password" name="password" placeholder="password" required>
+    </div>
+    <p>
+        <!--Form:submit button-->
+      <input type="submit" value="Log In" class="btn btn-primary" id="login-button">
+    </p>
+    </form>
+</fieldset>
+
+
+{% endblock %}

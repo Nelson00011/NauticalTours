@@ -37,6 +37,7 @@ class Trip(db.Model):
     trip_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     tour_id = db.Column(db.Integer, db.ForeignKey('tours.tour_id'))
+    intention = db.Column(db.String(25), nullable=False)
     status = db.Column(db.String(25), nullable=True)
      
     user = db.relationship('User', back_populates='trips')
@@ -61,6 +62,7 @@ class Tour(db.Model):
     days = db.Column(db.Integer)
     port_id = db.Column(db.String(10), nullable=False)
     port_name = db.Column(db.String(30), nullable=False)
+    state_name = db.Column(db.String(30), nullable=False)
 
     trips = db.relationship("Trip", back_populates = 'tour')
 
