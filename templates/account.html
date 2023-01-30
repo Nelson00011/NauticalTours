@@ -3,59 +3,70 @@
 
 {% block body %}
 
-<h1 id="Account">Account/Profile Page</h1>
+<h1 id="Account">Account Information</h1>
+<!--Profile View: Name, Birthday, Tours Saved, Tours Booked-->
+<section class="profile" style="background-color: lightgrey;">
+    <div class="UserInfo">
+        <h3>{{user.fname}} {{user.lname}}</user></h3>
+      <div class="Personal">
+        <div class="card-body p-4">
+                  <h6>Information</h6>
+                  <hr class="mt-0 mb-4">
+                  <div class="row pt-1">
+                    <div class="col-4 mb-3">
+                      <h6>Email</h6>
+                      <p class="{{user.user_id}}">{{user.email}}</p>
+                    </div>
+                    <div class="col-4 mb-3">
+                      <h6>Phone</h6>
+                      <p class="{{user.user_id}}">{{user.phone}}</p>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <h6>Birthday</h6>
+                        <p class="{{user.user_id}}">{{user.birthday}}</p>
+                      </div>
+                  </div>
+    </div>
+        <div class="Tours Status">
+            <div class="card-body p-4">
+                  <h6>Tour Information</h6>
+                  <hr class="mt-0 mb-4">
+                  <div class="row pt-1">
+                    <div class="col-12 mb-3">
+                        {% if Tours %}
+                        <p>There are currently no saved or booked Tours.</p>
+                        <p> Please see <a href="'/tours'">Tour Page</a> for more info</p>
+                        {% else %}
+                        <p>Else Block</p>
+                        <!-- <table class="styled">
+                            <tr>
+                              <th>Tour Name</th>
+                              <th>Tour Date</th>
+                              <th>Tour Status</th>
+                    
+                            </tr>
+                            <tr>
+                              <td>American Goldfinch</td>
+                              <td>yellow</td>
+                              <td>Mostly seeds.</td>
+                             </tr>
+                          </table> -->
+                          {% endif %}
+                    </div>
 
-<!--Log In to Account-->
-<fieldset>
-<h2>Log Into Account</h2>
-  <form action="/login" method="POST">
-    
-    <div>
-        <input type="text" name="email" placeholder="email" required>
-    </div>
-    <div>
-        <input type="password" name="password" placeholder="password" required>
-    </div>
-    <p>
-        <!--Form:submit button-->
-      <input type="submit" value="Log In" class="btn btn-primary" id="login-button">
-    </p>
-    </form>
-</fieldset>
-
-<!--Create New Account-->
-<fieldset>
-  <h2>Create a New Account</h2>
-
-  <form action="/users" method="POST">
-    
-    <div>
-        <span>
-            <input type="text" name="fname" placeholder="first name" required>
-            <input type="text" name="lname" placeholder="last name" required>
-        </span>
-    </div>
-    <div>
-        <input type="text" name="email" placeholder="email" required>    
-    </div>
-    <div>
-        <input type="password" name="password" placeholder="password" required>
-    </div>
-    <div>
-        <label for="phone" class="label">Phone</label>
-        <div>       
-        <input type="tel" id="phone" name="phone" placeholder="555-555-5555" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                </div>
+            </div>
         </div>
-    </div>
-    <!--Create New Account Birthday-->
-    <label for="birthday" class="label">Birthday</label>
-    <div>
-        <input type="date" id="birthday" name="birthday" required>
-    </div>
-     <!--Form:submit button-->
-     <p>
-     <input type="submit" value="Sign Up" class="btn btn-success" id="sign-up">
-    </p>
+             
+  </section>
+
+
+
+<!--Log Out of Account-->
+<fieldset>
+  <form action="/logout'" method="POST">
+          <!--Form:submit button-->
+        <input type="submit" value="Log Out" class="btn btn-secondary" id="logout-button">
     </form>
 </fieldset>
   

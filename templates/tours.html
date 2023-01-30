@@ -20,6 +20,12 @@
 
 <p> User Quotes</p>
 <p> Port Cities</p>
+<ul>
+  {% for tour in tours%}
+<li>{{ tour.port_name }}</li>
+{% endfor %}
+</ul>
+
 <p>Enjoy the breeze until your next stop on land</p>
 
 

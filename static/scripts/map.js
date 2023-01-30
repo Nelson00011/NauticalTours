@@ -13,7 +13,9 @@ function generateTrip(evt){
   const formInputs = {
     trip_id: document.querySelector('p').id,
     intention: evt.target.value,
-  };
+  };                   
+
+
 console.log(formInputs)
 
   fetch('/bookTrip', {

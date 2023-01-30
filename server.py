@@ -31,8 +31,10 @@ def account():
     """Ability to access account."""
     #redirect to user account page
     logIn = session.get('status', False)
+    user_id = session['primary_key']
+    user = crud.get_user_by_id(user_id)
     
-    return render_template('account.html' , logIn = logIn)
+    return render_template('account.html' , logIn = logIn, user = user, Tours = True)
 
 #direct to sign-up page
 @app.route("/sign_up")
