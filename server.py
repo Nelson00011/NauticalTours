@@ -17,8 +17,13 @@ app.jinja_env.undefined = StrictUndefined
 @app.route('/homepage')
 def homepage():
     """View homepage for site"""
-    session['status'] = session.get('status', False)
-    logIn = session.get('status', False)
+    user_id = session.get('primary_key', 0)
+    if user_id == 0:
+        logIn = False
+    else:
+        session['status'] = session.get('status', False)
+        logIn = session.get('status', False)
+    
 
     return render_template('homepage.html', logIn = logIn)
 
@@ -98,16 +103,18 @@ def login():
     password = request.form.get('password')
     
     user = crud.get_user_by_email(email)
-        
-    if user.password == password:
+
+    if not user:
+        flash('User does not exist. Please check spelling or Sign-up for Account.')
+    elif user.password == password:
         user = crud.get_user_by_id(user.user_id)
         session['primary_key'] = user.user_id
         session['status'] = True
         logIn = session.get('status', False)
         # logged in maybe
-        return redirect('/account')
+        return redirect('/account')    
     else:
-        flash('Password does not match. Please try again or login')
+        flash('Password does not match. Please try again.')
 
     logIn = session.get('status', False)
     return render_template('login.html', logIn=logIn)
@@ -190,14 +197,14 @@ def book_trip():
 
 
 
-#history page
-@app.route('/history')
-def history():
-    """General history page."""
+#about page
+@app.route('/about')
+def about():
+    """General about page."""
 
     #redirect to user account page
     logIn=session.get('status', False)
-    return render_template('history.html', logIn = logIn)
+    return render_template('about.html', logIn = logIn)
 
 
 # #contact submission form for website (consider eliminating)

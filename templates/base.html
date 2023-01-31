@@ -44,7 +44,7 @@
               <a class="nav-link" href="/tours">Tours</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/history">History</a>
+              <a class="nav-link" href="/about">About</a>
             </li>
             <!-- <li class="nav-item">
               <a class="nav-link" href="/account">Account</a>
@@ -69,7 +69,7 @@
         </div>
       </nav>
       {% for msg in get_flashed_messages() %}
-    <p class="flash-msg">{{ msg }}</p>
+    <p class="flash-msg alert alert-dark" role="alert">{{ msg }}</p>
       {% endfor %}
 
    

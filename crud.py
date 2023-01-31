@@ -7,12 +7,12 @@ def create_user(fname, lname, phone, password, email, birthday):
     """Create and return a new user."""
     
     user = User(
-        fname = fname, 
-        lname = lname,
+        fname = fname.title(), 
+        lname = lname.title(),
         phone = phone,
         password = password,
         email = email,
-        balance = 0,
+        balance = 0.00,
         birthday = birthday
      )
 
@@ -28,11 +28,24 @@ def get_user_by_id(user_id):
     
     return User.query.get(user_id)
 
+def update_user_balance(amount, user_id):
+    """Updates user balance based on amount changed. """
+    user = get_user_by_id(user_id)
+    user.balance += amount
+    db.session.commit()
+
+
+
+
 
 #Trip Related Functions
 def create_trip(user_id, tour_id, intention, status='submitted'):
     """Create and return a new trip."""
-    
+    if intention == "Book Trip":
+        tour = get_tour_by_id(tour_id)
+        price = tour.price
+        update_user_balance(price, user_id)
+
     trip = Trip(
         user_id = user_id,
         tour_id = tour_id,

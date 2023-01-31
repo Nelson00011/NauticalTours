@@ -1,21 +1,16 @@
 'use strict';
 
-// Conditional Statement to determine which map is presented
-//find node with class associated with tour locations
-const book_trip = document.querySelector('.book')
-//event listener to book trip
-const like_trip = document.querySelector('.like')
-//event lister to like tour and add to database
 
+//book or save a trip AJAX
 function generateTrip(evt){
   evt.preventDefault();
-
+//grab information about tour, intention
   const formInputs = {
     trip_id: document.querySelector('p').id,
     intention: evt.target.value,
   };                   
 console.log(formInputs)
-
+//send to database to update
   fetch('/bookTrip', {
     method: 'POST',
     credentials: 'include',
@@ -30,7 +25,6 @@ console.log(formInputs)
     });
 };
 
-
 //event listener for book_trip
 document.querySelector('#booked').addEventListener('click', generateTrip) 
 document.querySelector('#saved').addEventListener('click', generateTrip) 
@@ -41,6 +35,7 @@ document.querySelector('#saved').addEventListener('click', generateTrip)
 
 
 
+//Google Maps API
 
 //identify the class for map_port
 const map_port = document.querySelector('#map').classList[0]
@@ -233,8 +228,7 @@ const locations = {
 
 const coordinate = locations[map_port]
 
-// const coordinate = locations['hawaii']
-// const coordinate = locations['seattle']
+//initiate google map function
 function initMap() {
  
   const basicMap = new google.maps.Map(document.querySelector('#map'), {
@@ -247,7 +241,7 @@ function initMap() {
     title: 'PlaceHolder',
     map: basicMap,
   });
-
+//TODO
   portMarker.addListener('click', () => {
     alert('Hi!');
   });

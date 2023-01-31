@@ -3,9 +3,11 @@
 
 {% block body %}
 
-<h1 id="Account">Account Information</h1>
+
 <!--Profile View: Name, Birthday, Tours Saved, Tours Booked-->
-<section class="profile" style="background-color: #EEEEEE;">
+<div class="container">
+  <h1 id="Account">Account Information</h1>
+  <section class="profile" style="background-color: #EEEEEE;">
     <div class="UserInfo">
         <h3>{{user.fname}} {{user.lname}}</user></h3>
       <div class="Personal">
@@ -60,7 +62,9 @@
                 </div>
             </div>
         </div>
-             
+        <div class="card-body p-4">
+          <h6>Balance: {{'%0.2f' % user.balance|float}} </h6>
+          <hr class="mt-0 mb-4"> 
   </section>
 
 
@@ -72,6 +76,6 @@
         <input type="submit" value="Log Out" class="btn btn-secondary" id="logout-button">
     </form>
 </fieldset>
-  
+ </div> 
 
 {% endblock %}
