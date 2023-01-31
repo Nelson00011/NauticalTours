@@ -59,6 +59,9 @@ def get_triplist_by_user_tour(user_id, tour_id, intention="Book Trip"):
 def get_profile_list(trip_list):
     """Returns trips  information with specified user_id. """
     output = []
+    if trip_list == []:
+        return False
+    
     for trip in trip_list:
         Tour = get_tour_by_id(trip.tour_id)
         obj = {}
@@ -74,7 +77,7 @@ def get_profile_list(trip_list):
         obj['status'] = trip.status
 
         output.append(obj)
-          
+     
     return output
 
 

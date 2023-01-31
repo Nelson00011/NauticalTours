@@ -33,9 +33,13 @@ def account():
     user_id = session['primary_key']
     user = crud.get_user_by_id(user_id)
     trips = crud.get_trips_by_id(user_id)
-
-    profile_list = crud.get_profile_list(trips)
+    # if trips:
+    #     trips = False
+    print("TEST")
+    print(trips)
     
+    profile_list = crud.get_profile_list(trips)
+   
 
     return render_template('account.html', logIn=logIn, user=user, trips=trips, profile=profile_list)
 
@@ -101,9 +105,9 @@ def login():
         session['status'] = True
         logIn = session.get('status', False)
         # logged in maybe
-        return render_template('account.html', logIn=logIn, user=user, Tours=False)
+        return redirect('/account')
     else:
-        flash('Password does not match.')
+        flash('Password does not match. Please try again or login')
 
     logIn = session.get('status', False)
     return render_template('login.html', logIn=logIn)

@@ -73,10 +73,10 @@ class Tour(db.Model):
 
 
 
-def connect_to_db(app,  db_uri="nautical", echo = True):
+def connect_to_db(app,  db_uri="nautical", echo = False):
     """Connect to database."""
     app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql:///{db_uri}"
-    app.config["SQLALCHEMY_ECHO"] = True
+    app.config["SQLALCHEMY_ECHO"] = echo
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     db.app = app
