@@ -43,6 +43,41 @@ def create_trip(user_id, tour_id, intention, status='submitted'):
     return trip 
   
 #booking or liking a trip
+def get_trips_by_id(user_id):
+    """Returns trips with specified user_id."""
+    
+    return Trip.query.filter(Trip.user_id==user_id).all()
+
+def get_triplist_by_user_tour(user_id, tour_id, intention="Book Trip"):
+    """Returns trips with specified user_id, tour_id, intention."""
+    
+    return Trip.query.filter(Trip.user_id==user_id, Trip.tour_id==tour_id, Trip.intention==intention).all()
+
+
+
+
+def get_profile_list(trip_list):
+    """Returns trips  information with specified user_id. """
+    output = []
+    for trip in trip_list:
+        Tour = get_tour_by_id(trip.tour_id)
+        obj = {}
+        obj['tour'] = Tour.tour_name
+        obj['date'] = Tour.date
+        action = trip.intention.split()[0]
+        print(action)
+        if action.endswith('e'):
+            action=action+"d" 
+        else:
+            action=action+"ed"
+        obj['action'] = action
+        obj['status'] = trip.status
+
+        output.append(obj)
+          
+    return output
+
+
 
 #Tour Related Functions
 def create_tour(tour_name, details, price, date, port_id, port_name,state_name, days = 9):

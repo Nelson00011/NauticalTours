@@ -11,7 +11,6 @@ app.secret_key = 'dev'
 app.jinja_env.undefined = StrictUndefined
 # bcrypt = Bcrypt(app)
 
-# routes and functions below
 
 #hompage
 @app.route('/')
@@ -33,8 +32,12 @@ def account():
     logIn = session.get('status', False)
     user_id = session['primary_key']
     user = crud.get_user_by_id(user_id)
+    trips = crud.get_trips_by_id(user_id)
+
+    profile_list = crud.get_profile_list(trips)
     
-    return render_template('account.html' , logIn = logIn, user = user, Tours = True)
+
+    return render_template('account.html', logIn=logIn, user=user, trips=trips, profile=profile_list)
 
 #direct to sign-up page
 @app.route("/sign_up")
@@ -82,6 +85,7 @@ def register_user():
     logIn = session.get('status', False)
     return render_template('login.html', logIn = logIn)
 
+
 #login to user account
 @app.route('/login',  methods = ['POST'])
 def login():
@@ -89,7 +93,6 @@ def login():
     email = request.form.get('email')
     password = request.form.get('password')
     
-
     user = crud.get_user_by_email(email)
         
     if user.password == password:
@@ -98,20 +101,19 @@ def login():
         session['status'] = True
         logIn = session.get('status', False)
         # logged in maybe
-        return render_template('account.html', logIn = logIn)
-
+        return render_template('account.html', logIn=logIn, user=user, Tours=False)
     else:
         flash('Password does not match.')
 
     logIn = session.get('status', False)
-    return render_template('login.html', logIn = logIn)
+    return render_template('login.html', logIn=logIn)
   
 
-#optional redirect
-@app.route('/logged_in')
-def logged_in(user_info):
-    logIn = session.get('status', False) 
-    return render_template('account.html', logIn = logIn)
+# 
+# @app.route('/logged_in')
+# def logged_in(user_info):
+#     logIn = session.get('status', False) 
+#     return render_template('account.html', logIn=logIn)
 
 
 #log out of user account
@@ -119,9 +121,10 @@ def logged_in(user_info):
 def logout():
     """Logout to of a user account."""
     session['status'] = False
+    session['primary_key'] = False
     logIn = session['status']
 
-    return render_template('homepage.html', logIn = logIn)
+    return render_template('homepage.html', logIn=logIn)
 
 
 #major tour packages 
@@ -132,7 +135,7 @@ def tour_display():
     tours = crud.get_tours()
     
     logIn = session.get('status', False)
-    return render_template('tours.html', logIn = logIn, tours = tours)
+    return render_template('tours.html', logIn=logIn, tours=tours)
 
 #individual packages page and port cities 
 #google API
@@ -142,7 +145,7 @@ def individual_tours(tour_id):
     tour = crud.get_tour_by_id(tour_id)
 
     logIn = session.get('status', False)
-    return render_template('tour_details.html', logIn = logIn, tour = tour)
+    return render_template('tour_details.html', logIn=logIn, tour=tour)
 
 @app.route('/bookTrip', methods = ['POST'])
 def book_trip():
@@ -151,16 +154,35 @@ def book_trip():
     tour_id = request.json.get("trip_id")
     intention = request.json.get("intention")
     
-    
-    #book a trip and update the crud database. 
-    trip = crud.create_trip(user_id, tour_id, intention, status='submitted')
-    db.session.add(trip)
-    db.session.commit()
-# update the model here on line 
+    #check if a trip already exists
+    booked = crud.get_triplist_by_user_tour(user_id, tour_id, "Book Trip")
+    saved = crud.get_triplist_by_user_tour(user_id, tour_id, "Save Trip")
+    print(saved)
+    print(booked)
 
-    return {
-        "success": True, 
-        "status": f"User:{user_id}, Tour: {tour_id}, Intention: {intention}"}
+    current = crud.get_triplist_by_user_tour(user_id, tour_id, intention)
+    print(booked)
+    print(current)
+    
+    if not booked and not current:
+        #book a trip and update the crud database.
+        #TODO eventually convert previously saved trips to booked
+        #can use for user data?
+
+        
+        trip = crud.create_trip(user_id, tour_id, intention, status='submitted')
+        db.session.add(trip)
+        db.session.commit()
+        #update the model here on line 
+        tour_name = crud.get_tour_by_id(tour_id).tour_name
+        return {
+            "success": True, 
+            "status": f"Congratulations you have completed added Tour: {tour_name}, Intention: {intention}"}
+    else:
+        tour_name = crud.get_tour_by_id(tour_id).tour_name
+        return {
+            "success": False, 
+            "status": f"Unable to complete task for Tour: {tour_name}, Intention has already been declared: {intention}"}
 
 
 
@@ -170,7 +192,7 @@ def history():
     """General history page."""
 
     #redirect to user account page
-    logIn = session.get('status', False)
+    logIn=session.get('status', False)
     return render_template('history.html', logIn = logIn)
 
 

@@ -5,7 +5,7 @@
 
 <h1 id="Account">Account Information</h1>
 <!--Profile View: Name, Birthday, Tours Saved, Tours Booked-->
-<section class="profile" style="background-color: lightgrey;">
+<section class="profile" style="background-color: #EEEEEE;">
     <div class="UserInfo">
         <h3>{{user.fname}} {{user.lname}}</user></h3>
       <div class="Personal">
@@ -33,11 +33,28 @@
                   <hr class="mt-0 mb-4">
                   <div class="row pt-1">
                     <div class="col-12 mb-3">
-                        {% if Tours %}
+                        {% if not trips %}
                         <p>There are currently no saved or booked Tours.</p>
-                        <p> Please see <a href="'/tours'">Tour Page</a> for more info</p>
+                        <p> Please see <a href='/tours'>Tour Page</a> for more info</p>
                         {% else %}
-                        <p>Else Block</p>
+                        <table class="styled">
+                          <tr>
+                            <th>Name</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                            <th>Status</th>
+                          </tr>
+                        
+                          {% for trip in profile %}
+                          <tr>
+                            <td>{{ trip.tour }}</td>
+                            <td>{{ trip.date }}</td>
+                            <td>{{ trip.action }}</td>
+                            <td>{{ trip.status }}</td>
+                          </tr>
+                         {% endfor %}
+                        </table>
+
                         <!-- <table class="styled">
                             <tr>
                               <th>Tour Name</th>
@@ -64,7 +81,7 @@
 
 <!--Log Out of Account-->
 <fieldset>
-  <form action="/logout'" method="POST">
+  <form action='/logout' method="POST">
           <!--Form:submit button-->
         <input type="submit" value="Log Out" class="btn btn-secondary" id="logout-button">
     </form>
