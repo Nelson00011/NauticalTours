@@ -4,12 +4,20 @@ import crud
 from jinja2 import StrictUndefined
 from datetime import datetime
 # import bcrypt
+import sendgrid
+import os
+from sendgrid.helpers.mail import *
 
 
 app = Flask(__name__)
 app.secret_key = 'dev'
 app.jinja_env.undefined = StrictUndefined
+
 # bcrypt = Bcrypt(app)
+app.config['PRESERVE_CONTEXT_ON_EXCEPTION'] = True
+
+
+SENDGRID_API_KEY = os.environ['SENDGRID_API_KEY']
 
 
 #hompage
@@ -180,7 +188,6 @@ def book_trip():
             "status": f"Unable to complete task for Tour: {tour_name}, the Tour has already been booked or saved."}
 
 
-
 #about page
 @app.route('/about')
 def about():
@@ -190,6 +197,40 @@ def about():
     logIn=session.get('status', False)
     return render_template('about.html', logIn = logIn)
 
+
+#contact form that sends 
+#email to use confirming that their comment was submited
+#sends email the company as for them to respond to. 
+@app.route('/comment', methods = ['POST'])
+def comment_submission():
+    email = request.form.get('email')
+    fname = request.form.get('fname')
+    lname = request.form.get('lname')
+    comments = request.form.get('comments')
+    #send email to self first to be responded to. 
+    #send email to confirmation Email next
+    sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
+    
+    from_email = Email("nelson@oakhalo.com")
+    user = To(email)
+    company = To("nelson@oakhalo.com")
+    subject = "Confirmation of Comment: Nautical Tours"
+
+    #email to internal
+    content = Content("text/plain", f"User Submission Here: from {fname} {lname}. Email :{email}. Comments :{comments}.")
+    mail = Mail(from_email, company, subject, content)
+
+    #email to individual
+    confirmation =  Content("text/plain", "Thank you for contacting us, we will get back to you shortly.")
+    confirmation_email = Mail(from_email, user, subject, confirmation)
+
+    response = sg.client.mail.send.post(request_body=mail.get())
+    response = sg.client.mail.send.post(request_body=confirmation_email.get())
+    flash('Thank you for submitting your comment. You will recieve a confirmation email soon.')
+    print(response.status_code)
+    print(response.body)
+    print(response.headers)
+    return redirect('/about')
 
 
 
