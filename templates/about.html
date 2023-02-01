@@ -8,4 +8,34 @@
 <!-- Loop through ipsum and put a couple genetic photos in here.  -->
 <p>Link to ports and how they were discovered or other filler</p>
 
+<!-- Comments Here -->
+<div class="container">
+    <fieldset>
+        <h2>Contact</h2>
+  
+            <form action="/comment" method="POST">
+     
+        <div>
+            <span>
+              <input type="text" name="fname" placeholder="first name" required>
+              <input type="text" name="lname" placeholder="last name" required>
+            </span>
+        </div>
+        <div>
+          <input type="text" name="email" placeholder="email" required>    
+        </div>
+        <div>
+            <label for="comments">
+            <textarea id="comments" name="comments" rows="3" cols="30" placeholder="Please share your message here" required></textarea>
+        </label>
+      </div>
+   
+       <!--Form:submit button-->
+       <p>
+       <input type="submit" value="Submit" class="btn btn-primary">
+      </p>
+      </form>
+  </fieldset>
+</div>
+
 {% endblock %}

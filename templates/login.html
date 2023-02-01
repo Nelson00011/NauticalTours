@@ -2,7 +2,7 @@
 {% block title %}Account{% endblock %}
 
 {% block body %}
-
+<div class="container">
 <h1 id="Account">Account</h1>
 
 <!--Log In to Account-->
@@ -18,10 +18,15 @@
     </div>
     <p>
         <!--Form:submit button-->
-      <input type="submit" value="Log In" class="btn btn-primary" id="login-button">
+    <div class="row">
+      <div class="center">
+        <input type="submit" value="Log In" class="btn btn-primary" id="login-button">
+      </div>
+    </div>
     </p>
     </form>
 </fieldset>
+</div>
 
 
 {% endblock %}

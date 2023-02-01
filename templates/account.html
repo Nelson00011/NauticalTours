@@ -12,7 +12,7 @@
         <h3>{{user.fname}} {{user.lname}}</user></h3>
       <div class="Personal">
         <div class="card-body p-4">
-                  <h6>Information</h6>
+              <h6>Information</h6>
                   <hr class="mt-0 mb-4">
                   <div class="row pt-1">
                     <div class="col-4 mb-3">
@@ -28,7 +28,7 @@
                         <p class="{{user.user_id}}">{{user.birthday}}</p>
                       </div>
                   </div>
-    </div>
+        </div>
         <div class="Tours Status">
             <div class="card-body p-4">
                   <h6>Tour Information</h6>
@@ -45,6 +45,7 @@
                             <th>Date</th>
                             <th>Action</th>
                             <th>Status</th>
+                            <th>Price</th>
                           </tr>
                         
                           {% for trip in profile %}
@@ -53,6 +54,7 @@
                             <td>{{ trip.date }}</td>
                             <td>{{ trip.action }}</td>
                             <td>{{ trip.status }}</td>
+                            <td>${{'%0.2f' % trip.price |float}}</td>
                           </tr>
                          {% endfor %}
                         </table>
@@ -63,19 +65,27 @@
             </div>
         </div>
         <div class="card-body p-4">
-          <h6>Balance: {{'%0.2f' % user.balance|float}} </h6>
+          <h6>Balance: ${{'%0.2f' % user.balance|float}} </h6>
           <hr class="mt-0 mb-4"> 
+        </div>
+      </div>
+    </div>
   </section>
 
 
 
 <!--Log Out of Account-->
-<fieldset>
-  <form action='/logout' method="POST">
+  <div class="row">
+    <div class="col text-center">
+      <fieldset>
+        <form action='/logout' method="POST">
           <!--Form:submit button-->
-        <input type="submit" value="Log Out" class="btn btn-secondary" id="logout-button">
-    </form>
-</fieldset>
+          <input type="submit" value="Log Out" class="btn btn-secondary" id="logout-button">
+        </form>
+      </fieldset>
+    </div>
+  </div>
+
  </div> 
 
 {% endblock %}

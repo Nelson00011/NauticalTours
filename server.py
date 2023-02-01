@@ -24,7 +24,6 @@ def homepage():
         session['status'] = session.get('status', False)
         logIn = session.get('status', False)
     
-
     return render_template('homepage.html', logIn = logIn)
 
 
@@ -38,14 +37,9 @@ def account():
     user_id = session['primary_key']
     user = crud.get_user_by_id(user_id)
     trips = crud.get_trips_by_id(user_id)
-    # if trips:
-    #     trips = False
-    print("TEST")
-    print(trips)
-    
+         
     profile_list = crud.get_profile_list(trips)
    
-
     return render_template('account.html', logIn=logIn, user=user, trips=trips, profile=profile_list)
 
 #direct to sign-up page
@@ -120,12 +114,6 @@ def login():
     return render_template('login.html', logIn=logIn)
   
 
-# 
-# @app.route('/logged_in')
-# def logged_in(user_info):
-#     logIn = session.get('status', False) 
-#     return render_template('account.html', logIn=logIn)
-
 
 #log out of user account
 @app.route('/logout', methods = ['GET','POST'])
@@ -168,18 +156,14 @@ def book_trip():
     #check if a trip already exists
     booked = crud.get_triplist_by_user_tour(user_id, tour_id, "Book Trip")
     saved = crud.get_triplist_by_user_tour(user_id, tour_id, "Save Trip")
-    print(saved)
-    print(booked)
-
-    current = crud.get_triplist_by_user_tour(user_id, tour_id, intention)
-    print(booked)
-    print(current)
     
+    current = crud.get_triplist_by_user_tour(user_id, tour_id, intention)
+        
     if not booked and not current:
         #book a trip and update the crud database.
         #TODO eventually convert previously saved trips to booked
-        #can use for user data?
-
+        if intention == "Book Trip":
+            crud.update_saved_trips(user_id, tour_id, intention)
         
         trip = crud.create_trip(user_id, tour_id, intention, status='submitted')
         db.session.add(trip)
@@ -188,12 +172,12 @@ def book_trip():
         tour_name = crud.get_tour_by_id(tour_id).tour_name
         return {
             "success": True, 
-            "status": f"Congratulations you have completed added Tour: {tour_name}, Intention: {intention}"}
+            "status": f"Congratulations you have completed added Tour: {tour_name}, and the you have {intention}"}
     else:
         tour_name = crud.get_tour_by_id(tour_id).tour_name
         return {
             "success": False, 
-            "status": f"Unable to complete task for Tour: {tour_name}, Intention has already been declared: {intention}"}
+            "status": f"Unable to complete task for Tour: {tour_name}, the Tour has already been booked or saved."}
 
 
 
@@ -207,13 +191,6 @@ def about():
     return render_template('about.html', logIn = logIn)
 
 
-# #contact submission form for website (consider eliminating)
-# @app.route('/contact')
-# def contact_submission():
-    
-#     #redirect to user account page
-#     logIn = session['status'] or False
-#     return render_template('contact.html', logIn = logIn)
 
 
 if __name__ == "__main__":

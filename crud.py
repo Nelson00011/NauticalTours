@@ -66,7 +66,12 @@ def get_triplist_by_user_tour(user_id, tour_id, intention="Book Trip"):
     
     return Trip.query.filter(Trip.user_id==user_id, Trip.tour_id==tour_id, Trip.intention==intention).all()
 
-
+def update_saved_trips(user_id, tour_id, intention):
+    """Updates the saved trips with specified user_id, tour_id, intention."""
+    saved = get_triplist_by_user_tour(user_id, tour_id, intention="Save Trip")
+    if saved:
+        saved[0].status =  "booked"
+        db.session.commit()
 
 
 def get_profile_list(trip_list):
@@ -81,13 +86,16 @@ def get_profile_list(trip_list):
         obj['tour'] = Tour.tour_name
         obj['date'] = Tour.date
         action = trip.intention.split()[0]
-        print(action)
+        if action == 'Save':
+            obj['price'] = 0.00
+        else:
+             obj['price'] = Tour.price
         if action.endswith('e'):
             action=action+"d" 
         else:
             action=action+"ed"
         obj['action'] = action
-        obj['status'] = trip.status
+        obj['status'] = trip.status 
 
         output.append(obj)
      
@@ -122,7 +130,7 @@ def get_tour_by_id(tour_id):
     return Tour.query.get(tour_id)
 
 
-    
+
 
 if __name__ == '__main__':
     from server import app
