@@ -217,13 +217,23 @@ def comment_submission():
     subject = "Confirmation of Comment: Nautical Tours"
 
     #email to internal
-    content = Content("text/plain", f"User Submission Here: from {fname} {lname}. Email :{email}. Comments :{comments}.")
-    mail = Mail(from_email, company, subject, content)
+    mail = Mail(from_email, company, subject)
+    mail.dynamic_template_data = {
+        'first_name': fname,
+        'last_name': lname,
+        'email': email,
+        'comments': comments
+    }
+    mail.template_id = 'd-d2e504db0885402bab831f6fe166794d'
 
     #email to individual
-    confirmation =  Content("text/plain", "Thank you for contacting us, we will get back to you shortly.")
-    confirmation_email = Mail(from_email, user, subject, confirmation)
+    
+    confirmation_email = Mail(from_email, user, subject)
+    confirmation_email.dynamic_template_data = {
+    'first_name': fname,
+    }
 
+    confirmation_email.template_id = 'd-228a5378ba514fe3973179a20035a5aa'
     response = sg.client.mail.send.post(request_body=mail.get())
     response = sg.client.mail.send.post(request_body=confirmation_email.get())
     flash('Thank you for submitting your comment. You will recieve a confirmation email soon.')

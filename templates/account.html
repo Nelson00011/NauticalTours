@@ -50,7 +50,7 @@
                         
                           {% for trip in profile %}
                           <tr>
-                            <td>{{ trip.tour }}</td>
+                            <td><a href="/tours/{{ trip.tour_id }}">{{ trip.tour }}</a></td>
                             <td>{{ trip.date }}</td>
                             <td>{{ trip.action }}</td>
                             <td>{{ trip.status }}</td>

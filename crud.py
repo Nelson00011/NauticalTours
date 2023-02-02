@@ -83,6 +83,7 @@ def get_profile_list(trip_list):
     for trip in trip_list:
         Tour = get_tour_by_id(trip.tour_id)
         obj = {}
+        obj['tour_id'] = Tour.tour_id
         obj['tour'] = Tour.tour_name
         obj['date'] = Tour.date
         action = trip.intention.split()[0]
