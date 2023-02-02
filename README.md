@@ -16,11 +16,11 @@ https://github.com/Nelson00011/MVP/issues/1#issue-1534126780
 
 
 ## Technology stack
-**Application:** Python, Flask, Jinja, SQLAlchemy...
+**Back-End:** Python, Flask, Jinja, SQLAlchemy...
 
-**APIs:** Google Maps, SendGrid
+**APIs:** Google Maps, Twilio (SendGrid)
 
-**Front-End:** HTML/CSS, Boostraps, Javascript...
+**Front-End:** HTML5, CSS, Boostraps, Javascript...
 
 ## Run Code (Environment)
 
@@ -32,14 +32,20 @@ https://github.com/Nelson00011/MVP/issues/1#issue-1534126780
 ```
 
 - Install the dependences/requirements
+```
 > pip3 install -r requirements.txt
+```
 
 
 - Create test database
+```
 > python3 seed_database.py
+```
 
 - Run the app:
+```
 > python app.py
+```
 
 - Open your browser and navigate to
 
