@@ -1,6 +1,6 @@
 """CRUD operations"""
 
-from model import db, User, Trip, Tour, connect_to_db
+from model import db, User, Trip, Tour, Rating, connect_to_db
 
 #User related functions
 def create_user(fname, lname, phone, password, email, birthday):
@@ -103,8 +103,53 @@ def get_profile_list(trip_list):
     return output
 
 
+#Rating related functions
+def create_rating(user_id, tour_id, rating, review):
+    """Create and return a new tour rating"""
+    rating = Rating(
+        user_id = user_id,
+        tour_id = tour_id,
+        rating = rating,
+        review = review
+    )
 
-#Tour Related Functions
+    return rating
+
+
+def get_rating_by_id(rate_id):
+    """Returns ratings with specified rate_id."""
+    
+    return Rating.query.filter(Rating.rate_id==rate_id).all()
+
+
+def get_rating_by_user_id(user_id):
+    """Returns ratings with specified user_id."""
+    
+    return Rating.query.filter(Rating.user_id==user_id).all()
+
+def get_rating_by_tour_id(tour_id):
+    """Returns ratings with specified trip_id."""
+    
+    return Rating.query.filter(Rating.tour_id_== tour_id).all()
+
+def update_rating_by_id(rate_id, user_id, comment):
+    """Returns ratings with specified user_id."""
+
+    rating = Rating.query.filter(Rating.rate_id==rate_id).all()
+    if rating[0].user_id == user_id:
+        rating.review = comment
+        db.session.commit()
+        return {'status': 'success',
+        'reason': 'none'}
+    else:
+        return {'status': 'success',
+        'reason': 'user_id'}
+
+
+
+
+
+#Tour related Functions
 def create_tour(tour_name, details, price, date, port_id, port_name,state_name, days = 9):
     """Create and return a new tour."""
     tour = Tour(
@@ -126,7 +171,7 @@ def get_tours():
     return Tour.query.all()
 
 def get_tour_by_id(tour_id):
-    """Returns user with specified id. """
+    """Returns tour with specified id. """
     
     return Tour.query.get(tour_id)
 
