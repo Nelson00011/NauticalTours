@@ -16,18 +16,20 @@ https://github.com/Nelson00011/MVP/issues/1#issue-1534126780
 
 
 ## Technology stack
-Application: Python, Flask, Jinja, SQLAlchemy...
+**Application:** Python, Flask, Jinja, SQLAlchemy...
 
-APIs: Google Maps, SendGrid
+**APIs:** Google Maps, SendGrid
 
-Front-End: HTML/CSS, Boostraps, Javascript...
+**Front-End:** HTML/CSS, Boostraps, Javascript...
 
 ## Run Code (Environment)
 
 - Create and activate virtual environment 
+ ```
 > pip3 install virtualenv
 > virtualenv env
 > source env/bin/activate
+```
 
 - Install the dependences/requirements
 > pip3 install -r requirements.txt
