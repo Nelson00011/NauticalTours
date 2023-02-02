@@ -17,7 +17,9 @@ https://github.com/Nelson00011/MVP/issues/1#issue-1534126780
 
 ## Technology stack
 Application: Python, Flask, Jinja, SQLAlchemy...
+
 APIs: Google Maps, SendGrid
+
 Front-End: HTML/CSS, Boostraps, Javascript...
 
 ## Run Code (Environment)
