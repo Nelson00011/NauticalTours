@@ -296,10 +296,7 @@ function initMap() {
   }
 
   for (const marker of markers) {
-    const markerInfo = `
-      <h6>${marker.title}</h6>
-      <input type="submit" value="Like" class="btn btn-primary {marker.">
-    `;
+    const markerInfo = `<h6>${marker.title}</h6>`;
 
     const infoWindow = new google.maps.InfoWindow({
       content: markerInfo,

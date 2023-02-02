@@ -60,8 +60,8 @@ class Rating(db.Model):
     rating = db.Column(db.Integer, nullable=False)
     review = db.Column(db.Text, nullable=True)
      
-    user = db.relationship('User', back_populates='trips')
-    tour = db.relationship("Tour", back_populates = 'trips')
+    user = db.relationship('User', back_populates='rating')
+    tour = db.relationship("Tour", back_populates = 'rating')
   
 
     def __repr__(self):
@@ -84,7 +84,7 @@ class Tour(db.Model):
     state_name = db.Column(db.String(30), nullable=False)
 
     trips = db.relationship("Trip", back_populates = 'tour')
-    rating = db.relationship('Rating', back_populates='user')
+    rating = db.relationship('Rating', back_populates='tour')
 
      
     def __repr__(self):

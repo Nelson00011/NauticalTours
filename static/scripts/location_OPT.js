@@ -1,6 +1,7 @@
 //locations object
+//NOT CURRENTLY IN USE
 
-default export const location = {
+export default const location = {
     alaska: {
       port_id: "24",
       port_name: "Port of Anchorage",

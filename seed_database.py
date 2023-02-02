@@ -55,6 +55,17 @@ user_list = [
     ("Lulu", "Blu", '666-666-6666', 'blue', 'lulu@blu.com', '03/03/1990')
     ]
 
+rating_list = [
+    (3, 1, 5, "Amazing experience once in a life time"),
+    (3, 2, 4, "Couldn't ask for better tour guides"),
+    (3, 3, 5, "Loved the Urban vibes once we docked, great team."),
+    (2, 1, 5, "This is an aamzing experience that couldn't be described"),
+    (2, 2, 5, "Positive life experience I wouldn't change for anything"),
+    (2, 3, 5, "Loved the sailing tour and the port trip was incredible"),
+    (1, 1, 5, "Enjoyed the sailboat we learned to sail with and helped get sea legs"),
+    (1, 2, 5, "Amazing experience once in a life time")
+    ]
+
 
 
 # Create Tours, store them in list so we can use them
@@ -83,7 +94,6 @@ def user_database():
     """Generate User Database"""
     users_in_db = []
     for person in user_list:
-
         fname, lname, phone, password, email, birthday = person
         db_user = crud.create_user(fname, lname, phone, password, email, birthday)
         users_in_db.append(db_user)
@@ -91,6 +101,20 @@ def user_database():
     model.db.session.add_all(users_in_db)
     model.db.session.commit()
 
+
+def rating_database():
+    """Generate User Database"""
+    rating_in_db = []
+    for rate in rating_list:
+        user_id, tour_id, rating, review = rate
+        db_rating = crud.create_rating(user_id, tour_id, rating, review)
+        rating_in_db.append(db_rating)
+    model.db.session.add_all(rating_in_db)
+    model.db.session.commit()
+
+    
+
 #call functions
 tour_database()
 user_database()
+rating_database()
