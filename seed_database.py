@@ -56,10 +56,10 @@ user_list = [
     ]
 
 rating_list = [
-    (3, 1, 5, "Amazing experience once in a life time"),
+    (3, 1, 5, "Amazing experience once in a life time for the 2019 sailing tour"),
     (3, 2, 4, "Couldn't ask for better tour guides"),
-    (3, 3, 5, "Loved the Urban vibes once we docked, great team."),
-    (2, 1, 5, "This is an aamzing experience that couldn't be described"),
+    (3, 3, 5, "Loved the Urban vibes once we docked, great team! Helpful in training entry level crewman like me."),
+    (2, 1, 5, "This is an amazing experience that couldn't be described"),
     (2, 2, 5, "Positive life experience I wouldn't change for anything"),
     (2, 3, 5, "Loved the sailing tour and the port trip was incredible"),
     (1, 1, 5, "Enjoyed the sailboat we learned to sail with and helped get sea legs"),

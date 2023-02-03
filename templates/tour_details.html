@@ -39,9 +39,15 @@
 <!-- Additional Row for Descriptions/Comments -->
 
   <div class="row">
-    <h2>One always-equally wide columns</h2>
-    <div class="col-12">
-      <div>Comments/Ratings</div>
+    <h2>Reviews</h2>
+    <div class="col-12 ratings">
+      {% for rating in ratings%}
+      <div>
+      <h5>Score (will be stars) {{rating.rating}}</h5>
+      <p> {{rating.review}}</p>
+    </div>
+    {% endfor %}
+      
     </div>
 
 

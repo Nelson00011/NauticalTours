@@ -25,8 +25,9 @@ SENDGRID_API_KEY = os.environ['SENDGRID_API_KEY']
 @app.route('/homepage')
 def homepage():
     """View homepage for site"""
-    user_id = session.get('primary_key', 0)
-    if user_id == 0:
+    session['primary_key'] = session.get('primary_key', False)
+    user_id = session.get('primary_key', False)
+    if not user_id:
         logIn = False
     else:
         session['status'] = session.get('status', False)
@@ -150,21 +151,30 @@ def tour_display():
 def individual_tours(tour_id):
     """individual tours page."""
     tour = crud.get_tour_by_id(tour_id)
+    ratings = crud.get_rating_by_tour_id(tour_id)
 
     logIn = session.get('status', False)
-    return render_template('tour_details.html', logIn=logIn, tour=tour)
+    return render_template('tour_details.html', logIn=logIn, tour=tour, ratings=ratings)
 
 @app.route('/bookTrip', methods = ['POST'])
 def book_trip():
     """book trip JSON"""
     user_id = session['primary_key']
+    print("TEST")
+    print(user_id)
     tour_id = request.json.get("trip_id")
     intention = request.json.get("intention")
+    tour_name = crud.get_tour_by_id(tour_id).tour_name
     
     #check if a trip already exists
+    if not user_id:
+        
+        return {
+            "success": False, 
+            "status": f"Unable to complete task for Tour: {tour_name}, not Logged In."}
+    
     booked = crud.get_triplist_by_user_tour(user_id, tour_id, "Book Trip")
     saved = crud.get_triplist_by_user_tour(user_id, tour_id, "Save Trip")
-    
     current = crud.get_triplist_by_user_tour(user_id, tour_id, intention)
         
     if not booked and not current:
@@ -177,15 +187,18 @@ def book_trip():
         db.session.add(trip)
         db.session.commit()
         #update the model here on line 
-        tour_name = crud.get_tour_by_id(tour_id).tour_name
+        
         return {
             "success": True, 
             "status": f"Congratulations you have completed added Tour: {tour_name}, and the you have {intention}"}
+    
     else:
         tour_name = crud.get_tour_by_id(tour_id).tour_name
         return {
             "success": False, 
             "status": f"Unable to complete task for Tour: {tour_name}, the Tour has already been booked or saved."}
+    
+
 
 
 #about page

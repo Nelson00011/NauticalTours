@@ -130,7 +130,7 @@ def get_rating_by_user_id(user_id):
 def get_rating_by_tour_id(tour_id):
     """Returns ratings with specified trip_id."""
     
-    return Rating.query.filter(Rating.tour_id_== tour_id).all()
+    return Rating.query.filter(Rating.tour_id== tour_id).all()
 
 def update_rating_by_id(rate_id, user_id, comment):
     """Returns ratings with specified user_id."""

@@ -22,7 +22,7 @@
 <p> Port Cities</p>
 <ul>
   {% for tour in tours%}
-<li>{{ tour.port_name }}</li>
+<li><a href="/tours/{{ tour.tour_id }}">{{ tour.port_name }}<a></li>
 {% endfor %}
 </ul>
 
