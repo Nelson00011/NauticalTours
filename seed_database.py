@@ -46,6 +46,16 @@ tours = [{
     'port_id': '30', 
     'port_name': 'Port of Seattle',
     'state_name': 'washington'
+    },
+    {
+    'name': "Artic Winds",
+    'details': " Massive, magnificent, and unforgiving, Alaska is a land area of superlatives that will leave your mind searching for words to describe it. Each day presents a new discovery, whether you’re cruising through ice-choked waterways, trekking through chattering puffins rookeries, or catching artic fox and humpbacks breaching in the pristine waters",
+    'price': 1500, 
+    'date': '2019-06-29',
+    'days' : 8,
+    'port_id': '24', 
+    'port_name': 'Port of Anchorage',
+    'state_name': 'alaska'
     }
 ]
 
@@ -56,16 +66,19 @@ user_list = [
     ]
 
 rating_list = [
-    (3, 1, 5, "Amazing experience once in a life time for the 2019 sailing tour"),
-    (3, 2, 4, "Couldn't ask for better tour guides"),
-    (3, 3, 5, "Loved the Urban vibes once we docked, great team! Helpful in training entry level crewman like me."),
-    (2, 1, 5, "This is an amazing experience that couldn't be described"),
-    (2, 2, 5, "Positive life experience I wouldn't change for anything"),
-    (2, 3, 5, "Loved the sailing tour and the port trip was incredible"),
-    (1, 1, 5, "Enjoyed the sailboat we learned to sail with and helped get sea legs"),
-    (1, 2, 5, "Amazing experience once in a life time")
+    (3, "Artic Winds", 5, "Amazing experience once in a life time for the 2019 sailing tour"),
+    (3, "Polynesian Breezes", 4, "Couldn't ask for better tour guides"),
+    (3, "NorthWest Best", 5, "Loved the Urban vibes once we docked, great team! Helpful in training entry level crewman like me."),
+    (2, "Artic Winds", 5, "This is an amazing experience that couldn't be described"),
+    (2, "Polynesian Breezes", 5, "Positive life experience I wouldn't change for anything"),
+    (2, "NorthWest Best", 5, "Loved the sailing tour and the port trip was incredible"),
+    (1, "Artic Winds", 5, "Enjoyed the sailboat we learned to sail with and helped get sea legs"),
+    (1, "Polynesian Breezes", 5, "Amazing experience once in a life time")
     ]
-
+ 
+trip_list = [
+    (3,4, 'Book Trip')
+    ]
 
 
 # Create Tours, store them in list so we can use them
@@ -103,7 +116,7 @@ def user_database():
 
 
 def rating_database():
-    """Generate User Database"""
+    """Generate Rating Database"""
     rating_in_db = []
     for rate in rating_list:
         user_id, tour_id, rating, review = rate
@@ -112,9 +125,21 @@ def rating_database():
     model.db.session.add_all(rating_in_db)
     model.db.session.commit()
 
+def trip_database():
+    """Generate Rating Database"""
+    trip_in_db = []
+    for trip in trip_list:
+        user_id, tour_id, intention = trip 
+        db_trip = crud.create_trip(user_id, tour_id, intention, status='completed')
+        trip_in_db.append(db_trip)
+    model.db.session.add_all(trip_in_db)
+    model.db.session.commit()
+
+
     
 
 #call functions
 tour_database()
 user_database()
 rating_database()
+trip_database()

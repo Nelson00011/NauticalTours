@@ -3,6 +3,7 @@ from model import connect_to_db, db
 import crud
 from jinja2 import StrictUndefined
 from datetime import datetime
+from datetime import datetime, date, timedelta
 # import bcrypt
 import sendgrid
 import os
@@ -141,9 +142,16 @@ def tour_display():
     """General tours page."""
     #get Tour classes
     tours = crud.get_tours()
-    
+    today = date.today()
+
+    #compose list of future tours only
+    tour_list = []
+    for tour in tours:     
+        if tour.date.strftime('%Y-%m-%d') > today.strftime('%Y-%m-%d'):
+            tour_list.append(tour)
+    tour_list = sorted(tour_list, key=lambda x: x.date.strftime('%Y-%m-%d'))
     logIn = session.get('status', False)
-    return render_template('tours.html', logIn=logIn, tours=tours)
+    return render_template('tours.html', logIn=logIn, tours=tour_list)
 
 #individual packages page and port cities 
 #google API
@@ -151,7 +159,7 @@ def tour_display():
 def individual_tours(tour_id):
     """individual tours page."""
     tour = crud.get_tour_by_id(tour_id)
-    ratings = crud.get_rating_by_tour_id(tour_id)
+    ratings = crud.get_rating_by_tour_id(tour.tour_name)
 
     logIn = session.get('status', False)
     return render_template('tour_details.html', logIn=logIn, tour=tour, ratings=ratings)

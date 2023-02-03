@@ -56,12 +56,12 @@ class Rating(db.Model):
     #link to Tour package
     rate_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    tour_id = db.Column(db.Integer, db.ForeignKey('tours.tour_id'))
+    tour_name  = db.Column(db.String, nullable = False)
     rating = db.Column(db.Integer, nullable=False)
     review = db.Column(db.Text, nullable=True)
      
     user = db.relationship('User', back_populates='rating')
-    tour = db.relationship("Tour", back_populates = 'rating')
+    
   
 
     def __repr__(self):
@@ -84,7 +84,7 @@ class Tour(db.Model):
     state_name = db.Column(db.String(30), nullable=False)
 
     trips = db.relationship("Trip", back_populates = 'tour')
-    rating = db.relationship('Rating', back_populates='tour')
+    
 
      
     def __repr__(self):

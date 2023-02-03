@@ -14,7 +14,7 @@ def create_user(fname, lname, phone, password, email, birthday):
         email = email,
         balance = 0.00,
         birthday = birthday
-     )
+    )
 
     return user
 
@@ -35,16 +35,14 @@ def update_user_balance(amount, user_id):
     db.session.commit()
 
 
-
-
-
 #Trip Related Functions
 def create_trip(user_id, tour_id, intention, status='submitted'):
     """Create and return a new trip."""
     if intention == "Book Trip":
         tour = get_tour_by_id(tour_id)
         price = tour.price
-        update_user_balance(price, user_id)
+        if status!='completed':
+            update_user_balance(price, user_id)
 
     trip = Trip(
         user_id = user_id,
@@ -82,21 +80,33 @@ def get_profile_list(trip_list):
     
     for trip in trip_list:
         Tour = get_tour_by_id(trip.tour_id)
+        Rating = get_rating_by_tour_id(Tour.tour_name)
         obj = {}
         obj['tour_id'] = Tour.tour_id
         obj['tour'] = Tour.tour_name
         obj['date'] = Tour.date
+        #assigning price value to action
         action = trip.intention.split()[0]
+
         if action == 'Save':
             obj['price'] = 0.00
+        elif trip.status == 'completed':
+            obj['price'] = 0.00
+            
         else:
              obj['price'] = Tour.price
+        #making action visiable to user
         if action.endswith('e'):
             action=action+"d" 
         else:
             action=action+"ed"
         obj['action'] = action
         obj['status'] = trip.status 
+        #user has review write no
+
+        # else:
+        #     obj['rating'] = 0
+        #     obj['review'] = "Please submit review"
 
         output.append(obj)
      
@@ -104,11 +114,11 @@ def get_profile_list(trip_list):
 
 
 #Rating related functions
-def create_rating(user_id, tour_id, rating, review):
+def create_rating(user_id, tour_name, rating, review):
     """Create and return a new tour rating"""
     rating = Rating(
         user_id = user_id,
-        tour_id = tour_id,
+        tour_name = tour_name,
         rating = rating,
         review = review
     )
@@ -127,23 +137,29 @@ def get_rating_by_user_id(user_id):
     
     return Rating.query.filter(Rating.user_id==user_id).all()
 
-def get_rating_by_tour_id(tour_id):
+def get_rating_by_tour_id(tour_name):
     """Returns ratings with specified trip_id."""
     
-    return Rating.query.filter(Rating.tour_id== tour_id).all()
+    return Rating.query.filter(Rating.tour_name== tour_name).all()
 
-def update_rating_by_id(rate_id, user_id, comment):
+def get_rating_by_user_tour_id(user_id,tour_name):
     """Returns ratings with specified user_id."""
+    
+    return Rating.query.filter(Rating.user_id==user_id, Rating.tour_name==tour_name).all()
 
-    rating = Rating.query.filter(Rating.rate_id==rate_id).all()
-    if rating[0].user_id == user_id:
-        rating.review = comment
-        db.session.commit()
-        return {'status': 'success',
-        'reason': 'none'}
-    else:
-        return {'status': 'success',
-        'reason': 'user_id'}
+# TODO:
+# def update_rating_by_rating_id(rate_id, user_id, comment):
+#     """Returns ratings with specified user_id."""
+
+#     rating = Rating.query.filter(Rating.rate_id==rate_id).all()
+#     if rating[0].user_id == user_id:
+#         rating.review = comment
+#         db.session.commit()
+#         return {'status': 'success',
+#         'reason': 'none'}
+#     else:
+#         return {'status': 'success',
+#         'reason': 'user_id'}
 
 
 
