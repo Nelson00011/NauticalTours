@@ -66,14 +66,7 @@ user_list = [
     ]
 
 rating_list = [
-    (3, "Artic Winds", 5, "Amazing experience once in a life time for the 2019 sailing tour"),
-    (3, "Polynesian Breezes", 4, "Couldn't ask for better tour guides"),
-    (3, "NorthWest Best", 5, "Loved the Urban vibes once we docked, great team! Helpful in training entry level crewman like me."),
-    (2, "Artic Winds", 5, "This is an amazing experience that couldn't be described"),
-    (2, "Polynesian Breezes", 5, "Positive life experience I wouldn't change for anything"),
-    (2, "NorthWest Best", 5, "Loved the sailing tour and the port trip was incredible"),
-    (1, "Artic Winds", 5, "Enjoyed the sailboat we learned to sail with and helped get sea legs"),
-    (1, "Polynesian Breezes", 5, "Amazing experience once in a life time")
+    (3, "Artic Winds", 5, "Amazing experience once in a life time for the 2019 sailing tour")
     ]
  
 trip_list = [

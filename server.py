@@ -2,7 +2,6 @@ from flask import (Flask, render_template, request,flash, session, redirect)
 from model import connect_to_db, db
 import crud
 from jinja2 import StrictUndefined
-from datetime import datetime
 from datetime import datetime, date, timedelta
 # import bcrypt
 import sendgrid
@@ -70,7 +69,7 @@ def login_page():
     
     return render_template('login.html' , logIn = logIn)
 
-#generate user account HELP HERE
+#generate user account 
 @app.route('/users', methods = ['POST'])
 def register_user():
     """Create a new user."""
@@ -159,7 +158,7 @@ def tour_display():
 def individual_tours(tour_id):
     """individual tours page."""
     tour = crud.get_tour_by_id(tour_id)
-    ratings = crud.get_rating_by_tour_id(tour.tour_name)
+    ratings = crud.get_rating_by_tour_name(tour.tour_name)
 
     logIn = session.get('status', False)
     return render_template('tour_details.html', logIn=logIn, tour=tour, ratings=ratings)
@@ -231,10 +230,10 @@ def comment_submission():
     #send email to self first to be responded to. 
     #send email to confirmation Email next
     sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
-    
-    from_email = Email("nelson@oakhalo.com")
+    sender_email = os.environ.get("EMAIL")
+    from_email = Email(sender_email)
     user = To(email)
-    company = To("nelson@oakhalo.com")
+    company = To(sender_email)
     subject = "Confirmation of Comment: Nautical Tours"
 
     #email to internal

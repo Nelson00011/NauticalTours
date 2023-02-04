@@ -72,47 +72,6 @@ def update_saved_trips(user_id, tour_id, intention):
         db.session.commit()
 
 
-def get_profile_list(trip_list):
-    """Returns trips  information with specified user_id. """
-    output = []
-    if trip_list == []:
-        return False
-    
-    for trip in trip_list:
-        Tour = get_tour_by_id(trip.tour_id)
-        Rating = get_rating_by_tour_id(Tour.tour_name)
-        obj = {}
-        obj['tour_id'] = Tour.tour_id
-        obj['tour'] = Tour.tour_name
-        obj['date'] = Tour.date
-        #assigning price value to action
-        action = trip.intention.split()[0]
-
-        if action == 'Save':
-            obj['price'] = 0.00
-        elif trip.status == 'completed':
-            obj['price'] = 0.00
-            
-        else:
-             obj['price'] = Tour.price
-        #making action visiable to user
-        if action.endswith('e'):
-            action=action+"d" 
-        else:
-            action=action+"ed"
-        obj['action'] = action
-        obj['status'] = trip.status 
-        #user has review write no
-
-        # else:
-        #     obj['rating'] = 0
-        #     obj['review'] = "Please submit review"
-
-        output.append(obj)
-     
-    return output
-
-
 #Rating related functions
 def create_rating(user_id, tour_name, rating, review):
     """Create and return a new tour rating"""
@@ -137,15 +96,16 @@ def get_rating_by_user_id(user_id):
     
     return Rating.query.filter(Rating.user_id==user_id).all()
 
-def get_rating_by_tour_id(tour_name):
-    """Returns ratings with specified trip_id."""
+def get_rating_by_tour_name(tour_name):
+    """Returns ratings with specified tour_name."""
     
-    return Rating.query.filter(Rating.tour_name== tour_name).all()
+    return Rating.query.filter(Rating.tour_name==tour_name).all()
 
-def get_rating_by_user_tour_id(user_id,tour_name):
+
+def get_rating_by_user_id_tour_id(user_id,tour_id):
     """Returns ratings with specified user_id."""
-    
-    return Rating.query.filter(Rating.user_id==user_id, Rating.tour_name==tour_name).all()
+    tour = get_tour_by_id(tour_id)
+    return Rating.query.filter(Rating.user_id==user_id, Rating.tour_name==tour.tour_name).all()
 
 # TODO:
 # def update_rating_by_rating_id(rate_id, user_id, comment):
@@ -191,6 +151,56 @@ def get_tour_by_id(tour_id):
     
     return Tour.query.get(tour_id)
 
+
+
+def get_profile_list(trip_list):
+    """Returns trips  information with specified user_id. """
+    output = []
+    if trip_list == []:
+        return False
+    
+    for trip in trip_list:
+        tour = get_tour_by_id(trip.tour_id)
+        ratings = get_rating_by_user_id_tour_id(trip.user_id, trip.tour_id)
+        print("Test")
+        print(ratings)
+        obj = {}
+        obj['tour_id'] = tour.tour_id
+        obj['tour'] = tour.tour_name
+        obj['date'] = tour.date
+        #assigning price value to action
+        action = trip.intention.split()[0]
+
+        if action == 'Save':
+            obj['price'] = 0.00
+        elif trip.status == 'completed':
+            obj['price'] = 0.00
+            
+        else:
+             obj['price'] = tour.price
+        #making action visiable to user
+        if action.endswith('e'):
+            action=action+"d" 
+        else:
+            action=action+"ed"
+        obj['action'] = action
+        obj['status'] = trip.status 
+        #user has review write no
+        if not ratings:
+            if trip.status == "completed":
+                obj['rating'] = True
+                obj['review'] = "Please submit review"
+            else:
+                obj['rating'] = False
+                obj['review'] = "After your Tour please submit review"
+        else:
+            obj['rating'] = ratings[0].rating
+            obj['review'] = ratings[0].review
+        print(obj)
+
+        output.append(obj)
+     
+    return output
 
 
 
