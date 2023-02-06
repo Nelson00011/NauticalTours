@@ -71,6 +71,13 @@ def update_saved_trips(user_id, tour_id, intention):
         saved[0].status =  "booked"
         db.session.commit()
 
+# TODO: update how to delect trip
+def unselect_trip_by_user_id(user_id, intention):
+    """Cancels a Trip with user_id."""
+
+
+
+
 
 #Rating related functions
 def create_rating(user_id, tour_name, rating, review):

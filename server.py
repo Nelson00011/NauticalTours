@@ -3,13 +3,14 @@ from model import connect_to_db, db
 import crud
 from jinja2 import StrictUndefined
 from datetime import datetime, date, timedelta
-# import bcrypt
+from flask_bcrypt import Bcrypt
 import sendgrid
 import os
 from sendgrid.helpers.mail import *
 
 
 app = Flask(__name__)
+bcrypt = Bcrypt(app)
 app.secret_key = 'dev'
 app.jinja_env.undefined = StrictUndefined
 
@@ -79,9 +80,9 @@ def register_user():
     phone = request.form.get('phone')
        
     password = request.form.get('password')
-    # password_hashed = bcrypt.hashpw(password, bcrypt.gensalt())
+    pw_hash = bcrypt.generate_password_hash(password)
+    
     email = request.form.get('email')
-
     birthday = request.form.get('birthday')
     #force user to log into site
     
@@ -89,7 +90,7 @@ def register_user():
     if user:
         flash('Email already in use. Account already exists.')
     else:
-        new_user = crud.create_user(fname, lname, phone, password, email, birthday)
+        new_user = crud.create_user(fname, lname, phone, pw_hash, email, birthday)
         db.session.add(new_user)
         db.session.commit()
         session['status'] = True
@@ -106,11 +107,15 @@ def login():
     email = request.form.get('email')
     password = request.form.get('password')
     
+    
     user = crud.get_user_by_email(email)
-
+    pw_hash = user.password
+    #confirmation that hash password matches stored password
+    confirmation = bcrypt.check_password_hash(pw_hash, password)
+    
     if not user:
         flash('User does not exist. Please check spelling or Sign-up for Account.')
-    elif user.password == password:
+    elif confirmation:
         user = crud.get_user_by_id(user.user_id)
         session['primary_key'] = user.user_id
         session['status'] = True

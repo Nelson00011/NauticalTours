@@ -15,7 +15,7 @@ class User(db.Model):
     lname = db.Column(db.String(50), nullable=False)
     phone = db.Column(db.String(25), nullable=False)
     #login information for user
-    password = db.Column(db.String(20), nullable=False)
+    password = db.Column(db.LargeBinary(), nullable=False)
     email = db.Column(db.String(20), unique=True, nullable=False)
     #payment information default zero
     balance = db.Column(db.Float, nullable=False)
