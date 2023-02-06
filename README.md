@@ -16,7 +16,7 @@ https://github.com/Nelson00011/MVP/issues/1#issue-1534126780
 
 
 ## Technology stack
-**Back-End:** Python, Flask, Jinja, SQLAlchemy...
+**Back-End:** Python, Flask, Jinja, SQLAlchemy, Bcrypt...
 
 **APIs:** Google Maps, Twilio (SendGrid)
 
