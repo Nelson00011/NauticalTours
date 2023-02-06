@@ -48,6 +48,7 @@ def account():
     trips = crud.get_trips_by_id(user_id)
          
     profile_list = crud.get_profile_list(trips)
+
    
     return render_template('account.html', logIn=logIn, user=user, trips=trips, profile=profile_list)
 
@@ -261,6 +262,36 @@ def comment_submission():
     print(response.body)
     print(response.headers)
     return redirect('/about')
+
+
+#review page
+@app.route('/review')
+def review():
+    """General a review page."""
+
+    #redirect to user account page
+    logIn=session.get('status', False)
+    return render_template('review.html', logIn = logIn)
+
+@app.route('/review_submission',  methods = ['POST'])
+def review_submission():
+    """Review Submission to user account."""
+    tour_name = request.form.get('tour')
+    rating = request.form.get('rating')
+    review = request.form.get('comment')
+    user_id = session['primary_key']
+    user = crud.get_user_by_id(user_id)
+    trips = crud.get_trips_by_id(user_id)
+         
+    profile_list = crud.get_profile_list(trips)
+
+    rating = crud.create_rating(user_id, tour_name, rating, review)
+    db.session.add(rating)
+    db.session.commit()
+    flash('Thank you for submitting a Review!')
+
+    logIn = session.get('status', False)
+    return render_template('account.html', logIn=logIn, user=user, trips=trips, profile=profile_list)
 
 
 

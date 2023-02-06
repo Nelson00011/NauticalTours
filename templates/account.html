@@ -57,7 +57,7 @@
                             <td>{{ trip.status }}</td>
                             <td>${{'%0.2f' % trip.price |float}}</td>
                             {% if trip.rating %}
-                            <td><button value="Leave Review">Leave Review</button></td>
+                            <td><button value="Leave Review"><a href="/review">Leave Review</a></button></td>
                             {% else %}
                             <td><button value="Unselect Trip">Unselect Trip</button>
                               <p>{{ trip.review }}</p></td>

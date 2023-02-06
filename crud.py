@@ -192,7 +192,7 @@ def get_profile_list(trip_list):
                 obj['review'] = "Please submit review"
             else:
                 obj['rating'] = False
-                obj['review'] = "After your Tour please submit review"
+                obj['review'] = "After your Tour please submit a review"
         else:
             obj['rating'] = ratings[0].rating
             obj['review'] = ratings[0].review

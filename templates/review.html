@@ -3,40 +3,45 @@
 
 {% block body %}
 
-<p id="title">Please Tell Us About Your Experience</p>
 
 <!--Create New Account-->
 <fieldset>
-  <h3 id="Account">Sign-Up</h3>
+  <h3 id="review">Please Tell Us About Your Experience</h3>
 
-  <form action="/users" method="POST">
+  <form action="/review_submission" method="POST">
     
     <div>
         <span>
-            <input type="text" name="fname" placeholder="first name" required>
-            <input type="text" name="lname" placeholder="last name" required>
+            <label for="tour-select">Choose your Tour:</label>
+                <select name="tour" id="tour-select">
+                    <option value="Artic Winds">Artic Winds</option>
+                    <option value="NorthWest Best">NorthWest Best</option>
+                    <option value="Polynesian Breezes">Polynesian Breezes</option>
+                </select>
         </span>
     </div>
     <div>
-        <input type="text" name="email" placeholder="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>    
+        <p>Overall experience (scale of 1 through 5)</p>
+        <input type="radio" name="rating" value="1" id="one-rating">
+        <label for="one-rating">One</label>
+        <input type="radio" name="rating" value="2" id="two-rating">
+        <label for="two-rating">Two</label>
+        <input type="radio" name="rating" value="3" id="three-rating">
+        <label for="three-rating">Three</label>
+        <input type="radio" name="rating" value="4" id="four-rating">
+        <label for="four-rating">Four</label>
+        <input type="radio" name="rating" value="5" id="five-rating">
+        <label for="five-rating">Five</label>       
     </div>
     <div>
-        <input type="password" name="password" placeholder="password"  required>
+        <div>
+        <label for="comment">Leave a Review:</label>
     </div>
-    <div>
-        <label for="phone" class="label">Phone</label>
-        <div>       
-        <input type="tel" id="phone" name="phone" placeholder="555-555-5555" pattern="1? ?[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
-        </div>
+        <textarea name="comment" id="comment" placeholder="Leave a Comment"></textarea>
     </div>
-    <!--Create New Account Birthday-->
-    <label for="birthday" class="label">Birthday</label>
-    <div>
-        <input type="date" id="birthday" name="birthday" required>
-    </div>
-     <!--Form:submit button-->
+         <!--Form:submit button-->
      <p>
-     <input type="submit" value="Sign Up" class="btn btn-primary" id="sign-up">
+     <input type="submit" class="btn btn-primary" id="submit">
     </p>
     </form>
 </fieldset>
