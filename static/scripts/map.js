@@ -1,12 +1,12 @@
 'use strict';
 
 
-//book or save a trip AJAX
+//SAVE OR BOOK a trip AJAX
 function generateTrip(evt){
   evt.preventDefault();
 //grab information about tour, intention
   const formInputs = {
-    trip_id: document.querySelector('p').id,
+    tour_id: document.querySelector('p').id,
     intention: evt.target.value,
   };                   
 console.log(formInputs)
@@ -24,15 +24,9 @@ console.log(formInputs)
       alert(responseJson.status);
     });
 };
-
 //event listener for book_trip
 document.querySelector('#booked').addEventListener('click', generateTrip) 
 document.querySelector('#saved').addEventListener('click', generateTrip) 
-
-
-
-
-
 
 
 //Google Maps API

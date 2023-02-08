@@ -4,7 +4,7 @@
 {% block body %}
 
 
-<!--Create New Account-->
+<!--Update Review/Comments/Rating-->
 <fieldset>
   <h3 id="review">Please Tell Us About Your Experience</h3>
 
@@ -12,12 +12,8 @@
     
     <div>
         <span>
-            <label for="tour-select">Choose your Tour:</label>
-                <select name="tour" id="tour-select">
-                    <option value="Artic Winds">Artic Winds</option>
-                    <option value="NorthWest Best">NorthWest Best</option>
-                    <option value="Polynesian Breezes">Polynesian Breezes</option>
-                </select>
+            <h3 class="tour_id {{ tour.tour_id }}" id="{{ tour.tour_name }}">{{ tour.tour_name }}</h3>
+            <p id="{{ tour.dates }}">Dates: {{ tour.dates }}</p>
         </span>
     </div>
     <div>

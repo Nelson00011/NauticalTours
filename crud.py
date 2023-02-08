@@ -1,7 +1,7 @@
 """CRUD operations"""
 
 from model import db, User, Trip, Tour, Rating, connect_to_db
-
+from datetime import datetime, date, timedelta
 #User related functions
 def create_user(fname, lname, phone, password, email, birthday):
     """Create and return a new user."""
@@ -53,7 +53,14 @@ def create_trip(user_id, tour_id, intention, status='submitted'):
 
     return trip 
   
+
 #booking or liking a trip
+def get_trips_by_trip_id(trip_id):
+    """Returns trips with specified user_id."""
+    
+    return Trip.query.filter(Trip.trip_id==trip_id).one()
+
+
 def get_trips_by_id(user_id):
     """Returns trips with specified user_id."""
     
@@ -71,20 +78,19 @@ def update_saved_trips(user_id, tour_id, intention):
         saved[0].status =  "booked"
         db.session.commit()
 
-# TODO: update how to delect trip
-def unselect_trip_by_user_id(user_id, intention):
-    """Cancels a Trip with user_id."""
+
 
 
 
 
 
 #Rating related functions
-def create_rating(user_id, tour_name, rating, review):
+def create_rating(user_id, tour_name, dates, rating, review):
     """Create and return a new tour rating"""
     rating = Rating(
         user_id = user_id,
         tour_name = tour_name,
+        dates = dates, 
         rating = rating,
         review = review
     )
@@ -103,6 +109,7 @@ def get_rating_by_user_id(user_id):
     
     return Rating.query.filter(Rating.user_id==user_id).all()
 
+
 def get_rating_by_tour_name(tour_name):
     """Returns ratings with specified tour_name."""
     
@@ -110,14 +117,35 @@ def get_rating_by_tour_name(tour_name):
 
 
 def get_rating_by_user_id_tour_id(user_id,tour_id):
-    """Returns ratings with specified user_id."""
+    """Returns ratings with specified user_id, tour_id."""
     tour = get_tour_by_id(tour_id)
     return Rating.query.filter(Rating.user_id==user_id, Rating.tour_name==tour.tour_name).all()
 
-# TODO:
-# def update_rating_by_rating_id(rate_id, user_id, comment):
-#     """Returns ratings with specified user_id."""
+def get_rating_by_user_id_tour_id_dates(user_id,tour_id, dates):
+    """Returns ratings with specified user_id,tour_id, dates."""
 
+    tour = get_tour_by_id(tour_id)
+    return Rating.query.filter(Rating.user_id==user_id, Rating.tour_name==tour.tour_name, Rating.dates==dates).all()
+
+
+
+
+# TODO:
+def update_rating_by_rating_id(user_id, tour_id, dates, score, reviews):
+    """Returns ratings with specified user_id."""
+
+    rating_list=get_rating_by_user_id_tour_id_dates(user_id, tour_id, dates)
+    ratings=rating_list[0]
+    print('TEST CRUD')
+    print(ratings)
+    print('TEST CRUD-score')
+    print(score)
+    print('TEST CRUD-review')
+    print(reviews)
+    ratings.rating = score
+    ratings.review = reviews
+    db.session.commit()
+    
 #     rating = Rating.query.filter(Rating.rate_id==rate_id).all()
 #     if rating[0].user_id == user_id:
 #         rating.review = comment
@@ -133,13 +161,13 @@ def get_rating_by_user_id_tour_id(user_id,tour_id):
 
 
 #Tour related Functions
-def create_tour(tour_name, details, price, date, port_id, port_name,state_name, days = 9):
+def create_tour(tour_name, details, price, dates, port_id, port_name,state_name, days = 9):
     """Create and return a new tour."""
     tour = Tour(
         tour_name = tour_name,
         details = details,
         price = price,
-        date = date,
+        dates = dates,
         days = days,
         port_id = port_id,
         port_name = port_name,
@@ -160,21 +188,24 @@ def get_tour_by_id(tour_id):
 
 
 
+
 def get_profile_list(trip_list):
     """Returns trips  information with specified user_id. """
     output = []
     if trip_list == []:
         return False
     
+    today = date.today()
+    
     for trip in trip_list:
         tour = get_tour_by_id(trip.tour_id)
         ratings = get_rating_by_user_id_tour_id(trip.user_id, trip.tour_id)
-        print("Test")
-        print(ratings)
+        
         obj = {}
+        obj['trip_id'] = trip.trip_id
         obj['tour_id'] = tour.tour_id
         obj['tour'] = tour.tour_name
-        obj['date'] = tour.date
+        obj['dates'] = tour.dates
         #assigning price value to action
         action = trip.intention.split()[0]
 
@@ -193,17 +224,17 @@ def get_profile_list(trip_list):
         obj['action'] = action
         obj['status'] = trip.status 
         #user has review write no
-        if not ratings:
-            if trip.status == "completed":
+        if tour.dates.strftime('%Y-%m-%d') < today.strftime('%Y-%m-%d'):
+            if not ratings:
                 obj['rating'] = True
-                obj['review'] = "Please submit review"
+                obj['review'] = False
             else:
-                obj['rating'] = False
-                obj['review'] = "After your Tour please submit a review"
+                obj['rating'] = True
+                obj['review'] = True
         else:
-            obj['rating'] = ratings[0].rating
-            obj['review'] = ratings[0].review
-        print(obj)
+            obj['rating'] = False
+            obj['review'] = True
+        
 
         output.append(obj)
      

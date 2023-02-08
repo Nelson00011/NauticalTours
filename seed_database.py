@@ -21,7 +21,7 @@ tours = [{
     'name': "Artic Winds",
     'details': " Massive, magnificent, and unforgiving, Alaska is a land area of superlatives that will leave your mind searching for words to describe it. Each day presents a new discovery, whether you’re cruising through ice-choked waterways, trekking through chattering puffins rookeries, or catching artic fox and humpbacks breaching in the pristine waters",
     'price': 1500, 
-    'date': '2023-06-29',
+    'dates': '2023-06-29',
     'days' : 8,
     'port_id': '24', 
     'port_name': 'Port of Anchorage',
@@ -31,7 +31,7 @@ tours = [{
     'name': "Polynesian Breezes",
     'details': "A magical blend of culture, people, nature, activities, weather, culinary delights, nightlife, and beautiful accommodation",
     'price': 2000, 
-    'date': '2023-05-03',
+    'dates': '2023-05-03',
     'days': 10,
     'port_id': '39', 
     'port_name': 'Port of Honolulu',
@@ -41,7 +41,7 @@ tours = [{
     'name': "NorthWest Best",
     'details': "A dynamic, urban city surrounded by unmatched natural beauty—and now it’s all open for you to explore",
     'price': 1700, 
-    'date': '2023-07-15',
+    'dates': '2023-07-15',
     'days': 10,
     'port_id': '30', 
     'port_name': 'Port of Seattle',
@@ -51,7 +51,7 @@ tours = [{
     'name': "Artic Winds",
     'details': " Massive, magnificent, and unforgiving, Alaska is a land area of superlatives that will leave your mind searching for words to describe it. Each day presents a new discovery, whether you’re cruising through ice-choked waterways, trekking through chattering puffins rookeries, or catching artic fox and humpbacks breaching in the pristine waters",
     'price': 1500, 
-    'date': '2019-06-29',
+    'dates': '2019-06-29',
     'days' : 8,
     'port_id': '24', 
     'port_name': 'Port of Anchorage',
@@ -66,7 +66,7 @@ user_list = [
     ]
 
 rating_list = [
-    (3, "Artic Winds", 5, "Amazing experience once in a life time for the 2019 sailing tour")
+    (3, "Artic Winds", '2019-06-29', 5, "Amazing experience once in a life time for the 2019 sailing tour")
     ]
  
 trip_list = [
@@ -82,14 +82,14 @@ def tour_database():
         tour_name = tours[index]['name']
         details = tours[index]['details']
         price = tours[index]['price']
-        date = datetime.strptime(tours[index]['date'], '%Y-%m-%d')
+        dates = datetime.strptime(tours[index]['dates'], '%Y-%m-%d')
         days = tours[index]['days']
         port_id = tours[index]['port_id']
         port_name = tours[index]['port_name']
         state_name = tours[index]['state_name']
                 
         #create individual tour classes and append here
-        db_tour = crud.create_tour(tour_name, details, price, date, port_id, port_name, state_name, days = 9)
+        db_tour = crud.create_tour(tour_name, details, price, dates, port_id, port_name, state_name, days = 9)
         tours_in_db.append(db_tour)
         
     model.db.session.add_all(tours_in_db)
@@ -112,8 +112,8 @@ def rating_database():
     """Generate Rating Database"""
     rating_in_db = []
     for rate in rating_list:
-        user_id, tour_id, rating, review = rate
-        db_rating = crud.create_rating(user_id, tour_id, rating, review)
+        user_id, tour_name, dates, rating, review = rate
+        db_rating = crud.create_rating(user_id, tour_name, dates, rating, review)
         rating_in_db.append(db_rating)
     model.db.session.add_all(rating_in_db)
     model.db.session.commit()

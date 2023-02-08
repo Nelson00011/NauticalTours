@@ -49,8 +49,10 @@ def account():
     trips = crud.get_trips_by_id(user_id)
          
     profile_list = crud.get_profile_list(trips)
-
+    
+    
    
+
     return render_template('account.html', logIn=logIn, user=user, trips=trips, profile=profile_list)
 
 #direct to sign-up page
@@ -106,8 +108,7 @@ def login():
     """Login to user account."""
     email = request.form.get('email')
     password = request.form.get('password')
-    
-    
+        
     user = crud.get_user_by_email(email)
     pw_hash = user.password
     #confirmation that hash password matches stored password
@@ -152,9 +153,9 @@ def tour_display():
     #compose list of future tours only
     tour_list = []
     for tour in tours:     
-        if tour.date.strftime('%Y-%m-%d') > today.strftime('%Y-%m-%d'):
+        if tour.dates.strftime('%Y-%m-%d') > today.strftime('%Y-%m-%d'):
             tour_list.append(tour)
-    tour_list = sorted(tour_list, key=lambda x: x.date.strftime('%Y-%m-%d'))
+    tour_list = sorted(tour_list, key=lambda x: x.dates.strftime('%Y-%m-%d'))
     logIn = session.get('status', False)
     return render_template('tours.html', logIn=logIn, tours=tour_list)
 
@@ -173,9 +174,7 @@ def individual_tours(tour_id):
 def book_trip():
     """book trip JSON"""
     user_id = session['primary_key']
-    print("TEST")
-    print(user_id)
-    tour_id = request.json.get("trip_id")
+    tour_id = request.json.get("tour_id")
     intention = request.json.get("intention")
     tour_name = crud.get_tour_by_id(tour_id).tour_name
     
@@ -211,6 +210,23 @@ def book_trip():
             "success": False, 
             "status": f"Unable to complete task for Tour: {tour_name}, the Tour has already been booked or saved."}
     
+
+@app.route("/removeTrip", methods = ['POST'])
+def remove_trip():
+    """remove book trip JSON"""
+    user_id = session['primary_key']
+    trip_id = request.json.get("trip_id")
+    intention = request.json.get("intention")
+    
+    trip = crud.get_trips_by_trip_id(trip_id)
+    tour = crud.get_tour_by_id(trip.tour_id)
+    
+    db.session.delete(trip)
+    db.session.commit()
+    
+    return {
+            "success": True, 
+            "status": f"Congratulations you have removed Tour: {tour.tour_name} ."}
 
 
 
@@ -263,37 +279,55 @@ def comment_submission():
     response = sg.client.mail.send.post(request_body=mail.get())
     response = sg.client.mail.send.post(request_body=confirmation_email.get())
     flash('Thank you for submitting your comment. You will recieve a confirmation email soon.')
-    print(response.status_code)
-    print(response.body)
-    print(response.headers)
+  
     return redirect('/about')
 
 
 #review page
-@app.route('/review')
-def review():
+@app.route('/review/<trip_id>')
+def review(trip_id):
     """General a review page."""
-
+    #get rating for trip by tour_id name of the tour
+    trip = crud.get_trips_by_trip_id(trip_id)
+    tour = crud.get_tour_by_id(trip.tour_id)
+    
+    #storing current trip date
+    #storing current trip name
+    session['dates'] = tour.dates
+    session['tour_id'] = tour.tour_id
     #redirect to user account page
     logIn=session.get('status', False)
-    return render_template('review.html', logIn = logIn)
+    return render_template('review.html', logIn = logIn, tour=tour)
+
 
 @app.route('/review_submission',  methods = ['POST'])
 def review_submission():
     """Review Submission to user account."""
-    tour_name = request.form.get('tour')
-    rating = request.form.get('rating')
-    review = request.form.get('comment')
     user_id = session['primary_key']
     user = crud.get_user_by_id(user_id)
+
+    tour_id = session['tour_id']
+    dates = session['dates']
+
+    score = request.form.get('rating')
+    reviews = request.form.get('comment')
+    tour = crud.get_tour_by_id(tour_id)
+    tour_name=tour.tour_name
     trips = crud.get_trips_by_id(user_id)
-         
     profile_list = crud.get_profile_list(trips)
 
-    rating = crud.create_rating(user_id, tour_name, rating, review)
-    db.session.add(rating)
-    db.session.commit()
-    flash('Thank you for submitting a Review!')
+    rating = crud.get_rating_by_user_id_tour_id_dates(user_id,tour_id, dates)
+    print("TEST RATING")
+    print(rating)
+    if rating:
+        crud.update_rating_by_rating_id(user_id, tour_id, dates, score, reviews)
+        
+        flash('Thank you for updating a Review!')
+    else:   
+        rating = crud.create_rating(user_id, tour_name, dates, score, reviews)
+        db.session.add(rating)
+        db.session.commit()
+        flash('Thank you for submitting a Review!')
 
     logIn = session.get('status', False)
     return render_template('account.html', logIn=logIn, user=user, trips=trips, profile=profile_list)

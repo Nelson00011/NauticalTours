@@ -10,7 +10,7 @@
   {% for tour in tours%}
     <li>
       <a href="/tours/{{ tour.tour_id }}">{{ tour.tour_name }}</a>
-      <p>Date: {{ tour.date }}</p>
+      <p>Date: {{ tour.dates }}</p>
       <p>Price: {{ tour.price }}</p>
     </li>
   {% endfor %}

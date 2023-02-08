@@ -22,12 +22,12 @@ class User(db.Model):
     birthday = db.Column(db.Date, nullable=False)
     #payment_info = 
     
-    
     trips = db.relationship('Trip', back_populates='user')
     rating = db.relationship('Rating', back_populates='user')
 
     def __repr__(self):
         return f'<User user_id={self.user_id} email={self.email}>'
+
 
 
 class Trip(db.Model):
@@ -43,10 +43,10 @@ class Trip(db.Model):
      
     user = db.relationship('User', back_populates='trips')
     tour = db.relationship("Tour", back_populates = 'trips')
-  
 
     def __repr__(self):
         return f'<Trip trip_id={self.trip_id} user_id={self.user_id}>'
+
 
 
 class Rating(db.Model):
@@ -57,13 +57,12 @@ class Rating(db.Model):
     rate_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     tour_name  = db.Column(db.String, nullable = False)
+    dates = db.Column(db.Date, nullable=False)
     rating = db.Column(db.Integer, nullable=False)
     review = db.Column(db.Text, nullable=True)
      
     user = db.relationship('User', back_populates='rating')
     
-  
-
     def __repr__(self):
         return f'<Rating rating_id={self.rate_id} rating={self.rating}>'
 
@@ -77,16 +76,14 @@ class Tour(db.Model):
     tour_name = db.Column(db.String(50), nullable=False)
     details = db.Column(db.Text, nullable = False)
     price = db.Column(db.Integer, nullable=False)
-    date = db.Column(db.Date, nullable=False)
+    dates = db.Column(db.Date, nullable=False)
     days = db.Column(db.Integer)
     port_id = db.Column(db.String(10), nullable=False)
     port_name = db.Column(db.String(30), nullable=False)
     state_name = db.Column(db.String(30), nullable=False)
 
     trips = db.relationship("Trip", back_populates = 'tour')
-    
-
-     
+       
     def __repr__(self):
         return f'<Tour tour_id={self.tour_id} tour_name={self.tour_name}>'
 

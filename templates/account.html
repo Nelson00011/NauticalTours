@@ -50,24 +50,27 @@
                           </tr>
                         
                           {% for trip in profile %}
-                          <tr>
+                          <tr id="trip_id_{{trip.tour_id}}">
                             <td><a href="/tours/{{ trip.tour_id }}">{{ trip.tour }}</a></td>
-                            <td>{{ trip.date }}</td>
+                            <td>{{ trip.dates }}</td>
                             <td>{{ trip.action }}</td>
                             <td>{{ trip.status }}</td>
                             <td>${{'%0.2f' % trip.price |float}}</td>
                             {% if trip.rating %}
-                            <td><button value="Leave Review"><a href="/review">Leave Review</a></button></td>
+                              {% if trip.review %}
+                              <td><a href="/review/{{ trip.trip_id }}"><button value="Update Review">Update Review</button></a></td>
+                              {% else %}
+                              <td><a href="/review/{{ trip.trip_id }}"><button value="Leave Review">Leave Review</button></a></td>
+                              {% endif %}
                             {% else %}
-                            <td><button value="Unselect Trip">Unselect Trip</button>
-                              <p>{{ trip.review }}</p></td>
+                            <td>
+                            <button value="{{ trip.trip_id }}" id="unselect">Unselect Trip</button></td>
                             {% endif %}
                           </tr>
                          {% endfor %}
                         </table>
                       {% endif %}
                     </div>
-
                 </div>
             </div>
         </div>
@@ -92,7 +95,9 @@
       </fieldset>
     </div>
   </div>
-
  </div> 
+
+ <!-- <script src="/static/scripts/index.js" default></script> -->
+<script src="/static/scripts/profile.js"></script>
 
 {% endblock %}
