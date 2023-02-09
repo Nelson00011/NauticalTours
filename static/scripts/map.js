@@ -31,7 +31,7 @@ document.querySelector('#saved').addEventListener('click', generateTrip)
 
 //Google Maps API
 
-//identify the class for map_port
+//identify the class for map_port line 35
 const map_port = document.querySelector('#map').classList[0]
 
 // object of locations and 
@@ -220,6 +220,7 @@ const locations = {
 };
 
 
+//identify the class for map_port line 35
 const coordinate = locations[map_port]
 
 //initiate google map function
@@ -232,13 +233,13 @@ function initMap() {
 
   const portMarker = new google.maps.Marker({
     position: coordinate.coordinates,
-    title: 'PlaceHolder',
+    title: map_port,
     map: basicMap,
   });
 //TODO
-  portMarker.addListener('click', () => {
-    alert('Hi!');
-  });
+  // portMarker.addListener('click', () => {
+  //   alert('Hi!');
+  // });
 
   const info = new google.maps.InfoWindow({
     content: `<h6>${coordinate.port_name}:</br></h6><p>Please Explore!</p>`,
@@ -246,30 +247,7 @@ function initMap() {
 
   info.open(basicMap, portMarker);
 
-  const locations = [
-    {
-      name: 'Hackbright Academy',
-      coords: {
-        lat: 37.7887459,
-        lng: -122.4115852,
-      },
-    },
-    {
-      name: 'Powell Street Station',
-      coords: {
-        lat: 37.7844605,
-        lng: -122.4079702,
-      },
-    },
-    {
-      name: 'Montgomery Station',
-      coords: {
-        lat: 37.7894094,
-        lng: -122.4013037,
-      },
-    },
-  ];
-
+  //markers called
   const markers = [];
   for (const location of coordinate.explore) {
     markers.push(
@@ -288,10 +266,9 @@ function initMap() {
       }),
     );
   }
-
+//COMMENT event listener for markers
   for (const marker of markers) {
     const markerInfo = `<h6>${marker.title}</h6>`;
-
     const infoWindow = new google.maps.InfoWindow({
       content: markerInfo,
       maxWidth: 200,
@@ -301,4 +278,67 @@ function initMap() {
       infoWindow.open(basicMap, marker);
     });
   }
+
+//COMMENT Google Places Library
+//COMMENT query must be conditional based on buttons
+//Museum Request if Statement
+const SearchQuery = 'Restaurants'
+
+var request = {
+  query: SearchQuery,
+  radius: '1000',
+  location: coordinate.coordinates 
+};
+
+var service = new google.maps.places.PlacesService(basicMap)
+console.log("SERVICE")
+console.log(service)
+//generic infoWindow
+const infoWindow = new google.maps.InfoWindow();
+
+service.textSearch(request, function(results, status) {
+  if (status === google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      console.log(`RESULTS ${i}`)
+      console.log(results[i])
+      //create marker
+      console.log(`GeometryLocal ${i}`)
+      console.log(results[i].geometry.location)
+      //Create New Marker
+      var markerMuseum = new google.maps.Marker({
+        map: basicMap,
+        title: results[i].name,
+        position: results[i].geometry.location,
+        icon: {
+          url: results[i].icon,
+          scaledSize: new google.maps.Size(25,25),
+        },
+      //specific colored icon to match button
+      });
+      //TODO: create the content
+      const placeContent = `
+      <div class="museum" id='${results[i].place_id}'>
+      <h5>${results[i].name}<h5>
+      <p>${SearchQuery} Rating: ${results[i].rating}</p>
+      </div> 
+      `
+      //TODO create each individual event listener
+      markerMuseum.addListener('click', () => {
+        infoWindow.close();
+        infoWindow.setContent(placeContent);
+        infoWindow.open(basicMap, markerMuseum);
+      });
+    }
+  }
+});
+//final bracket
+
 }
+
+
+
+
+//event listener for resturants, cafe, museums
+// document.querySelector('#museums').addEventListener('click', insertPlaces) 
+// document.querySelector('#cafe').addEventListener('click', insertPlaces) 
+// document.querySelector('#restaurants').addEventListener('click', insertPlaces)

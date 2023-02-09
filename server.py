@@ -9,6 +9,7 @@ import os
 from sendgrid.helpers.mail import *
 
 
+
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 app.secret_key = 'dev'
@@ -50,9 +51,7 @@ def account():
          
     profile_list = crud.get_profile_list(trips)
     
-    
-   
-
+     
     return render_template('account.html', logIn=logIn, user=user, trips=trips, profile=profile_list)
 
 #direct to sign-up page
@@ -167,6 +166,7 @@ def individual_tours(tour_id):
     tour = crud.get_tour_by_id(tour_id)
     ratings = crud.get_rating_by_tour_name(tour.tour_name)
 
+   
     logIn = session.get('status', False)
     return render_template('tour_details.html', logIn=logIn, tour=tour, ratings=ratings)
 
