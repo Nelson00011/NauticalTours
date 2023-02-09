@@ -282,9 +282,9 @@ function initMap() {
 //COMMENT Google Places Library
 //COMMENT query must be conditional based on buttons
 //Museum Request if Statement
-const SearchQuery = 'Restaurants'
+const SearchQuery = 'Museums'
 
-var request = {
+const request = {
   query: SearchQuery,
   radius: '1000',
   location: coordinate.coordinates 
@@ -298,14 +298,14 @@ const infoWindow = new google.maps.InfoWindow();
 
 service.textSearch(request, function(results, status) {
   if (status === google.maps.places.PlacesServiceStatus.OK) {
-    for (var i = 0; i < results.length; i++) {
+    for (let i = 0; i < results.length; i++) {
       console.log(`RESULTS ${i}`)
       console.log(results[i])
       //create marker
       console.log(`GeometryLocal ${i}`)
       console.log(results[i].geometry.location)
       //Create New Marker
-      var markerMuseum = new google.maps.Marker({
+      const markerMuseum = new google.maps.Marker({
         map: basicMap,
         title: results[i].name,
         position: results[i].geometry.location,
@@ -317,7 +317,7 @@ service.textSearch(request, function(results, status) {
       });
       //TODO: create the content
       const placeContent = `
-      <div class="museum" id='${results[i].place_id}'>
+      <div class="${SearchQuery}" id='${results[i].place_id}'>
       <h5>${results[i].name}<h5>
       <p>${SearchQuery} Rating: ${results[i].rating}</p>
       </div> 
