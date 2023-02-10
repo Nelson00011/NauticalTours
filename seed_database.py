@@ -74,7 +74,7 @@ trip_list = [
     ]
 
 
-# Create Tours, store them in list so we can use them
+#Create Tours
 def tour_database():
     """Generate Tour Database"""
     tours_in_db = []
@@ -95,7 +95,7 @@ def tour_database():
     model.db.session.add_all(tours_in_db)
     model.db.session.commit()
 
-# for userfille
+#Create Users
 def user_database():
     """Generate User Database"""
     users_in_db = []
@@ -107,7 +107,7 @@ def user_database():
     model.db.session.add_all(users_in_db)
     model.db.session.commit()
 
-
+#Create Ratings
 def rating_database():
     """Generate Rating Database"""
     rating_in_db = []
@@ -118,6 +118,7 @@ def rating_database():
     model.db.session.add_all(rating_in_db)
     model.db.session.commit()
 
+#Create trips
 def trip_database():
     """Generate Rating Database"""
     trip_in_db = []
@@ -128,8 +129,6 @@ def trip_database():
     model.db.session.add_all(trip_in_db)
     model.db.session.commit()
 
-
-    
 
 #call functions
 tour_database()
