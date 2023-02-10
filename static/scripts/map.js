@@ -224,11 +224,11 @@ const locations = {
 const coordinate = locations[map_port]
 
 //initiate google map function
-function initMap() {
+function initMap(evt="") {
  
   const basicMap = new google.maps.Map(document.querySelector('#map'), {
     center: coordinate.coordinates,
-    zoom: 12,
+    zoom: 13,
   });
 
   const portMarker = new google.maps.Marker({
@@ -280,9 +280,16 @@ function initMap() {
   }
 
 //COMMENT Google Places Library
-//COMMENT query must be conditional based on buttons
-//Museum Request if Statement
-const SearchQuery = 'Museums'
+//COMMENT query must be conditional based on buttons-
+
+
+let SearchQuery = evt.target.id || 'Bars'
+
+// put the code from "const request" to before the final bracket into a function that takes in SearchQuery
+// call the function when one of the buttons is clicked, passing in the appropriate SearchQuery
+// markers would need to be a global variable
+// loop through markers and call marker.setMap(null) on each one
+// create new markers
 
 const request = {
   query: SearchQuery,
@@ -291,19 +298,14 @@ const request = {
 };
 
 var service = new google.maps.places.PlacesService(basicMap)
-console.log("SERVICE")
-console.log(service)
+// console.log("SERVICE")
+// console.log(service)
 //generic infoWindow
 const infoWindow = new google.maps.InfoWindow();
 
 service.textSearch(request, function(results, status) {
   if (status === google.maps.places.PlacesServiceStatus.OK) {
     for (let i = 0; i < results.length; i++) {
-      console.log(`RESULTS ${i}`)
-      console.log(results[i])
-      //create marker
-      console.log(`GeometryLocal ${i}`)
-      console.log(results[i].geometry.location)
       //Create New Marker
       const markerMuseum = new google.maps.Marker({
         map: basicMap,
@@ -331,14 +333,17 @@ service.textSearch(request, function(results, status) {
     }
   }
 });
-//final bracket
+///eventlisteners?
 
+//final bracket
 }
 
 
-
-
 //event listener for resturants, cafe, museums
-// document.querySelector('#museums').addEventListener('click', insertPlaces) 
-// document.querySelector('#cafe').addEventListener('click', insertPlaces) 
-// document.querySelector('#restaurants').addEventListener('click', insertPlaces)
+document.querySelector('#museums').addEventListener('click', initMap) 
+document.querySelector('#cafe').addEventListener('click', initMap) 
+document.querySelector('#restaurants').addEventListener('click', initMap)
+
+
+
+
