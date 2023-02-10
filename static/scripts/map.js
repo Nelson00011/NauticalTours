@@ -224,7 +224,7 @@ const locations = {
 const coordinate = locations[map_port]
 
 //initiate google map function
-function initMap(evt="") {
+function initMap() {
  
   const basicMap = new google.maps.Map(document.querySelector('#map'), {
     center: coordinate.coordinates,
@@ -236,11 +236,7 @@ function initMap(evt="") {
     title: map_port,
     map: basicMap,
   });
-//TODO
-  // portMarker.addListener('click', () => {
-  //   alert('Hi!');
-  // });
-
+//TODO:update intro
   const info = new google.maps.InfoWindow({
     content: `<h6>${coordinate.port_name}:</br></h6><p>Please Explore!</p>`,
   });
@@ -282,32 +278,41 @@ function initMap(evt="") {
 //COMMENT Google Places Library
 //COMMENT query must be conditional based on buttons-
 
-
-let SearchQuery = evt.target.id || 'Bars'
-
 // put the code from "const request" to before the final bracket into a function that takes in SearchQuery
 // call the function when one of the buttons is clicked, passing in the appropriate SearchQuery
 // markers would need to be a global variable
 // loop through markers and call marker.setMap(null) on each one
 // create new markers
+function buttonMap(evt=""){
+  
+  let target = evt.target.id
+  let searchQuery = target[0].toUpperCase() + target.slice(1)
 
 const request = {
-  query: SearchQuery,
-  radius: '1000',
+  query: searchQuery,
+  radius: '1500',
   location: coordinate.coordinates 
 };
 
+///COMMENT: gooogle services
 var service = new google.maps.places.PlacesService(basicMap)
-// console.log("SERVICE")
-// console.log(service)
-//generic infoWindow
+
+//COMMENT: generic infoWindow
 const infoWindow = new google.maps.InfoWindow();
+
+//COMMENT: list of markers here
+const markerObj = {}
+
+
+console.log(markerObj)
+if(!markerObj[searchQuery]){
+  markerObj[searchQuery] = []
 
 service.textSearch(request, function(results, status) {
   if (status === google.maps.places.PlacesServiceStatus.OK) {
     for (let i = 0; i < results.length; i++) {
-      //Create New Marker
-      const markerMuseum = new google.maps.Marker({
+      //COMMENT: Create New Marker
+      const markerMap = new google.maps.Marker({
         map: basicMap,
         title: results[i].name,
         position: results[i].geometry.location,
@@ -315,34 +320,58 @@ service.textSearch(request, function(results, status) {
           url: results[i].icon,
           scaledSize: new google.maps.Size(25,25),
         },
-      //specific colored icon to match button
+      //COMMENT: specific colored icon to match button
       });
-      //TODO: create the content
+      
+      markerObj[searchQuery] += markerMap
+      console.log("DICITONARY/ OBJECT LINE 332")
+      console.log(markerObj[searchQuery])
+      //COMMENT: create contents
       const placeContent = `
-      <div class="${SearchQuery}" id='${results[i].place_id}'>
+      <div class="${searchQuery}" id='${results[i].place_id}'>
       <h5>${results[i].name}<h5>
-      <p>${SearchQuery} Rating: ${results[i].rating}</p>
+      <p>${searchQuery} Rating: ${results[i].rating}</p>
       </div> 
       `
-      //TODO create each individual event listener
-      markerMuseum.addListener('click', () => {
+      //COMMENT: add eventlistener to every marker on map
+      markerMap.addListener('click', () => {
         infoWindow.close();
         infoWindow.setContent(placeContent);
-        infoWindow.open(basicMap, markerMuseum);
+        infoWindow.open(basicMap, markerMap);
       });
     }
   }
 });
-///eventlisteners?
+//final bracket if statement
+
+}
+else{
+// TODO: loop through map marks and make null
+let markerList = markerObj[searchQuery]
+console.log("MarkerLIST")
+  console.log(markerList)
+for(let i=0; i<markerList.length ;i++){
+  let item = markerList[i]
+  console.log("ITEMS LINE 356")
+  console.log(item)
+  item.setMap(null)
+  markerObj[searchQuery]=[]
+}
+}
+///buttonMap final bracket
+}
+///eventlisteners for each
+document.querySelector('#museums').addEventListener('click', buttonMap) 
+document.querySelector('#cafe').addEventListener('click', buttonMap) 
+document.querySelector('#restaurants').addEventListener('click', buttonMap)
+
 
 //final bracket
 }
 
 
-//event listener for resturants, cafe, museums
-document.querySelector('#museums').addEventListener('click', initMap) 
-document.querySelector('#cafe').addEventListener('click', initMap) 
-document.querySelector('#restaurants').addEventListener('click', initMap)
+
+
 
 
 
