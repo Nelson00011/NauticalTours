@@ -35,7 +35,6 @@ def homepage():
     return render_template('homepage.html', logIn = logIn)
 
 
-
 #account/profile page
 @app.route('/account')
 def account():
@@ -235,8 +234,8 @@ def comment_submission():
     fname = request.form.get('fname')
     lname = request.form.get('lname')
     comments = request.form.get('comments')
-    #send email to self first to be responded to. 
-    #send email to confirmation Email next
+    
+    #send confirmation email to client
     sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
     sender_email = os.environ.get("EMAIL")
     from_email = Email(sender_email)
@@ -244,7 +243,7 @@ def comment_submission():
     company = To(sender_email)
     subject = "Confirmation of Comment: Nautical Tours"
 
-    #email to internal
+    #send confirmation email to internal
     mail = Mail(from_email, company, subject)
     mail.dynamic_template_data = {
         'first_name': fname,
@@ -254,8 +253,6 @@ def comment_submission():
     }
     mail.template_id = 'd-d2e504db0885402bab831f6fe166794d'
 
-    #email to individual
-    
     confirmation_email = Mail(from_email, user, subject)
     confirmation_email.dynamic_template_data = {
     'first_name': fname,
