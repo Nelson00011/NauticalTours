@@ -15,10 +15,7 @@ bcrypt = Bcrypt(app)
 app.secret_key = 'dev'
 app.jinja_env.undefined = StrictUndefined
 
-# bcrypt = Bcrypt(app)
 app.config['PRESERVE_CONTEXT_ON_EXCEPTION'] = True
-
-
 SENDGRID_API_KEY = os.environ['SENDGRID_API_KEY']
 
 
@@ -39,7 +36,7 @@ def homepage():
 
 
 
-#generating a user & account settings
+#account/profile page
 @app.route('/account')
 def account():
     """Ability to access account."""
@@ -63,7 +60,7 @@ def sign_up_page():
     
     return render_template('sign_up.html' , logIn = logIn)
 
-#direct to login page
+#login page
 @app.route("/login_page")
 def login_page():
     """Ability to access account."""
@@ -85,7 +82,7 @@ def register_user():
     
     email = request.form.get('email')
     birthday = request.form.get('birthday')
-    #force user to log into site
+    
     
     user = crud.get_user_by_email(email)
     if user:
@@ -110,7 +107,7 @@ def login():
         
     user = crud.get_user_by_email(email)
     pw_hash = user.password
-    #confirmation that hash password matches stored password
+    #confirmation that hash password == stored password
     confirmation = bcrypt.check_password_hash(pw_hash, password)
     
     if not user:
@@ -120,8 +117,7 @@ def login():
         session['primary_key'] = user.user_id
         session['status'] = True
         logIn = session.get('status', False)
-        # logged in maybe
-        return redirect('/account')    
+        return redirect('/account')
     else:
         flash('Password does not match. Please try again.')
 
@@ -130,7 +126,7 @@ def login():
   
 
 
-#log out of user account
+#logout
 @app.route('/logout', methods = ['GET','POST'])
 def logout():
     """Logout to of a user account."""
@@ -141,7 +137,7 @@ def logout():
     return render_template('homepage.html', logIn=logIn)
 
 
-#major tour packages 
+#tours page
 @app.route('/tours')
 def tour_display():
     """General tours page."""
@@ -158,8 +154,7 @@ def tour_display():
     logIn = session.get('status', False)
     return render_template('tours.html', logIn=logIn, tours=tour_list)
 
-#individual packages page and port cities 
-#google API
+#Individual Port Pages.
 @app.route('/tours/<tour_id>')
 def individual_tours(tour_id):
     """individual tours page."""
@@ -178,9 +173,7 @@ def book_trip():
     intention = request.json.get("intention")
     tour_name = crud.get_tour_by_id(tour_id).tour_name
     
-    #check if a trip already exists
     if not user_id:
-        
         return {
             "success": False, 
             "status": f"Unable to complete task for Tour: {tour_name}, not Logged In."}
@@ -190,15 +183,12 @@ def book_trip():
     current = crud.get_triplist_by_user_tour(user_id, tour_id, intention)
         
     if not booked and not current:
-        #book a trip and update the crud database.
-        #TODO eventually convert previously saved trips to booked
         if intention == "Book Trip":
             crud.update_saved_trips(user_id, tour_id, intention)
         
         trip = crud.create_trip(user_id, tour_id, intention, status='submitted')
         db.session.add(trip)
         db.session.commit()
-        #update the model here on line 
         
         return {
             "success": True, 
@@ -229,8 +219,7 @@ def remove_trip():
             "status": f"Congratulations you have removed Tour: {tour.tour_name} ."}
 
 
-
-#about page
+#About Page
 @app.route('/about')
 def about():
     """General about page."""
@@ -239,10 +228,7 @@ def about():
     logIn=session.get('status', False)
     return render_template('about.html', logIn = logIn)
 
-
-#contact form that sends 
-#email to use confirming that their comment was submited
-#sends email the company as for them to respond to. 
+#Contact/Comments send emails confirmation to User & Company
 @app.route('/comment', methods = ['POST'])
 def comment_submission():
     email = request.form.get('email')
