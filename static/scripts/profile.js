@@ -7,7 +7,7 @@ const tripInput={
   trip_id: evt.target.value,
   intention: document.querySelector('#unselect').id,
 }
-console.log(tripInput)
+
 fetch('/removeTrip', {
   method: 'POST',
   credentials: 'include',
@@ -20,7 +20,7 @@ fetch('/removeTrip', {
 .then((resJson) => {
 alert(resJson.status);
 //hide the removedTrips
-console.log(resJson)
+
 document.querySelector(`#trip_id_${evt.target.value}`).remove();
 //innerHtmlSetnew balance
 document.querySelector("#balance").innerHTML=`Balance: $${resJson.balance}.00`
