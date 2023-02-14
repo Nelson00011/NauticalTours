@@ -40,8 +40,8 @@ const locations = {
     port_id: "24",
     port_name: "Port of Anchorage",
     coordinates: {
-      lat: 61.24114,
-      lng: -149.88697
+      lat: 61.223278610804506,
+      lng:  -149.89909775375338
     }  
   },
   // const hawaii =

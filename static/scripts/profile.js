@@ -20,8 +20,10 @@ fetch('/removeTrip', {
 .then((resJson) => {
 alert(resJson.status);
 //hide the removedTrips
-console.log(evt.target.value)
+console.log(resJson)
 document.querySelector(`#trip_id_${evt.target.value}`).remove();
+//innerHtmlSetnew balance
+document.querySelector("#balance").innerHTML=`Balance: $${resJson.balance}.00`
 });
 }
 //event listener remove trip

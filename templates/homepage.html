@@ -2,13 +2,17 @@
 {% block title %}Nautical Tours{% endblock %}
 
 {% block body %}
-
-<h1>Welcome!</h1>
-<h2>Cover Image: Water</h2>
-
-
+<div class="container">
 <!-- cover art -->
-
+<div class="cover">
+    <h1 class="title" onClick=sevenSeas() id="title">Nautical Tours</h1>
+    <p id="quote">
+      <blockquote><em
+        >Best experiences on the seven seas, sailing you into your dream
+        vacation and beyond...</em
+        ></blockquote>
+    </p>
+  </div>
 <!-- tours in cards -->
 <p> Top 3 Cards of various tours to Scroll through/Flipcards?</p>
 
@@ -17,5 +21,5 @@
 <p>History Learn more about team</p>
 
 <p>Please feel free to submit a comment</p>
-
+</div>
 {% endblock %}

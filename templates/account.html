@@ -50,7 +50,7 @@
                           </tr>
                         
                           {% for trip in profile %}
-                          <tr id="trip_id_{{trip.tour_id}}">
+                          <tr id="trip_id_{{trip.trip_id}}">
                             <td><a href="/tours/{{ trip.tour_id }}">{{ trip.tour }}</a></td>
                             <td>{{ trip.dates }}</td>
                             <td>{{ trip.action }}</td>
@@ -75,7 +75,7 @@
             </div>
         </div>
         <div class="card-body p-4">
-          <h6>Balance: ${{'%0.2f' % user.balance|float}} </h6>
+          <h6 id="balance" >Balance: ${{'%0.2f' % user.balance|float}} </h6>
           <hr class="mt-0 mb-4"> 
         </div>
       </div>

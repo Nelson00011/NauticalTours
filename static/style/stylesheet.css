@@ -10,4 +10,25 @@ html, body {
   height: 250px;
 }
 
-
+.cover {
+  font-size: 22px;
+  color: white;
+  padding: 5px;
+  margin: 0 auto;
+  text-shadow: 1px 1px 2px rgb(1, 1, 56);
+  overflow: hidden;
+  font-size: adjust;
+  width: 100%;
+  min-width: 25%;
+  min-height: 10%;
+  max-height: 400px;
+  padding: 10%;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url("/static/img/coverArt.jpg");
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  background-size: cover;
+  object-position: center;
+  border-bottom: 10px solid rgb(1, 1, 56);
+}

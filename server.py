@@ -209,13 +209,15 @@ def remove_trip():
     
     trip = crud.get_trips_by_trip_id(trip_id)
     tour = crud.get_tour_by_id(trip.tour_id)
-    
+    crud.update_user_balance(-(tour.price), user_id)
+    user = crud.get_user_by_id(user_id)
     db.session.delete(trip)
     db.session.commit()
     
     return {
             "success": True, 
-            "status": f"Congratulations you have removed Tour: {tour.tour_name} ."}
+            "status": f"Congratulations you have removed Tour: {tour.tour_name} .",
+            "balance": user.balance }
 
 
 #About Page
