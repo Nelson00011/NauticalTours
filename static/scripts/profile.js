@@ -5,7 +5,7 @@ function removeTrip(evt){
   evt.preventDefault();
 const tripInput={
   trip_id: evt.target.value,
-  intention: document.querySelector('#unselect').id,
+  intention: evt.target.classList[0],
 }
 
 fetch('/removeTrip', {
@@ -26,5 +26,7 @@ document.querySelector(`#trip_id_${evt.target.value}`).remove();
 document.querySelector("#balance").innerHTML=`Balance: $${resJson.balance}.00`
 });
 }
-//event listener remove trip
-document.querySelector('#unselect').addEventListener('click', removeTrip) 
+//event listener removeTrip
+let unselected = document.querySelectorAll('.unselect')
+unselected.forEach((button)=> button.addEventListener('click', removeTrip))
+  
