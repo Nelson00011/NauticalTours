@@ -300,7 +300,7 @@ def review_submission():
     dates = session['dates']
 
     score = request.form.get('star')
-    reviews = request.form.get('comment')
+    reviews = request.form.get('comments')
     tour = crud.get_tour_by_id(tour_id)
     tour_name=tour.tour_name
     trips = crud.get_trips_by_id(user_id)

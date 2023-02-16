@@ -26,7 +26,8 @@
         </div>
         <div>
             <label for="comments">
-            <textarea id="comments" name="comments" rows="3" cols="30" placeholder="Please share your message here" required></textarea>
+            <textarea id="comments" name="comments" rows="3" cols="30" placeholder="Please share your message here" maxLength="150" required></textarea>
+            <p id="results"></p>
         </label>
       </div>
    
@@ -37,5 +38,8 @@
       </form>
   </fieldset>
 </div>
+
+ <!-- script -->
+ <script src="/static/scripts/textbox.js"></script>
 
 {% endblock %}

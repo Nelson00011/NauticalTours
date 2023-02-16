@@ -33,9 +33,12 @@
     </div>
     <div>
         <div>
-        <label for="comment">Leave a Review:</label>
+        <label for="comments">Leave a Review:</label>
     </div>
-        <textarea name="comment" id="comment" placeholder="Leave a Comment"></textarea>
+    <label for="comments">
+        <textarea name="comments" id="comments" placeholder="Leave a Comment" maxLength="150" required></textarea>
+        <p id="results"></p>
+    </label>
     </div>
          <!--Form:submit button-->
      <p>
@@ -44,7 +47,8 @@
     </form>
 </fieldset>
   
-<!-- <script src="/static/scripts/index.js" default></script> -->
+<!-- script -->
 <script src="/static/scripts/review.js"></script>
+<script src="/static/scripts/textbox.js"></script>
 
 {% endblock %}

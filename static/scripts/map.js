@@ -33,7 +33,7 @@ star_list.forEach((score)=> {
   let num = score.id
   for(let i=0;i<5;i++){
     if(i<num){
-      insertText += '<span class="fa fa-star" style="color:yellow"></span>'
+      insertText += '<span class="fa fa-star" style="color:gold"></span>'
     }
     else{
       insertText += '<span class="fa fa-star"></span>'
