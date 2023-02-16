@@ -206,11 +206,16 @@ def remove_trip():
     user_id = session['primary_key']
     trip_id = request.json.get("trip_id")
     intention = request.json.get("intention")
+    action = request.json.get("action")
     
     trip = crud.get_trips_by_trip_id(trip_id)
     tour = crud.get_tour_by_id(trip.tour_id)
-    crud.update_user_balance(-(tour.price), user_id)
+    
+    
+    if action!="Saved":
+        crud.update_user_balance(-(tour.price), user_id)
     user = crud.get_user_by_id(user_id)
+        
     db.session.delete(trip)
     db.session.commit()
     
@@ -302,8 +307,7 @@ def review_submission():
     profile_list = crud.get_profile_list(trips)
 
     rating = crud.get_rating_by_user_id_tour_id_dates(user_id,tour_id, dates)
-    print("TEST RATING")
-    print(rating)
+    
     if rating:
         crud.update_rating_by_rating_id(user_id, tour_id, dates, score, reviews)
         

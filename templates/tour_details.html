@@ -49,7 +49,7 @@
     <div class="col-12 ratings">
       {% for rating in ratings%}
       <div>
-      <h5>Score (will be stars) {{rating.rating}}</h5>
+      <h5>Score <span class="stars" id="{{rating.rating}}"></span></h5>
       <p> {{rating.review}}</p>
     </div>
     {% endfor %}

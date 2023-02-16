@@ -6,6 +6,7 @@ function removeTrip(evt){
 const tripInput={
   trip_id: evt.target.value,
   intention: evt.target.classList[0],
+  action: evt.target.id
 }
 
 fetch('/removeTrip', {
@@ -24,7 +25,9 @@ alert(resJson.status);
 document.querySelector(`#trip_id_${evt.target.value}`).remove();
 //innerHtmlSetnew balance
 document.querySelector("#balance").innerHTML=`Balance: $${resJson.balance}.00`
-});
+
+}).catch((err)=>
+console.log(err));
 }
 //event listener removeTrip
 let unselected = document.querySelectorAll('.unselect')

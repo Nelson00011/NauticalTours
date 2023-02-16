@@ -44,6 +44,8 @@ def create_trip(user_id, tour_id, intention, status='submitted'):
         price = tour.price
         if status!='completed':
             update_user_balance(price, user_id)
+    else: 
+        tour = get_tour_by_id(tour_id)
 
     trip = Trip(
         user_id = user_id,

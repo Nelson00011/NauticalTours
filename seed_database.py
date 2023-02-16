@@ -66,7 +66,8 @@ user_list = [
     ]
 
 rating_list = [
-    (3, "Artic Winds", '2019-06-29', 5, "Amazing experience once in a life time for the 2019 sailing tour")
+    (3, "Artic Winds", '2019-06-29', 5, "Amazing experience once in a life time for the 2019 sailing tour"),
+    (2, "Artic Winds", '2019-06-29', 4, "Super excited to see the all the Whales on the second day! Incredible glacial Views! Great crew.")
     ]
  
 trip_list = [

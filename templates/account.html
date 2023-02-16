@@ -64,7 +64,7 @@
                               {% endif %}
                             {% else %}
                             <td>
-                            <button value="{{ trip.trip_id }}" class="unselect">Unselect Trip</button></td>
+                            <button value="{{ trip.trip_id }}" class="unselect" id="{{ trip.action }}">Unselect Trip</button></td>
                             {% endif %}
                           </tr>
                          {% endfor %}
@@ -75,7 +75,7 @@
             </div>
         </div>
         <div class="card-body p-4">
-          <h6 id="balance" >Balance: ${{'%0.2f' % user.balance|float}} </h6>
+          <h6 id="balance">Balance: ${{'%0.2f' % user.balance|float}} </h6>
           <hr class="mt-0 mb-4"> 
         </div>
       </div>

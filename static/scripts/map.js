@@ -1,11 +1,9 @@
 'use strict';
-//COMMENT: list of markers here
-const markerObj = {}
 
 //COMMENT: generate trip event function
 function generateTrip(evt){
   evt.preventDefault();
-
+  
   const formInputs = {
     tour_id: document.querySelector('p').id,
     intention: evt.target.value,
@@ -28,7 +26,25 @@ function generateTrip(evt){
 document.querySelector('#booked').addEventListener('click', generateTrip) 
 document.querySelector('#saved').addEventListener('click', generateTrip) 
 
+//COMMENT: Reviews adding stars to score
+const star_list = document.querySelectorAll(".stars")
+star_list.forEach((score)=> {
+  let insertText = ''
+  let num = score.id
+  for(let i=0;i<5;i++){
+    if(i<num){
+      insertText += '<span class="fa fa-star" style="color:yellow"></span>'
+    }
+    else{
+      insertText += '<span class="fa fa-star"></span>'
+    }
+  }
+  score.innerHTML=insertText})
 
+
+
+//COMMENT: list of markers here
+const markerObj = {}
 //COMMENTS: GOOGLE MAPS API
 //identify the class for map_port line 35
 const map_port = document.querySelector('#map').classList[0]
