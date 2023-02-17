@@ -5,6 +5,7 @@
 
 
 <!--Update Review/Comments/Rating-->
+<div class="container">
 <fieldset>
   <h3 id="review">Please Tell Us About Your Experience</h3>
 
@@ -17,9 +18,9 @@
         </span>
     </div>
     <div class="score">
-        <p>Overall experience (scale of 1 through 5)</p>
-        <div class="rating">
-        <input type="radio" name="star" value="1" id="one-star">
+        <p>Overall experience (star score)</p>
+        <div class="rating" >
+        <input type="radio" name="star" value="1" id="one-star" required>
         <label for="one-star"><span class="fa fa-star" id="star1" value="1"></span></label>
         <input type="radio" name="star" value="2" id="two-star">
         <label for="two-star"><span class="fa fa-star" id="star2" value="2"></span></label>
@@ -36,7 +37,7 @@
         <label for="comments">Leave a Review:</label>
     </div>
     <label for="comments">
-        <textarea name="comments" id="comments" placeholder="Leave a Comment" maxLength="150" required></textarea>
+        <textarea name="comments" id="comments" placeholder="I had an incredible experience scuba diving with seals and otters..." maxLength="150" required></textarea>
         <p id="results"></p>
     </label>
     </div>
@@ -46,7 +47,7 @@
     </p>
     </form>
 </fieldset>
-  
+  </div>
 <!-- script -->
 <script src="/static/scripts/review.js"></script>
 <script src="/static/scripts/textbox.js"></script>

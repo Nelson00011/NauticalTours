@@ -6,7 +6,7 @@ function colorChange(evt){
     num = num[4]*1
     for(let i=1; i<=5; i++){
       let star = document.getElementById(`star${i}`)
-      console.log(star)
+      
       star.style.color = i <= num ? 'gold':'black'  
    }
   }
@@ -20,3 +20,18 @@ function colorChange(evt){
   let stars = document.querySelectorAll(".fa")
   stars.forEach((button) => button.addEventListener('click', colorChange))
   stars.forEach((button)=> button.addEventListener('mouseover', mouseHover))
+
+
+
+  //submission form 
+function submissionForm(evt){
+let confirmation = document.querySelector('input[name="star"]:checked')
+if(!confirmation){
+  alert("Please Select Star Rating.")
+}
+
+}
+
+  //event listener
+  let btn = document.getElementById("submit")
+  btn.addEventListener("click", submissionForm)
