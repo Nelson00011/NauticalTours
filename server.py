@@ -15,6 +15,7 @@ bcrypt = Bcrypt(app)
 app.secret_key = 'dev'
 app.jinja_env.undefined = StrictUndefined
 
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PRESERVE_CONTEXT_ON_EXCEPTION'] = True
 SENDGRID_API_KEY = os.environ['SENDGRID_API_KEY']
 
