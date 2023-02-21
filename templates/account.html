@@ -6,7 +6,7 @@
 
 <!--Profile View: Name, Birthday, Tours Saved, Tours Booked-->
 <div class="container">
-  <h1 id="accountHeader">Account Information</h1>
+  <h2 id="accountHeader">Account Information</h2>
   <section class="profile">
     <div class="UserInfo">
         <h3 id="welcome">Welcome {{user.fname}} {{user.lname}}!</user></h3>
@@ -39,18 +39,20 @@
                         <p>There are currently no saved or booked Tours.</p>
                         <p> Please see <a href='/tours'>Tour Page</a> for more info</p>
                         {% else %}
-                        <table class="styled">
-                          <tr>
-                            <th>Name</th>
-                            <th>Date</th>
-                            <th>Action</th>
-                            <th>Status</th>
-                            <th>Price</th>
-                            <th>Personal Review</th>
+                        <table class="styled table">
+                          <thead class="thead-light">
+                            <tr>
+                            <th scope="col">Tour</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Action</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Options</th>
                           </tr>
+                        </thead>
                         
                           {% for trip in profile %}
-                          <tr id="trip_id_{{trip.trip_id}}">
+                          <tr id="trip_id_{{trip.trip_id}}" scope="row">
                             <td><a href="/tours/{{ trip.tour_id }}">{{ trip.tour }}</a></td>
                             <td>{{ trip.dates }}</td>
                             <td>{{ trip.action }}</td>
@@ -80,7 +82,9 @@
         </div>
       </div>
     </div>
-<!--Log Out of Account-->
+  </section>
+     <!--Log Out of Account-->
+   
 <div class="row">
   <div class="col text-center">
     <fieldset id="plain">
@@ -91,15 +95,10 @@
     </fieldset>
   </div>
 </div>
-</div> 
+ 
 
-
-  </section>
-
-
-
-
-
+ 
+</div>
  <!-- script -->
 <script src="/static/scripts/profile.js"></script>
 
