@@ -36,3 +36,40 @@ html, body {
 .rating input{
   display: none;
   } 
+
+.class {
+  display: inline;
+}
+
+.blockone{
+  width: 175px;
+  margin: 0px 1px 1px;
+}
+
+.blocktwo{
+  width: 350px;
+  margin: 1px;
+  max-height: 100px;
+}
+
+fieldset{
+  border: 1px solid rgba(200, 200, 200, 0.5);
+  width: 400px;
+  margin:auto;
+  background-color: rgba(240, 240, 240, 0.5);
+}
+
+
+.sendgrid, .loginPage{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.spacing{
+  margin: 50px auto 0px;
+}
+
+.accountHeader, .final{
+  margin: 10px auto 10px;
+}

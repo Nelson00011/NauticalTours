@@ -2,37 +2,45 @@
 {% block title %}Nautical Tours{% endblock %}
 
 {% block body %}
-
+<div class="container">
 <h1>About!</h1>
 
 <!-- Loop through ipsum and put a couple genetic photos in here.  -->
 <p>Link to ports and how they were discovered or other filler. All tours leave from San Francisco Harbor. </p>
 
 <!-- Comments Here -->
-<div class="container">
-    <fieldset>
-        <h2>Contact</h2>
-  
+
+    <fieldset class="cols">
+      <div class="row sendgrid">
+        <h2>Contact Form</h2>
+      </div>
             <form action="/comment" method="POST">
      
-        <div>
-            <span>
-              <input type="text" name="fname" placeholder="first name" required>
-              <input type="text" name="lname" placeholder="last name" required>
-            </span>
+        <div class="row sendgrid">
+            <div >
+              <input class="blockone" type="text" name="fname" placeholder="first name" required>
+            </div>
+            <div >
+              <input class="blockone" type="text" name="lname" placeholder="last name" required>
+            </div>
         </div>
-        <div>
-          <input type="text" name="email" placeholder="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>    
+        <div class="row sendgrid">
+          <div >
+          <input class="blocktwo" type="text" name="email" placeholder="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>    
         </div>
-        <div>
+        </div>
+        <div class="row sendgrid">
+          <div >
             <label for="comments">
-            <textarea id="comments" name="comments" rows="3" cols="30" placeholder="Please share your message here" maxLength="150" required></textarea>
+            <textarea class="blocktwo" id="comments" name="comments" rows="3" cols="30" placeholder="Please share your message here" maxLength="150" required></textarea>
             <p id="results"></p>
+            
         </label>
       </div>
-   
+      </div>
+      
        <!--Form:submit button-->
-       <p>
+       <p class="row sendgrid final">
        <input type="submit" value="Submit" class="btn btn-primary">
       </p>
       </form>

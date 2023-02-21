@@ -46,7 +46,13 @@ class NauticalTests(unittest.TestCase):
                                     follow_redirects=True)
             self.assertIn(b"Tour Information", result.data)
 
-    
+    def test_tours(self):
+        """Test departments page."""
+
+        result = self.client.get("/department/fin")
+        self.assertIn(b"Phone: 555-1000", result.data)
+
+
     
 
 

@@ -3,26 +3,25 @@
 
 {% block body %}
 <div class="container">
-<h1 id="Account">Account</h1>
+<!-- <h1 id="Account">Account</h1> -->
 
 <!--Log In to Account-->
-<fieldset>
-<h2>Log Into Account</h2>
+<fieldset class="cols spacing">
+  <div class="row loginPage">
+  <h2 class="accountHeader">Account Login</h2>
+</div>
   <form action="/login" method="POST">
     
-    <div>
-        <input type="text" name="email" placeholder="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+    <div class="row loginPage">
+        <input class="blocktwo" type="text" name="email" placeholder="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
     </div>
-    <div>
-        <input type="password" name="password" placeholder="password" required>
+    <div class="row loginPage">
+        <input class="blocktwo" type="password" name="password" placeholder="password" required>
     </div>
-    <p>
+    
         <!--Form:submit button-->
-    <div class="row">
-      <div class="center">
+    <p class="row loginPage final">
         <input type="submit" value="Log In" class="btn btn-primary" id="login-button">
-      </div>
-    </div>
     </p>
     </form>
 </fieldset>
