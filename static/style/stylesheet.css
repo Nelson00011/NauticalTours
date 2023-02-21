@@ -52,15 +52,23 @@ html, body {
   max-height: 100px;
 }
 
-fieldset{
+.text{
+  min-height: 80px;
+}
+
+#plain{
+  border: 1px solid black;
+}
+
+#fields{
   border: 1px solid rgba(200, 200, 200, 0.5);
   width: 400px;
-  margin:auto;
+  margin: 30px auto 0px;
   background-color: rgba(240, 240, 240, 0.5);
 }
 
 
-.sendgrid, .loginPage{
+.sendgrid, .loginPage, #welcome, #accountHeader{
   margin: auto;
   display: flex;
   justify-content: center;
@@ -70,6 +78,15 @@ fieldset{
   margin: 50px auto 0px;
 }
 
-.accountHeader, .final{
+#accountHeader, .final{
   margin: 10px auto 10px;
+}
+
+.profile{
+  background-color: rgba(200, 200, 200, 0.5);
+}
+
+#reviewing{
+  border: 1px solid rgba(200, 200, 200, 0.5);
+  background-color:  rgba(253, 253, 253);
 }

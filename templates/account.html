@@ -6,10 +6,10 @@
 
 <!--Profile View: Name, Birthday, Tours Saved, Tours Booked-->
 <div class="container">
-  <h1 id="Account">Account Information</h1>
-  <section class="profile" style="background-color: #EEEEEE;">
+  <h1 id="accountHeader">Account Information</h1>
+  <section class="profile">
     <div class="UserInfo">
-        <h3>{{user.fname}} {{user.lname}}</user></h3>
+        <h3 id="welcome">Welcome {{user.fname}} {{user.lname}}!</user></h3>
       <div class="Personal">
         <div class="card-body p-4">
               <h6>Information</h6>
@@ -80,22 +80,25 @@
         </div>
       </div>
     </div>
+<!--Log Out of Account-->
+<div class="row">
+  <div class="col text-center">
+    <fieldset id="plain">
+      <form action='/logout' method="POST">
+        <!--Form:submit button-->
+        <input type="submit" value="Log Out" class="btn btn-secondary" id="logout-button">
+      </form>
+    </fieldset>
+  </div>
+</div>
+</div> 
+
+
   </section>
 
 
 
-<!--Log Out of Account-->
-  <div class="row">
-    <div class="col text-center">
-      <fieldset>
-        <form action='/logout' method="POST">
-          <!--Form:submit button-->
-          <input type="submit" value="Log Out" class="btn btn-secondary" id="logout-button">
-        </form>
-      </fieldset>
-    </div>
-  </div>
- </div> 
+
 
  <!-- script -->
 <script src="/static/scripts/profile.js"></script>

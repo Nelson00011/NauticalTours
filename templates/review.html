@@ -6,20 +6,22 @@
 
 <!--Update Review/Comments/Rating-->
 <div class="container">
-<fieldset>
-  <h3 id="review">Please Tell Us About Your Experience</h3>
-
-  <form action="/review_submission" method="POST">
+<fieldset class="cols spacing" id="fields">
+    <div class="row loginPage">
+        <h2 id="review" class="accountHeader">Share Your Experience</h2>
+    </div>
+        <form action="/review_submission" method="POST">
     
-    <div>
-        <span>
+    <div class="row loginPage" id="reviewing">
+        <span >
             <h3 class="tour_id {{ tour.tour_id }}" id="{{ tour.tour_name }}">{{ tour.tour_name }}</h3>
             <p id="{{ tour.dates }}">Dates: {{ tour.dates }}</p>
         </span>
     </div>
-    <div class="score">
-        <p>Overall experience (star score)</p>
-        <div class="rating" >
+    <div class="row loginPage score">
+        <p>Overall experience (rating)</p>
+    </div>
+    <div class="rating row loginPage" >
         <input type="radio" name="star" value="1" id="one-star" required>
         <label for="one-star"><span class="fa fa-star" id="star1" value="1"></span></label>
         <input type="radio" name="star" value="2" id="two-star">
@@ -30,22 +32,26 @@
         <label for="four-star"><span class="fa fa-star" id="star4" value="4"></span></label>
         <input type="radio" name="star" value="5" id="five-star">
         <label for="five-star"><span class="fa fa-star" id="star5" value="5"></span></label>      
-        </div> 
-    </div>
-    <div>
-        <div>
+    </div> 
+  
+    <div class="row loginPage score">
         <label for="comments">Leave a Review:</label>
     </div>
+    <div class="row loginPage score">
     <label for="comments">
-        <textarea name="comments" id="comments" placeholder="I had an incredible experience scuba diving with seals and otters..." maxLength="150" required></textarea>
+        <textarea class="blocktwo text" name="comments" id="comments" placeholder="I had an incredible experience scuba diving with seals and otters..." maxLength="150" required></textarea>
         <p id="results"></p>
     </label>
     </div>
+    
          <!--Form:submit button-->
-     <p>
-     <input type="submit" class="btn btn-primary" id="submit">
-    </p>
+    <div class="row loginPage">
+        <p>
+        <input type="submit" class="btn btn-primary" id="submit">
+        </p>
+    </div>
     </form>
+
 </fieldset>
   </div>
 <!-- script -->
