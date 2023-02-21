@@ -5,13 +5,16 @@
 
 <div class="container">
     <div class="page-header">
-      <h1>{{ tour.tour_name }} Tour</h1>
-      <p id='{{ tour.tour_id }}'>{{ tour.details }}.</p>
+      <h1 id="accountHeader">{{ tour.tour_name }} Tour</h1>
+      <p id='{{ tour.tour_id }}' class="about">{{ tour.details }}.</p>
+    
     </div>
-    <h2>Start Date: {{ tour.dates }}</h2>
+    <h3 class="inline">Start Date: {{ tour.dates }}</h3>
+    <h3 class="inline">Trip Length: {{ tour.days }} days</h3>
+    <div class="text-center">
     <input type="submit" value="Book Trip" class="btn btn-primary booked" id="booked">
     <input type="submit" value="Save Trip" class="btn btn-light saved" id="saved">
-
+  </div>
    
 <!-- Description and google API -->
 
@@ -30,7 +33,7 @@
       <section class="map">
         <h5>{{tour.port_name}}</h5>
         <div id="map" class="{{tour.state_name}}"></div>
-        <div >
+        <div class="mapButtons">
         <h5 class="explore">Explore: </h5>
         <button class="btn btn-success" id="museums">Museums</button>
         <button class="btn btn-info" id="cafe">Cafe</button>
@@ -42,18 +45,27 @@
  </div>
 
     
+
+
 <!-- Additional Row for Descriptions/Comments -->
 
-  <div class="row">
-    <h2>Reviews</h2>
-    <div class="col-12 ratings">
+  <div class="row" id="reviewArea">
+    <h2  id="accountHeader">Reviews</h2>
+    <div class="col-12 ratings text-center">
       {% for rating in ratings%}
       <div>
-      <h5>Score <span class="stars" id="{{rating.rating}}"></span></h5>
-      <p class="quotes"> {{rating.review}}</p>
+      <h5><span class="stars" id="{{rating.rating}}"></span></h5>
+      <p class="quotes">"{{rating.review}}"</p>
+      
+      <hr class="mt-0 mb-4"> 
     </div>
     {% endfor %}
     </div>
+</div>
+<!-- Final Spacer -->
+<div class="row">
+  <div class="col text-center">
+  </div>
 </div>
 
 <!-- script -->

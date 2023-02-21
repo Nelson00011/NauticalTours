@@ -9,6 +9,20 @@ html, body {
   height: 250px;
 }
 
+.explore{
+  display: inline;
+}
+
+.inline{
+  display: inline;
+  /* justify-content: space-between; */
+}
+
+.mapButtons{
+  margin: 10px auto;
+}
+
+
 .cover {
   font-size: 22px;
   color: white;
@@ -62,6 +76,13 @@ html, body {
   background-color: rgba(240, 240, 240, 0.6);
 }
 
+#reviewArea{
+  border: 1px solid rgba(200, 200, 200, 0.5);
+  /* width: 400px; */
+  margin: 30px auto 30px;
+  background-color: rgba(240, 240, 240, 0.6);
+}
+
 .sendgrid, .loginPage, #welcome, #accountHeader{
   margin: auto;
   display: flex;
@@ -96,7 +117,7 @@ html, body {
   margin: 30px auto;
 }
 
-#about{
+.about{
   text-align: justify;
   text-shadow: 1px 1px 2px whitesmoke;
   font-weight: 490;
@@ -110,3 +131,21 @@ html, body {
   object-position: center;
   overflow: hidden;
 }
+
+.carousel-inner {
+  
+  max-height: 300px;
+  img {
+    max-height: 300px;
+  }
+  
+}
+
+.carousel-indicators img {
+  max-height: 100px;
+}
+
+.quotes{
+  font-style:italic;
+}
+
