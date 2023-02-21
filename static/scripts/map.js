@@ -1,4 +1,21 @@
 'use strict';
+//COMMENT Insert random filler text into activities
+const acts = ["Local Submarine Trip", "Wildlife Cafe", "Home Brewed Beer",  "Scuba Dive" , "Dolphin Swim", "Canoe Trip with local Seals", "Ziplining From Vessel", "Barrel Boat Racing", "Hammock Swings from Lines","Darts on Deck"]
+const lists=document.getElementById("lists")
+let actList =[]
+const cacheList={}
+while(8>actList.length){
+  let index=Math.floor(Math.random()*acts.length)
+  let quotes = acts[index]
+  if(!cacheList[quotes]){
+    actList.push(quotes)
+    cacheList[quotes]=1
+  }
+}
+
+actList.forEach((c)=> lists.innerHTML+=`<li>${c}</li>`)
+
+
 
 //COMMENT: generate trip event function
 function generateTrip(evt){

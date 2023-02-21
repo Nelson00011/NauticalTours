@@ -7,6 +7,7 @@ from flask_bcrypt import Bcrypt
 import sendgrid
 import os
 from sendgrid.helpers.mail import *
+import babel
 
 
 
@@ -136,7 +137,15 @@ def logout():
 
     return render_template('homepage.html', logIn=logIn)
 
-
+#date converters
+@app.template_filter()
+def format_datetime(value, format='medium'):
+    if format == 'full':
+        format="EEEE, d. MMMM y 'at' HH:mm"
+    elif format == 'medium':
+        format="EE dd.MM.y HH:mm"
+    return babel.dates.format_datetime(value, format)
+    
 #tours page
 @app.route('/tours')
 def tour_display():

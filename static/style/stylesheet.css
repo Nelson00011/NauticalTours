@@ -15,11 +15,6 @@ html, body {
   text-align: justify;
 }
 
-.inline{
-  display: inline;
-  /* justify-content: space-between; */
-}
-
 .mapButtons{
   margin: 10px auto;
 }
@@ -50,6 +45,11 @@ html, body {
   object-position: center;
   border-bottom: 10px solid rgb(1, 1, 56);
 }
+
+.blue{
+  border: 2px solid blue;
+}
+
 
 .rating input{
   display: none;

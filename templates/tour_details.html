@@ -4,40 +4,47 @@
 {% block body %}
 
 <div class="container">
+  
+  <div class="row" >
     <div class="page-header">
       <h1 id="accountHeader">{{ tour.tour_name }} Tour</h1>
       <p id='{{ tour.tour_id }}' class="about">{{ tour.details }}.</p>
+    </div>
     
-    </div>
-    <div class="tripInfo">
-      <h3 class="inline">Start Date: {{ tour.dates }}</h3>
-      <h3 class="inline">Trip Length: {{ tour.days }} days</h3>
-    </div>
-    <div class="text-center">
+    
+    <div class="col-6 tripInfo text-center">
+        <h3>Trip Length: {{ tour.days }} days</h3>
+      </div>
+      <div class="col-6 tripInfo text-center red">
+        <h3>Start Date: {{ tour.dates.strftime("%m/%d/%Y") }}</h3>
+      </div>
+      
+    
+
+    <div class="col-12 text-center">
     <input type="submit" value="Book Trip" class="btn btn-primary booked" id="booked">
     <input type="submit" value="Save Trip" class="btn btn-light saved" id="saved">
   </div>
-   
-<!-- Description and google API -->
+</div>
 
+<!-- Description and google API -->
 <div class="row" id="reviewArea">
-    <div class="col-12 col-md-6 col-lg-3 blue">
+    <div class="col-12 col-md-6 col-lg-3">
       <section class="sidebar">
-      <h5>Activites on Tours</h5>
-      <ul>
-        <li>Please explore the Port Trip locals</li>
-        <li>pull from Let us know which you like most!</li>
+      <h5 id="accountHeader">Activities on Tours</h5>
+      <hr class="mt-0 mb-4"/> 
+      <ul id="lists">
       </ul>
     </section>
     </div>
 
-    <div class="col-12 col-md-6 col-lg-9 blue">
+    <div class="col-12 col-md-6 col-lg-9">
       <div class='{{tour.port_id}}'>
       <section class="map">
-        <h5>{{tour.port_name}}</h5>
+        <h5 id="accountHeader">{{tour.port_name}}</h5>
         <div id="map" class="{{tour.state_name}}"></div>
         <div class="mapButtons">
-        <h5 class="explore">Explore (click): </h5>
+        <h5 class="explore">Explore: </h5>
         <button class="btn btn-info" id="museums">Museums</button>
         <button class="btn btn-info" id="cafe">Cafe</button>
         <button class="btn btn-info" id="restaurants">Restaurants</button>
@@ -47,13 +54,10 @@
   </div>
  </div>
 
-    
-
-
 <!-- Additional Row for Descriptions/Comments -->
 
   <div class="row" id="reviewArea">
-    <h2  id="accountHeader">Reviews</h2>
+    <h2 id="accountHeader">Reviews</h2>
     <div class="col-12 ratings text-center">
       {% for rating in ratings%}
       <div>
@@ -71,6 +75,7 @@
   </div>
 </div>
 
+</div>
 <!-- script -->
 <script src="/static/scripts/map.js"></script>
 <script async
