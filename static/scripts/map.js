@@ -15,8 +15,6 @@ while(8>actList.length){
 
 actList.forEach((c)=> lists.innerHTML+=`<li>${c}</li>`)
 
-
-
 //COMMENT: generate trip event function
 function generateTrip(evt){
   evt.preventDefault();
@@ -39,6 +37,7 @@ function generateTrip(evt){
       alert(responseJson.status);
     });
 };
+
 //COMMENT: Event listener for generateTrip
 document.querySelector('#booked').addEventListener('click', generateTrip) 
 document.querySelector('#saved').addEventListener('click', generateTrip) 
