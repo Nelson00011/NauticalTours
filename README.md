@@ -12,7 +12,8 @@ https://github.com/Nelson00011/MVP/issues/1#issue-1534126780
 - Description here
 
 ## Screen Shots
-- Description here
+- About page form has character limit (javascript)
+![image](https://user-images.githubusercontent.com/112737682/220251413-f09bab78-7099-42f7-b01c-99d287000bd0.png)
 
 
 ## Technology stack
