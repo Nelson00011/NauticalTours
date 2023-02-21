@@ -9,8 +9,10 @@
       <p id='{{ tour.tour_id }}' class="about">{{ tour.details }}.</p>
     
     </div>
-    <h3 class="inline">Start Date: {{ tour.dates }}</h3>
-    <h3 class="inline">Trip Length: {{ tour.days }} days</h3>
+    <div class="tripInfo">
+      <h3 class="inline">Start Date: {{ tour.dates }}</h3>
+      <h3 class="inline">Trip Length: {{ tour.days }} days</h3>
+    </div>
     <div class="text-center">
     <input type="submit" value="Book Trip" class="btn btn-primary booked" id="booked">
     <input type="submit" value="Save Trip" class="btn btn-light saved" id="saved">
@@ -18,26 +20,27 @@
    
 <!-- Description and google API -->
 
-<div class="row">
-    <div class="col-12 col-md-6 col-lg-3">
-      <div>Sidebar/Navbar/Description</div>
+<div class="row" id="reviewArea">
+    <div class="col-12 col-md-6 col-lg-3 blue">
+      <section class="sidebar">
+      <h5>Activites on Tours</h5>
       <ul>
         <li>Please explore the Port Trip locals</li>
         <li>pull from Let us know which you like most!</li>
       </ul>
-     
+    </section>
     </div>
 
-    <div class="col-12 col-md-6 col-lg-9">
+    <div class="col-12 col-md-6 col-lg-9 blue">
       <div class='{{tour.port_id}}'>
       <section class="map">
         <h5>{{tour.port_name}}</h5>
         <div id="map" class="{{tour.state_name}}"></div>
         <div class="mapButtons">
-        <h5 class="explore">Explore: </h5>
-        <button class="btn btn-success" id="museums">Museums</button>
+        <h5 class="explore">Explore (click): </h5>
+        <button class="btn btn-info" id="museums">Museums</button>
         <button class="btn btn-info" id="cafe">Cafe</button>
-        <button class="btn btn-danger" id="restaurants">Restaurants</button>
+        <button class="btn btn-info" id="restaurants">Restaurants</button>
         </div>
     </section>
     </div>

@@ -9,8 +9,10 @@ html, body {
   height: 250px;
 }
 
-.explore{
+
+.explore, .tripInfo{
   display: inline;
+  text-align: justify;
 }
 
 .inline{
@@ -22,6 +24,9 @@ html, body {
   margin: 10px auto;
 }
 
+.btn-info{
+  margin: 0px auto;
+}
 
 .cover {
   font-size: 22px;
@@ -76,7 +81,7 @@ html, body {
   background-color: rgba(240, 240, 240, 0.6);
 }
 
-#reviewArea{
+#reviewArea {
   border: 1px solid rgba(200, 200, 200, 0.5);
   /* width: 400px; */
   margin: 30px auto 30px;
