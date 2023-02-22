@@ -47,12 +47,6 @@ html, body {
   border-bottom: 10px solid rgb(1, 1, 56);
 }
 
-.blue{
-  border: 2px solid blue;
-}
-.red{
-  background-color: ;
-}
 
 .rating input{
   display: none;
@@ -110,7 +104,7 @@ html, body {
 
 #spacer{
   height: 50px;
-  background-color: red;
+  /* background-color: red; */
 }
 
 #accountHeader, .final{
@@ -182,16 +176,18 @@ local{
   margin: 0px 0px 20px;
 }
  
-.images, .red, .image{
+.images, .image{
   max-width: 225px;
   max-height: 225px;
+}
+
+
+.red{
   border: 1px solid red;
 }
-
-.featureInput, .blue{
+.blue{
   border: 1px solid blue;
 }
-
 .orange{
   border: 1px solid orange;
 }

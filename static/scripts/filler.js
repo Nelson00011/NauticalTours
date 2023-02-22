@@ -1,9 +1,9 @@
 'use strict';
 //COMMENT Insert random filler text into activities
 const acts = {
-    Honolulu: ["Local Submarine Trip", "Wildlife Cafe", "Home Brewed Beer",  "Scuba Dive" , "Dolphin Swim", "Canoe Trip with local Seals", "Ziplining From Vessel", "Barrel Boat Racing", "Hammock Swings from Lines","Darts on Deck"],
-    Anchorage: ["Local Submarine Trip", "Wildlife Cafe", "Home Brewed Beer",  "Scuba Dive" , "Dolphin Swim", "Canoe Trip with local Seals", "Ziplining From Vessel", "Barrel Boat Racing", "Hammock Swings from Lines","Darts on Deck"],
-    Seattle: ["Local Submarine Trip", "Visiting the Needle", "Home Brewed Beer",  "Scuba Dive" , "Dolphin Swim", "Canoe Trip with local Seals", "Ziplining From Vessel", "Barrel Boat Racing", "Hammock Swings from Lines","Darts on Deck"]
+    Honolulu: ["Paradise Cove Luau", "Pearl Harbor Museum", "Circle Island",  "Waikiki Buffet" , "Turtle Canyon Snorkeling", "Oahu Shark Dive", "Sunset Dinner Cruise", "Waikiki Atlantis", "Jurassic Adventure","Gem Waterfall"],
+    Anchorage: ["Ice Cocktail Bar", "Wildlife Glacier Cafe", "Ice Moutain Biking",  "Scuba Dive" , "Mud Racing", "BlackBear Beer", "Salmon Fishing", "Wintervalley Fishing", "Scenic Bike Ride","Aurora Quest"],
+    Seattle: ["Pike Place Market", "Space Needle Views", "Flight Museum",  "Great Wheel" , "Chihuly Gardens", "Post-Alley Gum Wall", "Fremont Toll", "Snoqualine Twin Falls", "Seattle Art Museum","Chocolate Tour"]
 }
 
 const allList=document.querySelectorAll(".featureInput")
@@ -17,7 +17,7 @@ for(let i=0;i<allList.length;i++){
     //list of the current state
     let currentList = acts[allList[i].id]
     
-    while(7>actList.length){
+    while(8>actList.length){
         let index=Math.floor(Math.random()*currentList.length)
         let quote=currentList[index]
 
