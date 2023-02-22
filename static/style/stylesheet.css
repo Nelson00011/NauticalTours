@@ -182,3 +182,8 @@ local{
   margin: 0px 0px 20px;
 }
  
+.images, .sidebar, .image{
+  min-width: 300px;
+  min-height: 300px;
+  border: 1px solid red;
+}
