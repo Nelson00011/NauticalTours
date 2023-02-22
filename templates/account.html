@@ -25,7 +25,7 @@
                     </div>
                     <div class="col-4 mb-3">
                         <h6>Birthday</h6>
-                        <p class="{{user.user_id}}">{{user.birthday}}</p>
+                        <p class="{{user.user_id}}">{{user.birthday.strftime("%m/%d/%Y")}}</p>
                       </div>
                   </div>
         </div>
@@ -54,7 +54,7 @@
                           {% for trip in profile %}
                           <tr id="trip_id_{{trip.trip_id}}" scope="row">
                             <td><a href="/tours/{{ trip.tour_id }}">{{ trip.tour }}</a></td>
-                            <td>{{ trip.dates }}</td>
+                            <td>{{ trip.dates.strftime("%m/%d/%Y") }}</td>
                             <td>{{ trip.action }}</td>
                             <td>{{ trip.status }}</td>
                             <td>${{'%0.2f' % trip.price |float}}</td>
