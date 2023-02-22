@@ -17,7 +17,7 @@ for(let i=0;i<allList.length;i++){
     //list of the current state
     let currentList = acts[allList[i].id]
     
-    while(9>actList.length){
+    while(7>actList.length){
         let index=Math.floor(Math.random()*currentList.length)
         let quote=currentList[index]
 
