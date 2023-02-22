@@ -3,7 +3,7 @@
 
 {% block body %}
 <div class="container">
-<h1>Tour</h1>
+<h1 id="accountHeader">Adventure Tours</h1>
 
 <!-- Cards of various tours to switch through -->
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -15,21 +15,20 @@
   <div class="carousel-inner">
     <!-- establishing the inner carousel -->
     {% for tour in tours %}
-    {% if tours[0].tour_id == tour.tour_id %}
-    <div class="carousel-item active">
-      {% else %}
-      <div class="carousel-item">
-        {% endif %}
+      {% if tours[0].tour_id == tour.tour_id %}
+      <div class="carousel-item active">
+        {% else %}
+        <div class="carousel-item">
+          {% endif %}
       <img class="d-block w-100" src="/static/img/{{ tour.state_name }}.jpeg" alt="First slide">
       <div class="carousel-caption d-none d-md-block">
-        <h3><a href="/tours/{{ tour.tour_id }}">{{ tour.tour_name }}</a></h3>
-        <p>{{ tour.details[:150] }}...</p>
-        <p>Price: {{ tour.price }}</p>
+        <h3 class="imageFont">{{ tour.tour_name }}</h3>
+        <p class="imageFont">{{ tour.details[:150] }}...</p>
+        <a href="/tours/{{ tour.tour_id }}" id="learnMore"><button type="button" class="btn btn-info">Learn More</button></a>
       </div>
     </div>
     
     {% endfor %}
-
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
@@ -43,9 +42,37 @@
 <!-- Cards of various tours to switch through -->
 </div>
 
- <!-- Images of Tour Package -->
+
+<!-- Port Description & Image -->
+{% for tour in tours%}
+<div class="row" id="reviewArea">
+  <div class="col-12 col-md-6 col-lg-3">
+    <section class="sidebar">
+    <h5 id="accountHeader"><a href="/tours/{{ tour.tour_id }}">{{ tour.port_name }}<a></h5>
+    <hr class="mt-0 mb-4"/> 
+    <!-- linebreak above -->
+    <img src="/static/img/{{ tour.port_name.split()[-1] }}.jpeg" alt="{{ tour.port_name.split()[-1] }}">
+    <!-- <p>{{ tour.port_name.split()[-1] }}</p> -->
+  </section>
+  </div>
+
+  <div class="col-12 col-md-6 col-lg-9">
+    <div class='{{tour.port_id}}'>
+      <section class="images">
+        <h5 id="accountHeader">Features:</h5>
+          <div id="images" class="{{tour.state_name}}"></div>
+          <ul id="{{ tour.port_name.split()[-1] }}">
+            <li>loops</li>
+          </ul>
+      </section>
+    </div>
+  </div>
+</div>
+{% endfor %}
  
-<div>
+
+ <!-- Filler from previuosly -->
+<!-- <div>
 <p> User Quotes</p>
 <p> Port Cities</p>
 <ul>
@@ -54,7 +81,14 @@
 {% endfor %}
 </ul>
 
-<p>Enjoy the breeze until your next stop on land</p>
+<p>Enjoy the breeze until your next stop on land</p> -->
+
+<!-- Final Spacer -->
+<div class="row">
+  <div class="col text-center">
+  </div>
+</div>
+
 </div>
 
 {% endblock %}
