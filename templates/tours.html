@@ -67,7 +67,7 @@
         <h5 id="accountHeader">Features/Activities</h5>
         <hr class="mt-0 mb-4"/> 
           <div id="images" class="{{tour.state_name}}"></div>
-          <ul id="{{ tour.port_name.split()[-1] }}">
+          <ul class="featureInput" id="{{ tour.port_name.split()[-1] }}">
             <li>loops</li>
           </ul>
       </section>
@@ -77,18 +77,6 @@
 {% endfor %}
  
 
- <!-- Filler from previuosly -->
-<!-- <div>
-<p> User Quotes</p>
-<p> Port Cities</p>
-<ul>
-  {% for tour in tours%}
-<li><a href="/tours/{{ tour.tour_id }}">{{ tour.port_name }}<a></li>
-{% endfor %}
-</ul>
-
-<p>Enjoy the breeze until your next stop on land</p> -->
-
 <!-- Final Spacer -->
 <div class="row">
   <div class="col text-center">
@@ -96,5 +84,9 @@
 </div>
 
 </div>
+
+<!-- script -->
+<script src="/static/scripts/filler.js"></script>
+
 
 {% endblock %}
