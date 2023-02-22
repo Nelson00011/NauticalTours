@@ -34,7 +34,18 @@ def homepage():
         session['status'] = session.get('status', False)
         logIn = session.get('status', False)
     
-    return render_template('homepage.html', logIn = logIn)
+    #get Tour classes
+    tours = crud.get_tours()
+    today = date.today()
+
+    #compose list of future tours only
+    tour_list = []
+    for tour in tours:     
+        if tour.dates.strftime('%Y-%m-%d') > today.strftime('%Y-%m-%d'):
+            tour_list.append(tour)
+    tour_list = sorted(tour_list, key=lambda x: x.dates.strftime('%Y-%m-%d'))
+
+    return render_template('homepage.html', logIn = logIn, tours=tour_list)
 
 
 #account/profile page
@@ -135,7 +146,7 @@ def logout():
     session['primary_key'] = False
     logIn = session['status']
 
-    return render_template('homepage.html', logIn=logIn)
+    return redirect('/')
 
 #date converters
 @app.template_filter()

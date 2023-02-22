@@ -4,22 +4,58 @@
 {% block body %}
 <div class="container">
 <!-- cover art -->
-<div class="cover">
-    <h1 class="title" onClick=sevenSeas() id="title">Nautical Tours</h1>
-    <p id="quote">
-      <blockquote><em
-        >Best experiences on the seven seas, sailing you into your dream
-        vacation and beyond...</em
-        ></blockquote>
-    </p>
+  <div class="cover">
+    <h1 id="accountHeader">Nautical Tours</h1>
+
+<!-- main about section below  -->
+      <p class="quotes">Best Experience on the seven seas, sailing into your dream vacation and beyond...</p>
   </div>
-<!-- tours in cards -->
-<p> Top 3 Cards of various tours to Scroll through/Flipcards?</p>
 
-<!-- learn more about us and our history -->
+<!-- Port Description & Image -->
 
-<p>History Learn more about team</p>
+<div class="row" id="reviewArea">
+  {% for tour in tours%}
+  <div class="col-sm">
+    <div class='{{tour.port_id}} col text-center'>
+      <section class="portImage">
+        <h5 id="accountHeader"> <a href="/tours/{{ tour.tour_id }}">{{tour.port_name}}</a></h5>
+        <hr class="mt-0 mb-4"/> 
+        <div id="ports" class="{{tour.state_name}}">
+          <img class="image" src="/static/img/{{ tour.port_name.split()[-1] }}.jpeg" alt="{{ tour.port_name.split()[-1] }}">
+         </div>
+         <p> </p>
+      </section>
+    </div>
+  </div>
+  {% endfor %}
+</div>
 
-<p>Please feel free to submit a comment</p>
+
+
+<!-- Additional Row for Descriptions/Comments -->
+
+<div class="row" id="reviewArea">
+  <h2 id="accountHeader">About Us</h2>
+  <div class="col-12 ratings text-center">
+
+    <div>
+      <h5><span class="about"></span></h5>
+      <div class="about">
+        <p>We have an incredibly high energy crew that loves to tailor every trip to each tour group. As a family run charter we offer a home style comfort. Our tours accomodate all skill levels of seafarers. We make sure fresh espresso is available every morning to help get the most out of everyday.</p>
+        <p>If you want to contact us, learn more about our business ventures or drop us a line please click the button below</p>
+      </div>
+        <a href="/about" id="learnMore"><button type="button" class="btn btn-info">Learn More</button></a>
+        <p></p>
+        <hr class="mt-0 mb-4"> 
+    </div>
+  </div>
+</div>
+<!-- Final Spacer -->
+  <div class="row">
+    <div class="col text-center">
+    </div>
+  </div>
+
+
 </div>
 {% endblock %}
