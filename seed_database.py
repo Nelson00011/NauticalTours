@@ -56,6 +56,26 @@ tours = [{
     'port_id': '24', 
     'port_name': 'Port of Anchorage',
     'state_name': 'alaska'
+    },
+      {
+    'name': "NorthWest Best",
+    'details': "A dynamic, urban city surrounded by unmatched natural beauty—and now it’s all open for you to explore",
+    'price': 1700, 
+    'dates': '2020-07-15',
+    'days': 10,
+    'port_id': '30', 
+    'port_name': 'Port of Seattle',
+    'state_name': 'washington'
+    },
+     {
+    'name': "Polynesian Breezes",
+    'details': "A magical blend of culture, people, nature, activities, weather, culinary delights, nightlife, and beautiful accommodation",
+    'price': 2000, 
+    'dates': '2021-05-07',
+    'days': 10,
+    'port_id': '39', 
+    'port_name': 'Port of Honolulu',
+    'state_name': 'hawaii'
     }
 ]
 
@@ -67,7 +87,9 @@ user_list = [
 
 rating_list = [
     (3, "Artic Winds", '2019-06-29', 5, "Amazing experience once in a life time for the 2019 sailing tour"),
-    (2, "Artic Winds", '2019-06-29', 4, "Super excited to see the all the Whales on the second day! Incredible glacial Views! Great crew.")
+    (2, "Artic Winds", '2019-06-29', 4, "Super excited to see the all the Whales on the second day! Incredible glacial Views! Great crew."),
+    (2, "NorthWest Best", '2020-07-15', 5, "Seattle was a joy to see from off the coast, amazing at night & loved salmon fishing."),
+    (2, "Polynesian Breezes", '2021-05-07', 5, "Swimming with tropical fish was by far the highlight of the trip, the crew was incredibly help for with the Scuba Gear!")
     ]
  
 trip_list = [
