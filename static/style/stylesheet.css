@@ -72,16 +72,16 @@ html, body {
 }
 
 #fields{
-  border: 1px solid rgba(200, 200, 200, 0.5);
+  border: 1px solid rgba(150, 150, 150, 0.5);
   width: 400px;
   margin: 30px auto 30px;
-  background-color: rgba(240, 240, 240, 0.6);
+  background-color: rgba(210, 210, 210, 0.6);
 }
 
 #reviewArea {
-  border: 1px solid rgba(200, 200, 200, 0.5);
+  border: 1px solid rgba(150, 150, 150, 0.5);
   margin: 30px auto 30px;
-  background-color: rgba(240, 240, 240, 0.6);
+  background-color: rgba(230, 230, 230, 0.6);
 }
 
 #headerArea{
@@ -113,13 +113,13 @@ html, body {
 
 .profile{
   border: 1px solid rgba(200, 200, 200, 0.5);
-  background-color: rgba(240, 240, 240, 0.5);
+  background-color: rgba(220, 220, 220, 0.8);
   min-width: 640px;
   margin:auto;
 }
 
 #reviewing{
-  border: 1px solid rgba(200, 200, 200, 0.5);
+  border: 2px solid rgba(200, 200, 200, 0.5);
   background-color:  rgba(253, 253, 253);
 }
 
@@ -182,14 +182,3 @@ local{
 }
 
 
-.red{
-  border: 1px solid red;
-}
-
-.blue{
-  border: 1px solid blue;
-}
-
-.orange{
-  border: 1px solid orange;
-}

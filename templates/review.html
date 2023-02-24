@@ -15,7 +15,7 @@
     <div class="row loginPage" id="reviewing">
         <span >
             <h3 class="tour_id {{ tour.tour_id }}" id="{{ tour.tour_name }}">{{ tour.tour_name }}</h3>
-            <p id="{{ tour.dates }}">Dates: {{ tour.dates }}</p>
+            <p id="{{ tour.dates }}">Dates: {{ tour.dates.strftime("%m/%d/%Y") }}</p>
         </span>
     </div>
     <div class="row loginPage score">
