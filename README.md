@@ -2,7 +2,14 @@
 
 
 ## Description
-- Nautical Tours is a Flask app built on Python and Jinja. The website is designed to allow active users to book trips to specific tours. To learn more about the company a contact form uses Twilio (Sendgrid) to send a confirmation email to user and an internal company members. Users can rate every tour they have attended with an interactive form.  Every Tour, User, Trip and Rating is saved using SQL Alchemy to communicate with PostgreSQL database. Google Maps API uses AJAX to call a specific port city that users can than explore with Google Places API to look up specific tourist attractions in the surrounding area. Bootstraps is utilized in combination with traditional CSS to have a consistent design aesthetic through-out the site.
+- Nautical Tours is a Flask app built on Python and Jinja. The website is designed to allow active users to book trips to specific tours. 
+- To learn more about the company a contact form uses Twilio (Sendgrid) to send a confirmation email to user and an internal company members. Users can rate every tour they have attended with an interactive form.  
+- Every Tour, User, Trip and Rating is saved using SQL Alchemy to communicate with PostgreSQL database. 
+- Google Maps API uses AJAX to call a specific port city that users can than explore with Google Places API to look up specific tourist attractions in the surrounding area. 
+- Bootstraps is utilized in combination with traditional CSS to have a consistent design aesthetic through-out the site.
+
+## Demo Youtube Video
+- TBD
 
 ## Screen Shots
 - Sendgrid (twilio) form with character limit enforced:
@@ -14,6 +21,7 @@
 
 
 - Google Maps API with specialized Google Places markers (defined by type)
+
 ![image](https://user-images.githubusercontent.com/112737682/221691955-49a15cba-63af-4b50-8e48-14158c66bd22.png)
 
 
