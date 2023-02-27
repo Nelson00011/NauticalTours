@@ -8,6 +8,12 @@
 - Sendgrid (twilio) form with character limit enforced:
 
 ![image](https://user-images.githubusercontent.com/112737682/220435463-ef5e1079-a937-46cf-a6c5-e657cb83c128.png)
+-
+![image](https://user-images.githubusercontent.com/112737682/221693842-5dc611fe-0515-472e-b462-92e39d30ab8a.png)
+
+
+- Google Maps API with specialized Google Places markers (defined by type)
+![image](https://user-images.githubusercontent.com/112737682/221691955-49a15cba-63af-4b50-8e48-14158c66bd22.png)
 
 
 ## Technology stack

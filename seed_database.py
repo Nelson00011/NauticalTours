@@ -29,7 +29,7 @@ tours = [{
     },
     {
     'name': "Polynesian Breezes",
-    'details': "A magical blend of culture, people, nature, activities, weather, culinary delights, nightlife, and beautiful accommodation",
+    'details': "A magical blend of culture, people, nature, activities, weather, culinary delights, nightlife, and beautiful accommodation. Hawaii is known for its tropical climate, unique topography, and natural environment, as well as its multicultural population. Volcanic sand beaches make for a unique diving experience.",
     'price': 2000, 
     'dates': '2023-05-03',
     'days': 10,
@@ -69,7 +69,7 @@ tours = [{
     },
      {
     'name': "Polynesian Breezes",
-    'details': "A magical blend of culture, people, nature, activities, weather, culinary delights, nightlife, and beautiful accommodation",
+    'details':  "A magical blend of culture, people, nature, activities, weather, culinary delights, nightlife, and beautiful accommodation. Hawaii is known for its tropical climate, unique topography, and natural environment, as well as its multicultural population. Volcanic sand beaches make for a unique diving experience.",
     'price': 2000, 
     'dates': '2021-05-07',
     'days': 10,
@@ -89,7 +89,8 @@ rating_list = [
     (3, "Artic Winds", '2019-06-29', 5, "Amazing experience once in a life time for the 2019 sailing tour"),
     (2, "Artic Winds", '2019-06-29', 4, "Super excited to see the all the Whales on the second day! Incredible glacial Views! Great crew."),
     (2, "NorthWest Best", '2020-07-15', 5, "Seattle was a joy to see from off the coast, amazing at night & loved salmon fishing."),
-    (2, "Polynesian Breezes", '2021-05-07', 5, "Swimming with tropical fish was by far the highlight of the trip, the crew was incredibly help for with the Scuba Gear!")
+    (2, "Polynesian Breezes", '2021-05-07', 5, "Swimming with tropical fish was by far the highlight of the trip, the crew was incredibly help for with the Scuba Gear!"),
+    (1, "Polynesian Breezes", '2021-05-07', 5, "Some of the best polynesian cuisine I have had in my entire life. The rope swing off was a nice edition to afternoon swims in the Tropical Waters.")
     ]
  
 trip_list = [
