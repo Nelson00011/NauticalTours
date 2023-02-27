@@ -1,5 +1,5 @@
 'use strict';
-//COMMENT Insert random filler text into activities
+//COMMENT Insert filler into activities
 const acts = {
     Honolulu: ["Paradise Cove Luau", "Pearl Harbor Museum", "Circle Island",  "Waikiki Buffet" , "Turtle Canyon Snorkeling", "Oahu Shark Dive", "Sunset Dinner Cruise", "Waikiki Atlantis", "Jurassic Adventure","Gem Waterfall"],
     Anchorage: ["Ice Cocktail Bar", "Wildlife Glacier Cafe", "Ice Moutain Biking",  "Scuba Dive" , "Mud Racing", "BlackBear Beer", "Salmon Fishing", "Wintervalley Fishing", "Scenic Bike Ride","Aurora Quest"],
@@ -11,10 +11,8 @@ const allList=document.querySelectorAll(".featureInput")
 for(let i=0;i<allList.length;i++){
     let element=document.getElementById(allList[i].id)
     let actList=[]
-        
+  
     const cacheList={}
-    //COMMENT current list is the dictionary object
-    //list of the current state
     let currentList = acts[allList[i].id]
     
     while(8>actList.length){

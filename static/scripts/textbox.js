@@ -3,7 +3,7 @@ let result = document.getElementById("results")
 const limit = 150
 result.textContent = 0 + "/" + limit;
 
-//function
+//COMMENT: function for enforced text limit
 const textLimit = () =>{
     let textLength = text.value.length;
     result.textContent = textLength + "/" + limit;
@@ -20,5 +20,4 @@ const textLimit = () =>{
 }
 
 
-//addEventLister
 text.addEventListener("input", textLimit)

@@ -1,6 +1,4 @@
-//profile
-
-//REMOVE TRIP
+//COMMENT: remove trip eventlistener
 function removeTrip(evt){
   evt.preventDefault();
 const tripInput={
@@ -20,16 +18,16 @@ fetch('/removeTrip', {
 .then((res) => res.json())
 .then((resJson) => {
 alert(resJson.status);
-//hide the removedTrips
+//COMMENT: hide the removedTrips
 
 document.querySelector(`#trip_id_${evt.target.value}`).remove();
-//innerHtmlSetnew balance
+//COMMENT: innerHtmlSetnew balance
 document.querySelector("#balance").innerHTML=`Balance: $${resJson.balance}.00`
 
 }).catch((err)=>
 console.log(err));
 }
-//event listener removeTrip
+//COMMENT: event listener removeTrip
 let unselected = document.querySelectorAll('.unselect')
 unselected.forEach((button)=> button.addEventListener('click', removeTrip))
   

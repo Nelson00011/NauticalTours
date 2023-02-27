@@ -1,7 +1,7 @@
 
 function colorChange(evt){
-    //to change the star color based on position
-    //let color = evt.target.style.color
+    //COMMENT: Changes Star Color Based on Position
+    
     let num = evt.target.id
     num = num[4]*1
     for(let i=1; i<=5; i++){
@@ -16,14 +16,14 @@ function colorChange(evt){
   }
   
   
-  //event listener
+  //COMMENT: star event listener
   let stars = document.querySelectorAll(".fa")
   stars.forEach((button) => button.addEventListener('click', colorChange))
   stars.forEach((button)=> button.addEventListener('mouseover', mouseHover))
 
 
 
-  //submission form 
+  //COMMENT: submission form 
 function submissionForm(evt){
 let confirmation = document.querySelector('input[name="star"]:checked')
 if(!confirmation){
@@ -32,6 +32,6 @@ if(!confirmation){
 
 }
 
-  //event listener
+  //COMMENT: event listener for each
   let btn = document.getElementById("submit")
   btn.addEventListener("click", submissionForm)

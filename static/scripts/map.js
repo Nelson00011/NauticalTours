@@ -65,8 +65,6 @@ const markerObj = {}
 //identify the class for map_port line 35
 const map_port = document.querySelector('#map').classList[0]
 
-// object of locations and 
-//TODO: eliminate const comments
 const locations = {
   alaska: {
     port_id: "24",
@@ -76,7 +74,7 @@ const locations = {
       lng:  -149.89909775375338
     }  
   },
-  // const hawaii =
+
   hawaii: {
     port_id: "39",
     port_name: "Port of Honolulu",
@@ -85,7 +83,7 @@ const locations = {
       lng: -157.866185
     }
   },
-  // const seattle =
+
   washington: {
     port_id: "30",
     port_name: "Port of Seattle",
@@ -113,7 +111,7 @@ function initMap() {
     title: map_port,
     map: basicMap,
   });
-//TODO:Update Introductory Information
+
   const info = new google.maps.InfoWindow({
     content: `<h6>${coordinate.port_name}:</br></h6><p>Please Explore!</p>`,
   });
@@ -156,7 +154,7 @@ service.textSearch(request, function(results, status) {
           url: results[i].icon,
           scaledSize: new google.maps.Size(25,25),
         },
-      //TODO: specific colored icon to match button
+      
       });
       
       markerObj[searchQuery].push(markerMap)
@@ -177,11 +175,10 @@ service.textSearch(request, function(results, status) {
     }
   }
 });
-//final bracket if statement
 
 }
 else{
-// TODO: loop through map marks and make null
+
 let markerList = markerObj[searchQuery]
 
 for(let i=0; i<markerList.length ;i++){
@@ -189,14 +186,13 @@ for(let i=0; i<markerList.length ;i++){
   item.setMap(null)
   markerObj[searchQuery]=0
     }
-//else statement bracket
+
   }
-// ///buttonMap final bracket
+
 }
 ///eventlisteners for each
 document.querySelector('#museums').addEventListener('click', buttonMap) 
 document.querySelector('#cafe').addEventListener('click', buttonMap) 
 document.querySelector('#restaurants').addEventListener('click', buttonMap)
 
-//final bracket initmap
 }
