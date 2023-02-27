@@ -22,7 +22,7 @@
 
 **APIs:** Google Maps, Twilio (SendGrid)
 
-**Front-End:** HTML5, CSS, Bootstraps, Javascript...
+**Front-End:** HTML5, CSS, Bootstrap, Javascript...
 
 ## Run Code (Environment)
 
