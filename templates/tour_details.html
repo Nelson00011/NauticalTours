@@ -9,15 +9,13 @@
     <div class="page-header">
       <h1 id="accountHeader">{{ tour.tour_name }} Tour</h1>
       <p id='{{ tour.tour_id }}' class="about">{{ tour.details }}.</p>
-    </div>
-    
+    </div>    
     <div class="col-6 tripInfo text-center">
         <h3>Trip Length: {{ tour.days }} days</h3>
       </div>
       <div class="col-6 tripInfo text-center">
         <h3>Start Date: {{ tour.dates.strftime("%m/%d/%Y") }}</h3>
       </div>
-
     <div class="col-12 text-center">
       <input type="submit" value="Book Trip" class="btn btn-primary booked" id="booked">
       <input type="submit" value="Save Trip" class="btn btn-light saved" id="saved">
@@ -25,7 +23,7 @@
     
 </div>
 
-<!-- Description and google API -->
+<!-- Description and Google Maps API -->
 <div class="row" id="reviewArea">
     <div class="col-12 col-md-6 col-lg-3">
       <section class="sidebar">

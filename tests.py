@@ -20,18 +20,19 @@ class NauticalTests(unittest.TestCase):
         connect_to_db(app)
 
 
-    def test_homePage(self):
+    def test_home_page(self):
         """Confirmation that home page loads"""
 
         result = self.client.get("/")
-        
+        self.assertEqual(result.status_code, 200)    
         self.assertIn(b"Nautical", result.data)
         
 
-    def test_tourPage(self):
+    def test_tour_page(self):
         """Confirmation that tour page loads"""
 
         result = self.client.get("/tours")
+        self.assertEqual(result.status_code, 200)
         self.assertIn(b"Hawaii", result.data)
         
     
@@ -41,9 +42,11 @@ class NauticalTests(unittest.TestCase):
             result = self.client.post("/login",
                                     data={"email": "lulu@blu.com", "password": "blue"},
                                     follow_redirects=True)
+            
+            self.assertEqual(result.status_code, 200)
             self.assertIn(b"Tour Information", result.data)
 
-    def test_signUp(self):
+    def test_sign_up(self):
            """Test Sign-Up Page."""
 
            result = self.client.post("/users", data={
@@ -55,6 +58,7 @@ class NauticalTests(unittest.TestCase):
                 "birthday": "1990-01-01"
                 }, follow_redirects=False)
     
+           self.assertEqual(result.status_code, 200)
            self.assertIn(b"Account Login", result.data)
            
 
@@ -62,9 +66,9 @@ class NauticalTests(unittest.TestCase):
         """Test departments page."""
 
         result = self.client.get("/tours/1")
-        self.assertIn(b"Book", result.data)
+        self.assertEqual(result.status_code, 200)
+        self.assertIn(b"Arctic Winds", result.data)
 
-    
 
 
 
