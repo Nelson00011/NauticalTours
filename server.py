@@ -94,7 +94,7 @@ def register_user():
     
     email = request.form.get('email')
     birthday = request.form.get('birthday')
-    
+   
     
     user = crud.get_user_by_email(email)
     if user:

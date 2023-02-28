@@ -20,23 +20,20 @@ class NauticalTests(unittest.TestCase):
         connect_to_db(app)
 
 
-
     def test_homePage(self):
         """Confirmation that home page loads"""
 
         result = self.client.get("/")
-        print("RESULT")
-        print(result)
-        self.assertIn(b"Footer Paragra", result.data)
+        
+        self.assertIn(b"Nautical", result.data)
         
 
     def test_tourPage(self):
         """Confirmation that tour page loads"""
 
         result = self.client.get("/tours")
-        self.assertIn(b"Footer Paragraph", result.data)
-        print("RESULT")
-        print(result)
+        self.assertIn(b"Hawaii", result.data)
+        
     
     def test_login(self):
             """Test login page."""
@@ -46,18 +43,29 @@ class NauticalTests(unittest.TestCase):
                                     follow_redirects=True)
             self.assertIn(b"Tour Information", result.data)
 
+    def test_signUp(self):
+           """Test Sign-Up Page."""
+
+           result = self.client.post("/users", data={
+                "fname": "Pear", 
+                "lname": "Blu", 
+                "email": "lime@blu.com", 
+                "password": "blue", 
+                "phone": "555-555-5555", 
+                "birthday": "1990-01-01"
+                }, follow_redirects=False)
+    
+           self.assertIn(b"Account Login", result.data)
+           
+
     def test_tours(self):
         """Test departments page."""
 
-        result = self.client.get("/department/fin")
-        self.assertIn(b"Phone: 555-1000", result.data)
-
-
-    
-
-
+        result = self.client.get("/tours/1")
+        self.assertIn(b"Book", result.data)
 
     
+
 
 
 if __name__ == "__main__":
