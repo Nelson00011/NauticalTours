@@ -7,7 +7,7 @@ from model import connect_to_db, db
 
 
 class NauticalTests(unittest.TestCase):
-    """Tests for my nautical site."""
+    """Tests for my nautical site"""
 
 
     def setUp(self):
@@ -35,9 +35,15 @@ class NauticalTests(unittest.TestCase):
         self.assertEqual(result.status_code, 200)
         self.assertIn(b"Hawaii", result.data)
         
+    def test_about(self):
+        """Confirmation that about loads"""
+
+        result = self.client.get("/about")
+        self.assertEqual(result.status_code, 200)
+        self.assertIn(b"<!-- Sendgrid (Twilio) form-->", result.data)
     
     def test_login(self):
-            """Test login page."""
+            """Test login page"""
 
             result = self.client.post("/login",
                                     data={"email": "lulu@blu.com", "password": "blue"},
@@ -46,8 +52,9 @@ class NauticalTests(unittest.TestCase):
             self.assertEqual(result.status_code, 200)
             self.assertIn(b"Tour Information", result.data)
 
+
     def test_sign_up(self):
-           """Test Sign-Up Page."""
+           """Test Sign-Up Page"""
 
            result = self.client.post("/users", data={
                 "fname": "Pear", 
@@ -60,15 +67,74 @@ class NauticalTests(unittest.TestCase):
     
            self.assertEqual(result.status_code, 200)
            self.assertIn(b"Account Login", result.data)
-           
+
+    def test_logout(self):
+        """Test Log out functions"""
+        result = self.client.post('/logout')
+        self.assertEqual(result.status_code, 302)
+        self.assertIn(b"Redirecting", result.data)
 
     def test_tours(self):
-        """Test departments page."""
+        """Test departments page"""
 
         result = self.client.get("/tours/1")
         self.assertEqual(result.status_code, 200)
         self.assertIn(b"Arctic Winds", result.data)
 
+    def test_profile_page(self):
+            """Test profile page"""
+
+            result = self.client.post("/login",
+                                    data={"email": "lulu@blu.com", "password": "blue"},
+                                    follow_redirects=True)
+            
+            self.assertEqual(result.status_code, 200)        
+            self.assertIn(b"Balance", result.data)
+            self.assertIn(b"Phone", result.data)
+
+    def test_review_form(self):
+        """Test Review Form"""
+        with self.client as current:
+            with current.session_transaction() as period:
+                period['primary_key'] = 3
+                period['tour_id']=4
+                period['dates']='2019-06-29'
+                
+        result =self.client.post('/review_submission',
+                                 data={                                
+                                "star": "5",
+                                "comments": "Super excited to see the all the Whales on the second day! Incredible glacial Views! Great crew.",
+                                })
+        self.assertEqual(result.status_code, 200)        
+        self.assertIn(b"Balance", result.data)
+                                
+
+    def test_review_page(self):
+        """Test Review Page"""
+        result = self.client.get('/review/1')
+        self.assertEqual(result.status_code, 200)        
+        self.assertIn(b'Overall experience (rating)', result.data)
+    
+    def test_google_map(self):
+         """Test Google Map Api"""
+        
+         result = self.client.get("/tours/1")
+         self.assertEqual(result.status_code, 200)
+         self.assertIn(b'<div id="map" class="alaska">', result.data)
+
+
+    # def test_redundancy(self):
+    #      """Testing redundancy for filler text"""
+    #      result = self.client.get("/tours/1")
+    #      self.assertEqual(result.status_code, 200)
+    #      items=result.data.decode('UTF-8')
+    #      item=items.replace(" ", "").replace("\n", "").split("><")
+    #      print("ITEMS")
+    #      print(item)
+    #     #  for thing in item:
+    #     #       print("new Line")
+    #     #       thing.strip()
+    #     #       print(thing)
 
 
 
