@@ -123,18 +123,6 @@ class NauticalTests(unittest.TestCase):
          self.assertIn(b'<div id="map" class="alaska">', result.data)
 
 
-    # def test_redundancy(self):
-    #      """Testing redundancy for filler text"""
-    #      result = self.client.get("/tours/1")
-    #      self.assertEqual(result.status_code, 200)
-    #      items=result.data.decode('UTF-8')
-    #      item=items.replace(" ", "").replace("\n", "").split("><")
-    #      print("ITEMS")
-    #      print(item)
-    #     #  for thing in item:
-    #     #       print("new Line")
-    #     #       thing.strip()
-    #     #       print(thing)
 
 
 
