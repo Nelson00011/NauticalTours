@@ -116,7 +116,7 @@ class NauticalTests(unittest.TestCase):
         self.assertIn(b'Overall experience (rating)', result.data)
     
     def test_google_map(self):
-         """Test Google Map Api"""
+         """Test Google Map Api call will be correct"""
         
          result = self.client.get("/tours/1")
          self.assertEqual(result.status_code, 200)
