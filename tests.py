@@ -9,7 +9,6 @@ from model import connect_to_db, db
 class NauticalTests(unittest.TestCase):
     """Tests for my nautical site"""
 
-
     def setUp(self):
         """Code to run before every test."""
 
@@ -121,8 +120,6 @@ class NauticalTests(unittest.TestCase):
          result = self.client.get("/tours/1")
          self.assertEqual(result.status_code, 200)
          self.assertIn(b'<div id="map" class="alaska">', result.data)
-
-
 
 
 
