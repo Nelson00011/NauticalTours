@@ -9,12 +9,10 @@ html, body {
   height: 250px;
 }
 
-
 .explore, .tripInfo{
   display: inline;
   text-align: justify;
 }
-
 
 .mapButtons{
   margin: 10px auto;
@@ -46,7 +44,6 @@ html, body {
   object-position: center;
   border-bottom: 10px solid rgba(200, 200, 200, 0.5);
 }
-
 
 .rating input{
   display: none;
@@ -84,16 +81,16 @@ html, body {
   background-color: rgba(230, 230, 230, 0.6);
 }
 
+#reviewing{
+  border: 2px solid rgba(120, 120, 120, 0.5);
+  background-color:  rgba(253, 253, 253);
+}
+
 .profile{
   border: 1px solid rgba(120, 120, 120, 0.5);
   background-color: rgba(230, 230, 230, 0.8);
   min-width: 640px;
   margin:auto;
-}
-
-#reviewing{
-  border: 2px solid rgba(120, 120, 120, 0.5);
-  background-color:  rgba(253, 253, 253);
 }
 
 #headerArea{
@@ -144,11 +141,6 @@ html, body {
 
 .quotes{
   font-style:italic;
-}
-
-
-local{
-  position: relative;
 }
 
 #learnMore{
