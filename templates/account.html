@@ -39,33 +39,33 @@
                         <p> Please see <a href='/tours'>Tour Page</a> for more info</p>
                         {% else %}
                         <table class="styled table">
-                          <thead class="thead-light">
+                          <thead class="thead-dark">
                             <tr>
-                            <th scope="col">Tour</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Action</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Options</th>
+                            <th scope="col" class="text-center">Tour</th>
+                            <th scope="col" class="text-center">Date</th>
+                            <th scope="col" class="text-center">Action</th>
+                            <th scope="col" class="text-center">Status</th>
+                            <th scope="col" class="text-center">Price</th>
+                            <th scope="col" class="text-center">Options</th>
                           </tr>
                         </thead>
                         
                           {% for trip in profile %}
                           <tr id="trip_id_{{trip.trip_id}}" scope="row">
-                            <td><a href="/tours/{{ trip.tour_id }}">{{ trip.tour }}</a></td>
-                            <td>{{ trip.dates.strftime("%m/%d/%Y") }}</td>
-                            <td>{{ trip.action }}</td>
-                            <td>{{ trip.status }}</td>
-                            <td>${{'%0.2f' % trip.price |float}}</td>
+                            <td class="text-center"><a href="/tours/{{ trip.tour_id }}"><h6>{{ trip.tour }}</h6></a></td>
+                            <td class="text-center">{{ trip.dates.strftime("%m/%d/%Y") }}</td>
+                            <td class="text-center">{{ trip.action }}</td>
+                            <td class="text-center">{{ trip.status }}</td>
+                            <td class="text-center">${{'%0.2f' % trip.price |float}}</td>
                             {% if trip.rating %}
                               {% if trip.review %}
-                              <td><a href="/review/{{ trip.trip_id }}"><button value="Update Review">Update Review</button></a></td>
+                              <td class="text-center"><a href="/review/{{ trip.trip_id }}"><button class="btn btn-primary" value="Update Review">Update Review</button></a></td>
                               {% else %}
-                              <td><a href="/review/{{ trip.trip_id }}"><button value="Leave Review">Leave Review</button></a></td>
+                              <td class="text-center"><a href="/review/{{ trip.trip_id }}"><button class="btn btn-primary" value="Leave Review">Leave Review</button></a></td>
                               {% endif %}
                             {% else %}
-                            <td>
-                            <button value="{{ trip.trip_id }}" class="unselect" id="{{ trip.action }}">Unselect Trip</button></td>
+                            <td class="text-center">
+                            <button value="{{ trip.trip_id }}" class="unselect btn btn-primary" id="{{ trip.action }}">Unselect Trip</button></td>
                             {% endif %}
                           </tr>
                          {% endfor %}

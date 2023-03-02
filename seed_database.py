@@ -29,7 +29,7 @@ tours = [{
     },
     {
     'name': "Polynesian Breezes",
-    'details': "A magical blend of culture, people, nature, activities, weather, culinary delights, nightlife, and beautiful accommodation. Hawaii is known for its tropical climate, unique topography, and natural environment, as well as its multicultural population. Volcanic sand beaches make for a unique diving experience.",
+    'details': "A magical blend of culture, people, nature, activities, weather, culinary delights, nightlife, and beautiful accommodation. Hawaii is known for its tropical climate, unique topography, and natural environment, as well as its multicultural population. Volcanic sand beaches make for a unique diving experience",
     'price': 2000, 
     'dates': '2023-05-03',
     'days': 10,
@@ -39,7 +39,7 @@ tours = [{
     },
     {
     'name': "NorthWest Best",
-    'details': "A dynamic, urban city surrounded by unmatched natural beauty—and now it’s all open for you to explore",
+    'details': "A dynamic, urban city surrounded by unmatched natural beauty—and now it’s all open for you to explore. Seattle is a mix of peoples, cultures, and religions and has a higher level of ethnic diversity than is to be found elsewhere in the Pacific Northwest",
     'price': 1700, 
     'dates': '2023-07-15',
     'days': 10,
@@ -59,7 +59,7 @@ tours = [{
     },
       {
     'name': "NorthWest Best",
-    'details': "A dynamic, urban city surrounded by unmatched natural beauty—and now it’s all open for you to explore",
+    'details': "A dynamic, urban city surrounded by unmatched natural beauty—and now it’s all open for you to explore. Seattle is a mix of peoples, cultures, and religions and has a higher level of ethnic diversity than is to be found elsewhere in the Pacific Northwest",
     'price': 1700, 
     'dates': '2020-07-15',
     'days': 10,
@@ -69,7 +69,7 @@ tours = [{
     },
      {
     'name': "Polynesian Breezes",
-    'details':  "A magical blend of culture, people, nature, activities, weather, culinary delights, nightlife, and beautiful accommodation. Hawaii is known for its tropical climate, unique topography, and natural environment, as well as its multicultural population. Volcanic sand beaches make for a unique diving experience.",
+    'details':  "A magical blend of culture, people, nature, activities, weather, culinary delights, nightlife, and beautiful accommodation. Hawaii is known for its tropical climate, unique topography, and natural environment, as well as its multicultural population. Volcanic sand beaches make for a unique diving experience",
     'price': 2000, 
     'dates': '2021-05-07',
     'days': 10,
