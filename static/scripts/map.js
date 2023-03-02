@@ -146,6 +146,8 @@ service.textSearch(request, function(results, status) {
   if (status === google.maps.places.PlacesServiceStatus.OK) {
     for (let i = 0; i < results.length; i++) {
       //COMMENT: Create New Marker
+      console.log("ITEM IN MAPS")
+      console.log(results[i])
       const markerMap = new google.maps.Marker({
         map: basicMap,
         title: results[i].name,
@@ -164,6 +166,7 @@ service.textSearch(request, function(results, status) {
       <div class="${searchQuery}" id='${results[i].place_id}'>
       <h5>${results[i].name}<h5>
       <p>${searchQuery} Rating: ${results[i].rating}</p>
+      <p class="address">Address: ${results[i].formatted_address}<p>
       </div> 
       `
       //COMMENT: add eventlistener to every marker on map
