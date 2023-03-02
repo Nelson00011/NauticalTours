@@ -80,9 +80,9 @@ tours = [{
 ]
 
 user_list = [
-    ("John","Doe", '555-555-5555', b'$2b$12$O2zmGHU8F3SkkIl4HPiGweyqMCRjXMp/9P16Y1QnhYJgJ287bN80a', "John@doe.com", '01/01/1994'),
-    ("Jane","Doe", '777-777-7777',b'$2b$12$O2zmGHU8F3SkkIl4HPiGweyqMCRjXMp/9P16Y1QnhYJgJ287bN80a', "Jane@doe.com", '02/02/1990'),
-    ("Lulu", "Blu", '666-666-6666', b'$2b$12$KTY/ESdnZHt7jR1ItRR7ie91XIHjOY1uWC8LKN7Dtp.o8nB0PLm.C', 'lulu@blu.com', '03/03/1990')
+    ("John","Doe", '555-555-5555', b'$2b$12$QsK3XFIwOdvlzuKVsJAZaOK/d3VD9LgaBszyakzkkM/ftusyLlmqG', "John@doe.com", '01/01/1994'),
+    ("Jane","Doe", '777-777-7777',b'$2b$12$QsK3XFIwOdvlzuKVsJAZaOK/d3VD9LgaBszyakzkkM/ftusyLlmqG', "Jane@doe.com", '02/02/1990'),
+    ("Lulu", "Blu", '666-666-6666', b'$2b$12$9k0w1fq23Nb9nj.h/kXDBOc1rJhnk3qM3.Cw6nzDTvhxoGE/8Hid2', 'lulu@blu.com', '03/03/1990')
     ]
 
 rating_list = [

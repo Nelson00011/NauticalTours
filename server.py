@@ -90,8 +90,11 @@ def register_user():
     phone = request.form.get('phone')
        
     password = request.form.get('password')
+    print("PASSWORD RAW")
+    print(password)
     pw_hash = bcrypt.generate_password_hash(password)
-    
+    print("Password Lime1111*")
+    print(pw_hash)
     email = request.form.get('email')
     birthday = request.form.get('birthday')
    
