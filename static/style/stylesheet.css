@@ -173,20 +173,15 @@ html, body {
 
 .valid:before {
   position: relative;
-  /* left: -35px; */
-  /* content: "&#10004;"; */
 }
 
-/* Add a red text color and an "x" icon when the requirements are wrong */
-
+/* Add a red text color."x" icon updated with bootstraps. */
 .invalid {
   color: red;
 }
 
 .invalid:before {
   position: relative;
-  /* left: -35px; 
-  content: "&#10006;"; */
 }
 
 .icons{
