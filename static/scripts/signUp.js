@@ -21,8 +21,7 @@ myInput.onkeyup = function() {
   // Validate lowercase letters
   var lowerCaseLetters = /[a-z]/g;
   if(myInput.value.match(lowerCaseLetters)) {
-    console.log("FIRSTCHILD TEST")
-    console.log(letter.firstChild.classList)
+    
     letter.firstChild.classList.remove("fa-remove")
     letter.firstChild.classList.add("fa-check")
     letter.classList.remove("invalid");

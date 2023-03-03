@@ -25,7 +25,6 @@ for(let i=0;i<allList.length;i++){
         }
     }
     actList = actList.map((c)=> `<li>${c}</li>`)
-    console.log(actList.join())
     element.innerHTML = actList.join("")
 }
 
