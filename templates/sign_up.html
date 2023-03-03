@@ -5,6 +5,7 @@
 <div class="container">
 
 <!--Create New Account-->
+<div class="row">
 <fieldset class="cols spacing" id="fields">
     <div class="row loginPage">
   <h2 id="accountHeader">Sign-Up</h2>
@@ -39,16 +40,24 @@
     </p>
     </form>
 </fieldset>
+</div>
 
 <!-- TODO: place password restrictions here -->
-<div id="message">
-    <h3>Password must contain the following:</h3>
-    <div  id="letter" class="invalid"><span class="fa fa-remove icons" id="icons"></span><p style="display: inline">A <b>lowercase</b> letter</p></div>
-    <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-    <p id="number" class="invalid">A <b>number</b></p>
-    <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+<div class="row center">
+<div id="message" class="fields">
+    <h5 class="text-center">Password must contain the following:</h5>
+    
+    <div id="letter" class="invalid"><span class="fa fa-remove icons"></span><p class="para">A lowercase letter</p></div>
+    <div id="capital" class="invalid"><span class="fa fa-remove icons"></span><p class="para">A capital (uppercase) letter</p></div>
+    <div id="number" class="invalid"><span class="fa fa-remove icons"></span><p class="para">A number</p></div>
+    <div id="length" class="invalid"><span class="fa fa-remove icons"></span><p class="para">Minimum 8 characters</p></div>
   </div>
+</div>
 
 </div>
+
+
+<!-- script -->
+<script src="/static/scripts/signUp.js"></script>
 
 {% endblock %}
