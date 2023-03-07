@@ -1,10 +1,10 @@
 //passcode requirements
 
-var myInput = document.getElementById("psw");
-var letter = document.getElementById("letter");
-var capital = document.getElementById("capital");
-var number = document.getElementById("number");
-var length = document.getElementById("length");
+let myInput = document.getElementById("psw");
+let letter = document.getElementById("letter");
+let capital = document.getElementById("capital");
+let number = document.getElementById("number");
+let length = document.getElementById("length");
 
 // When the user clicks on the password field, show the message box
 myInput.onfocus = function() {
@@ -19,7 +19,7 @@ myInput.onblur = function() {
 // When the user starts to type something inside the password field
 myInput.onkeyup = function() {
   // Validate lowercase letters
-  var lowerCaseLetters = /[a-z]/g;
+  let lowerCaseLetters = /[a-z]/g;
   if(myInput.value.match(lowerCaseLetters)) {
     
     letter.firstChild.classList.remove("fa-remove")
@@ -34,7 +34,7 @@ myInput.onkeyup = function() {
 }
 
   // Validate capital letters
-  var upperCaseLetters = /[A-Z]/g;
+  let upperCaseLetters = /[A-Z]/g;
   if(myInput.value.match(upperCaseLetters)) {
     capital.firstChild.classList.remove("fa-remove")
     capital.firstChild.classList.add("fa-check")
@@ -48,7 +48,7 @@ myInput.onkeyup = function() {
   }
 
   // Validate numbers
-  var numbers = /[0-9]/g;
+  let numbers = /[0-9]/g;
   if(myInput.value.match(numbers)) {
     number.firstChild.classList.remove("fa-remove")
     number.firstChild.classList.add("fa-check")
