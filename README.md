@@ -26,11 +26,11 @@
 
 
 ## Technology stack
-**Back-End:** Python, Flask, Jinja, SQLAlchemy, Bcrypt...
+**Back-End:** Python, Flask, Jinja, SQLAlchemy, Bcrypt
 
 **APIs:** Google Maps, Twilio (SendGrid)
 
-**Front-End:** HTML5, CSS, Bootstrap, Javascript...
+**Front-End:** HTML5, CSS, Bootstrap, Javascript
 
 ## Run Code (Environment)
 
