@@ -20,8 +20,7 @@ class User(db.Model):
     #payment information default zero
     balance = db.Column(db.Float, nullable=False)
     birthday = db.Column(db.Date, nullable=False)
-    #payment_info = 
-    
+     
     trips = db.relationship('Trip', back_populates='user')
     rating = db.relationship('Rating', back_populates='user')
 
