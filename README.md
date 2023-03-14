@@ -22,8 +22,9 @@
 
 - Google Maps API with specialized Google Places markers (defined by type)
 
-![image](https://user-images.githubusercontent.com/112737682/221691955-49a15cba-63af-4b50-8e48-14158c66bd22.png)
+![polyTour](https://user-images.githubusercontent.com/112737682/225162285-e1a95918-0e96-4cb4-a8bd-639be245eae0.jpg)
 
+![reviews](https://user-images.githubusercontent.com/112737682/225162356-451dd1d2-7264-4dc2-81f0-bc7da6680985.jpg)
 
 ## Technology stack
 **Back-End:** Python, Flask, Jinja, SQLAlchemy, Bcrypt
