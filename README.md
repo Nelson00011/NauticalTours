@@ -1,15 +1,16 @@
-# Nautical Tours
+<h1 align="center">Nautical Tours</h1>
 
+![homePage](https://user-images.githubusercontent.com/112737682/225162610-5ab2d59f-6c9e-45ac-a8f8-c786f76ae8a9.jpg)
 
 ## Description
-- Nautical Tours is a Flask app built on Python and Jinja. The website is designed to allow active users to book trips to specific tours. 
-- To learn more about the company a contact form uses Twilio (Sendgrid) to send a confirmation email to user and an internal company members. Users can rate every tour they have attended with an interactive form.  
-- Every Tour, User, Trip and Rating is saved using SQL Alchemy to communicate with PostgreSQL database. 
-- Google Maps API uses AJAX to call a specific port city that users can than explore with Google Places API to look up specific tourist attractions in the surrounding area. 
-- Bootstraps is utilized in combination with traditional CSS to have a consistent design aesthetic through-out the site.
+Nautical Tours is a ***Flask*** app built on ***Python*** and ***Jinja***. The website is designed to allow active users to book and save trips to specific tour locations. Along, with exploring more about the "Sailing Tours" the company offers, including with customer reviews for each Tour. 
+- To learn more about the company a contact form uses ***Twilio*** (Sendgrid) to send a confirmation email to user and an internal company members. Users can rate every tour they have attended with an interactive form.  
+- Every Tour, User, Trip and Rating is saved using ***SQL Alchemy*** to communicate with ***PostgreSQL*** database. 
+- ***Google Maps API*** uses AJAX to call a specific port city that users can than explore with ***Google Places API*** to look up specific tourist attractions in the surrounding area. 
+- ***Bootstraps*** is utilized in combination with traditional CSS to have a consistent design aesthetic through-out the site.
 
 ## Demo Youtube Video
-- https://youtu.be/-PKyqMkmOHw
+- Youtube Video [HERE](https://youtu.be/-PKyqMkmOHw)
 
 ## Screen Shots
 ![homePage](https://user-images.githubusercontent.com/112737682/225162610-5ab2d59f-6c9e-45ac-a8f8-c786f76ae8a9.jpg)
@@ -37,7 +38,7 @@
 
 ## Run Code (Environment)
 
-- Create and activate virtual environment 
+- Create and activate virtual environment (local dev only):
  ```
 > pip3 install virtualenv
 > virtualenv env
