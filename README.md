@@ -3,7 +3,7 @@
 ![homePage](https://user-images.githubusercontent.com/112737682/225162610-5ab2d59f-6c9e-45ac-a8f8-c786f76ae8a9.jpg)
 
 ## Description
-*Nautical Tours* is a ***Flask*** app built on ***Python*** and ***Jinja***. The website is designed to allow active users to book and save trips to specific tour locations. Explore more about the Sailing Tours the company offers, including personalized customer reviews. 
+**Nautical Tours** is a ***Flask*** app built on ***Python*** and ***Jinja***. The website is designed to allow active users to book and save trips to specific tour locations. Explore more about the Sailing Tours the company offers, including personalized customer reviews. 
 - For Inqueries a contact form uses ***Twilio*** (Sendgrid) to send a confirmation email to user's and an internal company members to respond to. 
 - Every Tour, User, Trip and Rating is saved using ***SQL Alchemy*** to communicate with ***PostgreSQL*** database. Users can rate every tour they have attended with an interactive form, that allows review generation, editing and deletion. 
 - ***Google Maps API*** uses AJAX to call a specific port city that users can than explore with ***Google Places API*** to look up specific tourist attractions in the surrounding area. 
@@ -66,6 +66,7 @@ Additional information: The login functionality requires that you have a secret.
 SENDGRID_API_KEY
 
 ## Resources & Helpful Hints: 
+
 
 
 #### Helpful Hints
