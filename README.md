@@ -41,7 +41,7 @@
 > source env/bin/activate
 ```
 
-- Install the dependences/requirements
+- Install the dependences/requirements (localhost:5000):
 ```
 > pip3 install -r requirements.txt
 ```
@@ -66,6 +66,11 @@ Additional information: The login functionality requires that you have a secret.
 SENDGRID_API_KEY
 
 ## Resources & Helpful Hints: 
+- Flask installation info [here](https://flask.palletsprojects.com/en/2.3.x/):
+    - [Flask-Bcrypt](https://flask-bcrypt.readthedocs.io/en/1.0.1/) for python
+- Jinja Information [here](https://jinja.palletsprojects.com/en/3.1.x/)
+- SQLAlchemy Database for Python [here](https://www.sqlalchemy.org/)
+
 
 
 
