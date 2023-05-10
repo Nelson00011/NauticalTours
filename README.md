@@ -70,6 +70,7 @@ SENDGRID_API_KEY
     - [Flask-Bcrypt](https://flask-bcrypt.readthedocs.io/en/1.0.1/) for python
 - Jinja Information [here](https://jinja.palletsprojects.com/en/3.1.x/)
 - SQLAlchemy Database for Python [here](https://www.sqlalchemy.org/)
+- Initial Proposal Approved by Hackbright [here](https://gist.github.com/Nelson00011/fbebcc152428b2c91ceb01d1124faf8a)
 
 
 
