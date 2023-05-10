@@ -4,9 +4,9 @@
 
 ## Description
 **Nautical Tours** is a ***Flask*** app built on ***Python*** and ***Jinja***. The website is designed to allow active users to book and save trips to specific tour locations. Explore more about the Sailing Tours the company offers, including personalized customer reviews. 
-- For Inqueries a contact form uses ***Twilio*** (Sendgrid) to send a confirmation email to user's and an internal company members to respond to. 
+- For Inquiries a contact form uses ***Twilio*** (Sendgrid) to send a confirmation email to user's and an internal company members to respond to. 
 - Every Tour, User, Trip and Rating is saved using ***SQL Alchemy*** to communicate with ***PostgreSQL*** database. Users can rate every tour they have attended with an interactive form, that allows review generation, editing and deletion. 
-- ***Google Maps API*** uses AJAX to call a specific port city that users can than explore with ***Google Places API*** to look up specific tourist attractions in the surrounding area. 
+- ***Google Maps API*** uses AJAX to call a specific port city that users can than explore with ***Google Places API*** to look up specific tourist attractions in the surrounding area. Exploration buttons allow the map components to be toggled without reloading the underlying Google Map. 
 - ***Bootstraps*** is utilized in combination with traditional CSS to have a consistent design aesthetic through-out the site.
 
 ## Demo Youtube Video
@@ -28,7 +28,7 @@
 ## Technology stack
 **Back-End:** Python, Flask, Jinja, SQLAlchemy, Bcrypt
 
-**APIs:** Google Maps, Twilio (SendGrid)
+**APIs:** Google Maps, Google Places, Twilio (SendGrid)
 
 **Front-End:** HTML5, CSS, Bootstrap, Javascript
 
@@ -70,10 +70,11 @@ SENDGRID_API_KEY
     - [Flask-Bcrypt](https://flask-bcrypt.readthedocs.io/en/1.0.1/) for python
 - Jinja Information [here](https://jinja.palletsprojects.com/en/3.1.x/)
 - SQLAlchemy Database for Python [here](https://www.sqlalchemy.org/)
-- Initial Proposal Approved by Hackbright [here](https://gist.github.com/Nelson00011/fbebcc152428b2c91ceb01d1124faf8a)
+- Initial GIST Proposal Approved by Hackbright [here](https://gist.github.com/Nelson00011/fbebcc152428b2c91ceb01d1124faf8a)
 
 
 
 
 #### Helpful Hints
 - developement environment will play a large role in dependencies/requirements
+- DevZero great for one-click solutions to rapid switching between Python & Node.js dev ennvironments without any dependencies problems. 
